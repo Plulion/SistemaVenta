@@ -18,7 +18,8 @@ public class SistemaVentas {
            
         } 
         Sistema sistema=new Sistema();
-        sistema.setExtendedState(MAXIMIZED_BOTH);
+        //sistema.setExtendedState(MAXIMIZED_BOTH);
         sistema.setVisible(true);
+        
     }
 }
