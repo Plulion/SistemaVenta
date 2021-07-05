@@ -9,7 +9,7 @@ public class Sistema extends JFrame {
     public Sistema() {
         initComponents();
         setTitle("Sistema Ventas Dream Gift");
-        setSize(1210,750);
+        setSize(1510,762);
         setLocationRelativeTo(null);
     }
 
