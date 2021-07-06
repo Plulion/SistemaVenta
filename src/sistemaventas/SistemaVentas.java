@@ -6,7 +6,7 @@ import static java.awt.Frame.MAXIMIZED_BOTH;
 
 import javax.swing.UIManager;
 
-
+//ahora si les tiene que salir el comentario
 
 public class SistemaVentas {
 
