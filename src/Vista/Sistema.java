@@ -1089,7 +1089,7 @@ public class Sistema extends JFrame {
                 {null, null}
             },
             new String [] {
-                "Title 1", "Title 2"
+                "nombre ususrio", "accion"
             }
         ));
         jScrollPane4.setViewportView(jTable3);
