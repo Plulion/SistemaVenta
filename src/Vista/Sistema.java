@@ -2,6 +2,7 @@
 package Vista;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import javax.swing.JFrame;
 import java.sql.*;
 
@@ -12,6 +13,13 @@ public class Sistema extends JFrame {
         setTitle("Sistema Ventas Dream Gift");
         setSize(1510,762);
         setLocationRelativeTo(null);
+        MenuBanco menu_banco = new MenuBanco();
+        jTabbedPane3.add("Banco", menu_banco);
+        
+        MenuPack menu_pack = new MenuPack();
+        jTabbedPane3.add("Pack", menu_pack);
+
+        
     }
 
     
