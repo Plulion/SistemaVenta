@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 public class Conexion {
-    private final String DRIVER="com.mysql.cj.jdbc.Driver";
+    /*private final String DRIVER="com.mysql.cj.jdbc.Driver";
     private final String URL="jdbc:mysql://localhost:3306/";
     private final String DB="mydb";
     private final String USER="root";
@@ -43,5 +43,5 @@ public class Conexion {
             instancia=new Conexion();
         }
         return instancia;
-    }
+    }*/
 }
