@@ -15,9 +15,12 @@ public class Sistema extends JFrame {
         setLocationRelativeTo(null);
         MenuBanco menu_banco = new MenuBanco();
         jTabbedPane3.add("Banco", menu_banco);
-        
+              
         MenuPack menu_pack = new MenuPack();
         jTabbedPane3.add("Pack", menu_pack);
+        
+        Categoria_Ventas categoria_ventas = new Categoria_Ventas();
+        jTabbedPane3.add("Categoria Ventas", categoria_ventas);
 
         
     }
