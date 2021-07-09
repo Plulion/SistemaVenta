@@ -53,6 +53,7 @@ public class MenuPack extends javax.swing.JPanel {
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
         jPanel1.setBackground(java.awt.SystemColor.control);
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable2.setBackground(java.awt.SystemColor.controlHighlight);
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -76,12 +77,15 @@ public class MenuPack extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jTable2);
 
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(452, 55, 349, 176));
+
         btn_agregar.setText("Agregar");
         btn_agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_agregarActionPerformed(evt);
             }
         });
+        jPanel1.add(btn_agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 100, 80, -1));
 
         btn_quitar.setText("Quitar");
         btn_quitar.addActionListener(new java.awt.event.ActionListener() {
@@ -89,11 +93,14 @@ public class MenuPack extends javax.swing.JPanel {
                 btn_quitarActionPerformed(evt);
             }
         });
+        jPanel1.add(btn_quitar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 140, 80, -1));
 
         btn_crear_pack.setText("Crear pack");
+        jPanel1.add(btn_crear_pack, new org.netbeans.lib.awtextra.AbsoluteConstraints(715, 237, -1, -1));
 
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Nombre del pack");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 18, -1, -1));
 
         btn_descartar.setText("Descartar");
         btn_descartar.addActionListener(new java.awt.event.ActionListener() {
@@ -101,13 +108,17 @@ public class MenuPack extends javax.swing.JPanel {
                 btn_descartarActionPerformed(evt);
             }
         });
+        jPanel1.add(btn_descartar, new org.netbeans.lib.awtextra.AbsoluteConstraints(624, 237, -1, -1));
 
         input_nombre_pack.setBackground(java.awt.SystemColor.controlHighlight);
+        jPanel1.add(input_nombre_pack, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 15, 244, -1));
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Precio");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(452, 18, -1, -1));
 
         input_precio_pack.setBackground(java.awt.SystemColor.controlHighlight);
+        jPanel1.add(input_precio_pack, new org.netbeans.lib.awtextra.AbsoluteConstraints(503, 15, 294, -1));
 
         jTable1.setBackground(java.awt.SystemColor.controlHighlight);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -131,69 +142,10 @@ public class MenuPack extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(input_nombre_pack, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btn_agregar)
-                            .addComponent(btn_quitar))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(input_precio_pack, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_descartar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_crear_pack)))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(input_nombre_pack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(input_precio_pack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(btn_agregar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btn_quitar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_descartar)
-                    .addComponent(btn_crear_pack))
-                .addGap(46, 46, 46))
-        );
-
-        add(jPanel1);
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 55, 353, 176));
 
         jPanel2.setBackground(java.awt.SystemColor.control);
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable3.setBackground(java.awt.SystemColor.controlHighlight);
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
@@ -217,7 +169,10 @@ public class MenuPack extends javax.swing.JPanel {
         });
         jScrollPane3.setViewportView(jTable3);
 
+        jPanel2.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 800, 170));
+
         btn_buscar.setText("Buscar");
+        jPanel2.add(btn_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, 33));
 
         btn_editar.setText("Editar");
         btn_editar.addActionListener(new java.awt.event.ActionListener() {
@@ -225,6 +180,7 @@ public class MenuPack extends javax.swing.JPanel {
                 btn_editarActionPerformed(evt);
             }
         });
+        jPanel2.add(btn_editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 30, -1, -1));
 
         btn_desactivar.setText("Desactivar");
         btn_desactivar.addActionListener(new java.awt.event.ActionListener() {
@@ -232,43 +188,14 @@ public class MenuPack extends javax.swing.JPanel {
                 btn_desactivarActionPerformed(evt);
             }
         });
+        jPanel2.add(btn_desactivar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, -1, -1));
 
         input_buscar.setBackground(java.awt.SystemColor.controlHighlight);
+        jPanel2.add(input_buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 226, 33));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(input_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_buscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 320, Short.MAX_VALUE)
-                        .addComponent(btn_editar)
-                        .addGap(15, 15, 15)
-                        .addComponent(btn_desactivar)))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_editar)
-                        .addComponent(btn_desactivar))
-                    .addComponent(input_buscar))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 271, 810, 250));
 
-        add(jPanel2);
+        add(jPanel1);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed

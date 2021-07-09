@@ -42,6 +42,7 @@ public class MenuBanco extends javax.swing.JPanel {
         jPanel6 = new javax.swing.JPanel();
         input_buscar = new javax.swing.JTextField();
         btn_buscar = new javax.swing.JButton();
+        jPanel9 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabla_bancos = new javax.swing.JTable();
         jPanel7 = new javax.swing.JPanel();
@@ -55,8 +56,15 @@ public class MenuBanco extends javax.swing.JPanel {
         jPanel4.setBackground(java.awt.SystemColor.control);
         jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.Y_AXIS));
 
+        jPanel8.setBackground(java.awt.SystemColor.control);
+        jPanel8.setMinimumSize(new java.awt.Dimension(147, 10));
+        jPanel8.setPreferredSize(new java.awt.Dimension(452, 10));
+        jPanel8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 100, 0));
+
         jPanel1.setBackground(java.awt.SystemColor.control);
+        jPanel1.setMinimumSize(new java.awt.Dimension(100, 16));
         jPanel1.setPreferredSize(new java.awt.Dimension(179, 27));
+        jPanel1.setLayout(new java.awt.GridLayout());
 
         label_nombre_banco.setBackground(new java.awt.Color(0, 0, 0));
         label_nombre_banco.setForeground(java.awt.SystemColor.textText);
@@ -64,7 +72,8 @@ public class MenuBanco extends javax.swing.JPanel {
         jPanel1.add(label_nombre_banco);
 
         input_codigo_banco.setBackground(java.awt.SystemColor.controlHighlight);
-        input_codigo_banco.setColumns(20);
+        input_codigo_banco.setColumns(50);
+        input_codigo_banco.setMinimumSize(new java.awt.Dimension(14, 10));
         input_codigo_banco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 input_codigo_bancoActionPerformed(evt);
@@ -75,7 +84,9 @@ public class MenuBanco extends javax.swing.JPanel {
         jPanel8.add(jPanel1);
 
         jPanel3.setBackground(java.awt.SystemColor.control);
-        jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 5));
+        jPanel3.setMinimumSize(new java.awt.Dimension(100, 22));
+        jPanel3.setPreferredSize(new java.awt.Dimension(180, 22));
+        jPanel3.setLayout(new java.awt.GridLayout());
 
         label_codigo_banco.setForeground(new java.awt.Color(0, 0, 0));
         label_codigo_banco.setText("Código");
@@ -84,6 +95,7 @@ public class MenuBanco extends javax.swing.JPanel {
         input_nombre_banco.setBackground(java.awt.SystemColor.controlHighlight);
         input_nombre_banco.setColumns(20);
         input_nombre_banco.setName(""); // NOI18N
+        input_nombre_banco.setPreferredSize(new java.awt.Dimension(300, 22));
         input_nombre_banco.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 input_nombre_bancoActionPerformed(evt);
@@ -118,7 +130,10 @@ public class MenuBanco extends javax.swing.JPanel {
 
         add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 740, 130));
 
-        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel5.setBackground(java.awt.SystemColor.activeCaptionBorder);
+        jPanel5.setLayout(new javax.swing.BoxLayout(jPanel5, javax.swing.BoxLayout.Y_AXIS));
+
+        jPanel6.setBackground(java.awt.SystemColor.activeCaptionBorder);
 
         input_buscar.setBackground(java.awt.SystemColor.controlHighlight);
 
@@ -129,21 +144,24 @@ public class MenuBanco extends javax.swing.JPanel {
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(input_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 521, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25)
+                .addComponent(input_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(input_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_buscar))
-                .addGap(164, 164, 164))
+                .addContainerGap())
         );
 
-        jPanel5.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 80));
+        jPanel5.add(jPanel6);
+
+        jPanel9.setBackground(java.awt.SystemColor.activeCaptionBorder);
 
         tabla_bancos.setAutoCreateRowSorter(true);
         tabla_bancos.setBackground(java.awt.SystemColor.controlHighlight);
@@ -181,8 +199,26 @@ public class MenuBanco extends javax.swing.JPanel {
         tabla_bancos.setShowVerticalLines(true);
         jScrollPane1.setViewportView(tabla_bancos);
 
-        jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 780, 110));
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
+        jPanel5.add(jPanel9);
+
+        jPanel7.setBackground(java.awt.SystemColor.activeCaptionBorder);
         java.awt.FlowLayout flowLayout1 = new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 20, 5);
         flowLayout1.setAlignOnBaseline(true);
         jPanel7.setLayout(flowLayout1);
@@ -198,9 +234,9 @@ public class MenuBanco extends javax.swing.JPanel {
         });
         jPanel7.add(btn_editar);
 
-        jPanel5.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 760, 40));
+        jPanel5.add(jPanel7);
 
-        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 780, 260));
+        add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 780, 270));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
@@ -245,6 +281,7 @@ public class MenuBanco extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel label_codigo_banco;
     private javax.swing.JLabel label_nombre_banco;
