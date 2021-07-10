@@ -52,8 +52,6 @@ public class MenuPack extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
-        jPanel1.setBackground(java.awt.SystemColor.control);
-
         jTable2.setBackground(java.awt.SystemColor.controlHighlight);
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,7 +90,6 @@ public class MenuPack extends javax.swing.JPanel {
 
         btn_crear_pack.setText("Crear pack");
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Nombre del pack");
 
         btn_descartar.setText("Descartar");
@@ -104,7 +101,6 @@ public class MenuPack extends javax.swing.JPanel {
 
         input_nombre_pack.setBackground(java.awt.SystemColor.controlHighlight);
 
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Precio");
 
         input_precio_pack.setBackground(java.awt.SystemColor.controlHighlight);
@@ -143,7 +139,7 @@ public class MenuPack extends javax.swing.JPanel {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(18, 18, 18)
-                                .addComponent(input_nombre_pack, javax.swing.GroupLayout.DEFAULT_SIZE, 244, Short.MAX_VALUE))
+                                .addComponent(input_nombre_pack, javax.swing.GroupLayout.DEFAULT_SIZE, 954, Short.MAX_VALUE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,8 +188,6 @@ public class MenuPack extends javax.swing.JPanel {
         );
 
         add(jPanel1);
-
-        jPanel2.setBackground(java.awt.SystemColor.control);
 
         jTable3.setBackground(java.awt.SystemColor.controlHighlight);
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
@@ -247,7 +241,7 @@ public class MenuPack extends javax.swing.JPanel {
                         .addComponent(input_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_buscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 320, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1028, Short.MAX_VALUE)
                         .addComponent(btn_editar)
                         .addGap(15, 15, 15)
                         .addComponent(btn_desactivar)))

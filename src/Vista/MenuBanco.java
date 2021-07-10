@@ -48,18 +48,13 @@ public class MenuBanco extends javax.swing.JPanel {
         btn_desactivar = new javax.swing.JButton();
         btn_editar = new javax.swing.JButton();
 
-        setBackground(java.awt.SystemColor.control);
-        setForeground(new java.awt.Color(0, 0, 0));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel4.setBackground(java.awt.SystemColor.control);
         jPanel4.setLayout(new javax.swing.BoxLayout(jPanel4, javax.swing.BoxLayout.Y_AXIS));
 
-        jPanel1.setBackground(java.awt.SystemColor.control);
         jPanel1.setPreferredSize(new java.awt.Dimension(179, 27));
 
         label_nombre_banco.setBackground(new java.awt.Color(0, 0, 0));
-        label_nombre_banco.setForeground(java.awt.SystemColor.textText);
         label_nombre_banco.setText("Nombre Banco");
         jPanel1.add(label_nombre_banco);
 
@@ -74,10 +69,8 @@ public class MenuBanco extends javax.swing.JPanel {
 
         jPanel8.add(jPanel1);
 
-        jPanel3.setBackground(java.awt.SystemColor.control);
         jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 20, 5));
 
-        label_codigo_banco.setForeground(new java.awt.Color(0, 0, 0));
         label_codigo_banco.setText("Código");
         jPanel3.add(label_codigo_banco);
 
@@ -95,7 +88,6 @@ public class MenuBanco extends javax.swing.JPanel {
 
         jPanel4.add(jPanel8);
 
-        jPanel2.setBackground(java.awt.SystemColor.control);
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         btn_cancelar.setText("Cancelar");
@@ -177,8 +169,6 @@ public class MenuBanco extends javax.swing.JPanel {
         });
         tabla_bancos.setAutoscrolls(false);
         tabla_bancos.setSelectionBackground(java.awt.SystemColor.controlHighlight);
-        tabla_bancos.setShowHorizontalLines(true);
-        tabla_bancos.setShowVerticalLines(true);
         jScrollPane1.setViewportView(tabla_bancos);
 
         jPanel5.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 780, 110));
