@@ -77,8 +77,6 @@ public class Sistema extends JFrame {
         jPanel20 = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        Tabla_Comunas1 = new javax.swing.JTable();
         jTabbedPane6 = new javax.swing.JTabbedPane();
         jPanel39 = new javax.swing.JPanel();
         jPanel37 = new javax.swing.JPanel();
@@ -105,7 +103,6 @@ public class Sistema extends JFrame {
         jButton14 = new javax.swing.JButton();
         jPanel40 = new javax.swing.JPanel();
         jPanel41 = new javax.swing.JPanel();
-        jPanel42 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
         jPanel33 = new javax.swing.JPanel();
         jPanel34 = new javax.swing.JPanel();
@@ -612,35 +609,6 @@ public class Sistema extends JFrame {
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
         jPanel15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        Tabla_Comunas1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Código Comuna", "Nombre Comuna", "Acción"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane8.setViewportView(Tabla_Comunas1);
-
         jPanel37.setBackground(new java.awt.Color(255, 255, 255));
         jPanel37.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -702,8 +670,8 @@ public class Sistema extends JFrame {
                     .addGroup(jPanel37Layout.createSequentialGroup()
                         .addComponent(jLabel54)
                         .addGap(28, 28, 28)
-                        .addComponent(txtNumPed2, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(79, 79, 79)
+                        .addComponent(txtNumPed2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(46, 46, 46)
                         .addComponent(jLabel55)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -722,7 +690,7 @@ public class Sistema extends JFrame {
                                 .addComponent(btnCancVenta2)
                                 .addGap(88, 88, 88)
                                 .addComponent(btnGuardVenta2)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(621, Short.MAX_VALUE))
         );
         jPanel37Layout.setVerticalGroup(
             jPanel37Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -851,7 +819,7 @@ public class Sistema extends JFrame {
                 .addComponent(jPanel37, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel38, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(273, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane6.addTab("solicitud de pedidos", jPanel39);
@@ -877,23 +845,10 @@ public class Sistema extends JFrame {
         );
         jPanel41Layout.setVerticalGroup(
             jPanel41Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1213, Short.MAX_VALUE)
+            .addGap(0, 951, Short.MAX_VALUE)
         );
 
         jTabbedPane6.addTab("revision de facturas", jPanel41);
-
-        javax.swing.GroupLayout jPanel42Layout = new javax.swing.GroupLayout(jPanel42);
-        jPanel42.setLayout(jPanel42Layout);
-        jPanel42Layout.setHorizontalGroup(
-            jPanel42Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1397, Short.MAX_VALUE)
-        );
-        jPanel42Layout.setVerticalGroup(
-            jPanel42Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1213, Short.MAX_VALUE)
-        );
-
-        jTabbedPane6.addTab("", jPanel42);
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -903,11 +858,6 @@ public class Sistema extends JFrame {
                 .addContainerGap()
                 .addComponent(jTabbedPane6)
                 .addGap(32, 32, 32))
-            .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel15Layout.createSequentialGroup()
-                    .addGap(447, 447, 447)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(447, Short.MAX_VALUE)))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -915,11 +865,6 @@ public class Sistema extends JFrame {
                 .addContainerGap()
                 .addComponent(jTabbedPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 542, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(79, Short.MAX_VALUE))
-            .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel15Layout.createSequentialGroup()
-                    .addGap(256, 256, 256)
-                    .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(256, Short.MAX_VALUE)))
         );
 
         jTabbedPane1.addTab("Compras", jPanel15);
@@ -2912,7 +2857,6 @@ public class Sistema extends JFrame {
     private javax.swing.JLabel LabelNombreCliente1;
     private javax.swing.JTextField Nombre_Comunas;
     private javax.swing.JTable Tabla_Comunas;
-    private javax.swing.JTable Tabla_Comunas1;
     private javax.swing.JButton btnAgregarCliente;
     private javax.swing.JButton btnAgregarCliente1;
     private javax.swing.JButton btnBuscar;
@@ -2920,13 +2864,11 @@ public class Sistema extends JFrame {
     private javax.swing.JButton btnBuscar3;
     private javax.swing.JButton btnBuscar4;
     private javax.swing.JButton btnCancVenta;
-    private javax.swing.JButton btnCancVenta1;
     private javax.swing.JButton btnCancVenta2;
     private javax.swing.JButton btnCancelDesp;
     private javax.swing.JButton btnCancelaCliente;
     private javax.swing.JButton btnCancelaCliente1;
     private javax.swing.JButton btnGuardVenta;
-    private javax.swing.JButton btnGuardVenta1;
     private javax.swing.JButton btnGuardVenta2;
     private javax.swing.JButton btnGuardarDesp;
     private javax.swing.JButton jButton1;
@@ -2995,13 +2937,7 @@ public class Sistema extends JFrame {
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
-    private javax.swing.JLabel jLabel48;
-    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel50;
-    private javax.swing.JLabel jLabel51;
-    private javax.swing.JLabel jLabel52;
-    private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
@@ -3050,7 +2986,6 @@ public class Sistema extends JFrame {
     private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel27;
     private javax.swing.JPanel jPanel28;
-    private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel30;
     private javax.swing.JPanel jPanel31;
@@ -3058,14 +2993,12 @@ public class Sistema extends JFrame {
     private javax.swing.JPanel jPanel33;
     private javax.swing.JPanel jPanel34;
     private javax.swing.JPanel jPanel35;
-    private javax.swing.JPanel jPanel36;
     private javax.swing.JPanel jPanel37;
     private javax.swing.JPanel jPanel38;
     private javax.swing.JPanel jPanel39;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel40;
     private javax.swing.JPanel jPanel41;
-    private javax.swing.JPanel jPanel42;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -3088,13 +3021,11 @@ public class Sistema extends JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTabbedPane jTabbedPane4;
-    private javax.swing.JTabbedPane jTabbedPane5;
     private javax.swing.JTabbedPane jTabbedPane6;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
@@ -3121,7 +3052,6 @@ public class Sistema extends JFrame {
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JTextField txtApellClieVenta;
-    private javax.swing.JTextField txtApellClieVenta1;
     private javax.swing.JTextField txtApellidoCliente;
     private javax.swing.JTextField txtApellidoCliente1;
     private javax.swing.JTextField txtCorreo;
@@ -3137,12 +3067,10 @@ public class Sistema extends JFrame {
     private javax.swing.JTextField txtDvC3;
     private javax.swing.JTextField txtDvCliente;
     private javax.swing.JTextField txtEmailClieVenta;
-    private javax.swing.JTextField txtEmailClieVenta1;
     private javax.swing.JTextField txtFechaEntre;
     private javax.swing.JTextField txtFechaVencimiento;
     private javax.swing.JTextField txtFinEntrega;
     private javax.swing.JTextField txtFonoClieVenta;
-    private javax.swing.JTextField txtFonoClieVenta1;
     private javax.swing.JTextField txtHasta;
     private javax.swing.JTextField txtHasta1;
     private javax.swing.JTextField txtHasta3;
@@ -3150,17 +3078,14 @@ public class Sistema extends JFrame {
     private javax.swing.JTextArea txtInfoEntrega;
     private javax.swing.JTextField txtInicioEntrega;
     private javax.swing.JTextField txtNomClieVenta;
-    private javax.swing.JTextField txtNomClieVenta1;
     private javax.swing.JTextField txtNombreCliente;
     private javax.swing.JTextField txtNombreCliente1;
     private javax.swing.JTextField txtNombreDest;
     private javax.swing.JTextField txtNumPed;
-    private javax.swing.JTextField txtNumPed1;
     private javax.swing.JTextField txtNumPed2;
     private javax.swing.JTextField txtRut2;
     private javax.swing.JTextField txtRut3;
     private javax.swing.JTextField txtRutClie;
-    private javax.swing.JTextField txtRutClie1;
     private javax.swing.JTextField txtRutCliente;
     private javax.swing.JTextField txtRutCliente2;
     private javax.swing.JTextArea txtSaludoDest;
