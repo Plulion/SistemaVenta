@@ -751,7 +751,7 @@ public class Sistema extends JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "numero de pedidos", "fecha peiddo", "cantidad articulo", "seleccion"
+                "numero de pedidos", "fecha pedido", "cantidad articulo", "seleccion"
             }
         ));
         jScrollPane15.setViewportView(jTable6);
