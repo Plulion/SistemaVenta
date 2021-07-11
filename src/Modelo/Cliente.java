@@ -1,8 +1,9 @@
 
 package Modelo;
 
-public class Clientes {
+public class Cliente {
     private int idCliente;
+    private String rutCliente;
     private String nombreCliente;
     private String apellidoCliente;
     private String direccionCliente;
@@ -10,11 +11,12 @@ public class Clientes {
     private String  correoCliente;
     private boolean activo;
 
-    public Clientes() {
+    public Cliente() {
     }
 
-    public Clientes(int idCliente, String nombreCliente, String apellidoCliente, String direccionCliente, String telefonoCliente, String correoCliente, boolean activo) {
+    public Cliente(int idCliente, String rutCliente, String nombreCliente, String apellidoCliente, String direccionCliente, String telefonoCliente, String correoCliente, boolean activo) {
         this.idCliente = idCliente;
+        this.rutCliente = rutCliente;
         this.nombreCliente = nombreCliente;
         this.apellidoCliente = apellidoCliente;
         this.direccionCliente = direccionCliente;
@@ -29,6 +31,14 @@ public class Clientes {
 
     public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
+    }
+
+    public String getRutCliente() {
+        return rutCliente;
+    }
+
+    public void setRutCliente(String rutCliente) {
+        this.rutCliente = rutCliente;
     }
 
     public String getNombreCliente() {
@@ -81,8 +91,9 @@ public class Clientes {
 
     @Override
     public String toString() {
-        return "Clientes{" + "idCliente=" + idCliente + ", nombreCliente=" + nombreCliente + ", apellidoCliente=" + apellidoCliente + ", direccionCliente=" + direccionCliente + ", telefonoCliente=" + telefonoCliente + ", correoCliente=" + correoCliente + ", activo=" + activo + '}';
+        return "Cliente{" + "idCliente=" + idCliente + ", rutCliente=" + rutCliente + ", nombreCliente=" + nombreCliente + ", apellidoCliente=" + apellidoCliente + ", direccionCliente=" + direccionCliente + ", telefonoCliente=" + telefonoCliente + ", correoCliente=" + correoCliente + ", activo=" + activo + '}';
     }
     
     
-}
+    
+   }
