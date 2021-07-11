@@ -1,29 +1,39 @@
-
 package Vista;
 
+import Conexion.Conexion;
 import Library.Objetos;
+import Negocio.ClienteController;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import java.sql.*;
+import javax.swing.table.DefaultTableModel;
 
 public class Sistema extends JFrame {
+
+    private final ClienteController CONTROL;
 
     public Sistema() {
         initComponents();
         setTitle("Sistema Ventas Dream Gift");
-        setSize(1510,790);
+        setSize(1510, 790);
         setLocationRelativeTo(null);
+        this.CONTROL=new ClienteController();
+        this.listar("");
         MenuBanco menu_banco = new MenuBanco();
         jTabbedPane3.add("Banco", menu_banco);
-        
+
         MenuPack menu_pack = new MenuPack();
         jTabbedPane3.add("Pack", menu_pack);
 
-        
+    }
+    
+    private void listar(String texto){
+        tablaListado.setModel(this.CONTROL.listar(texto));
+        lblTotalRegistros.setText("Mostrando"+this.CONTROL.totalMostrados()+" de un toral de "+this.CONTROL.total()+" registros.");
+    
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -167,6 +177,12 @@ public class Sistema extends JFrame {
         jLabelApellidoCliente = new javax.swing.JLabel();
         txtApellidoCliente = new javax.swing.JTextField();
         txtRutCliente = new javax.swing.JTextField();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tablaListado = new javax.swing.JTable();
+        lblTotalRegistros = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        txtBuscar = new javax.swing.JTextField();
+        btnBuscarCliente = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -1441,7 +1457,7 @@ public class Sistema extends JFrame {
                                 .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel23Layout.createSequentialGroup()
-                                        .addGap(138, 138, 138)
+                                        .addGap(141, 141, 141)
                                         .addComponent(btnCancelaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel23Layout.createSequentialGroup()
                                         .addGap(85, 85, 85)
@@ -1464,7 +1480,7 @@ public class Sistema extends JFrame {
                                     .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtRutCliente)))))
                     .addComponent(txtApellidoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(779, Short.MAX_VALUE))
+                .addContainerGap(776, Short.MAX_VALUE))
         );
         jPanel23Layout.setVerticalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1501,21 +1517,65 @@ public class Sistema extends JFrame {
                 .addContainerGap())
         );
 
+        tablaListado.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane7.setViewportView(tablaListado);
+
+        lblTotalRegistros.setText("Resgistos");
+
+        jLabel3.setText("Nombre");
+
+        btnBuscarCliente.setText("Buscar");
+        btnBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarClienteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane7))
                 .addContainerGap())
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66)
+                .addComponent(btnBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTotalRegistros, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(186, 186, 186))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(324, Short.MAX_VALUE))
+                .addGap(13, 13, 13)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarCliente))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblTotalRegistros)
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         jTabbedPane3.addTab("Clientes", jPanel7);
@@ -2343,7 +2403,7 @@ public class Sistema extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreClienteActionPerformed
-    
+
     }//GEN-LAST:event_txtNombreClienteActionPerformed
 
     private void txtDireccionClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionClienteActionPerformed
@@ -2375,30 +2435,24 @@ public class Sistema extends JFrame {
     }//GEN-LAST:event_Boton_Editar_ComunasActionPerformed
 
     private void Boton_Guardar_ComunasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_Guardar_ComunasActionPerformed
-       
-       try{
-           Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nombre", "root", ""); // primera comillas ruta y nombre de la ruta que nos queremos conectar, segundas comillas nombre base de datos (si es que lo tiene), tercera tiene contraseña base de datos, si es que la tiene
-           //root si no tiene nombre, y la pass asi no mas
-           PreparedStatement pst = cn.prepareStatement("insert into comumas values(?,?,?)"); // generar objeto y cada ? es una columna
-           pst.setString(1, Codigo_Comunas.getText().trim()); 
-           pst.setString(2, Nombre_Comunas.getText().trim()); //Trim quita espacios
-           pst.setString(3, "0");
-           pst.executeUpdate();
-         
-           Codigo_Comunas.setText("");
-           Nombre_Comunas.setText("");
-           
-           
-           
-           
-       }catch (Exception e) {
-       
-       
-       
-       }
-        
-        
-        
+
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nombre", "root", ""); // primera comillas ruta y nombre de la ruta que nos queremos conectar, segundas comillas nombre base de datos (si es que lo tiene), tercera tiene contraseña base de datos, si es que la tiene
+            //root si no tiene nombre, y la pass asi no mas
+            PreparedStatement pst = cn.prepareStatement("insert into comumas values(?,?,?)"); // generar objeto y cada ? es una columna
+            pst.setString(1, Codigo_Comunas.getText().trim());
+            pst.setString(2, Nombre_Comunas.getText().trim()); //Trim quita espacios
+            pst.setString(3, "0");
+            pst.executeUpdate();
+
+            Codigo_Comunas.setText("");
+            Nombre_Comunas.setText("");
+
+        } catch (Exception e) {
+
+        }
+
+
     }//GEN-LAST:event_Boton_Guardar_ComunasActionPerformed
 
     private void txtNombreCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreCliente1ActionPerformed
@@ -2510,11 +2564,11 @@ public class Sistema extends JFrame {
     }//GEN-LAST:event_jButtonBuscar4ActionPerformed
 
     private void txtNombreClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreClienteKeyReleased
-        if(txtNombreCliente.getText().equals("")){
-            jLabelNombreCliente.setForeground(new Color(102,102,102));
-        }else{
+        if (txtNombreCliente.getText().equals("")) {
+            jLabelNombreCliente.setForeground(new Color(102, 102, 102));
+        } else {
             jLabelNombreCliente.setText("Nombre");
-            jLabelNombreCliente.setForeground(new Color(0,153,51));
+            jLabelNombreCliente.setForeground(new Color(0, 153, 51));
         }
     }//GEN-LAST:event_txtNombreClienteKeyReleased
 
@@ -2523,11 +2577,11 @@ public class Sistema extends JFrame {
     }//GEN-LAST:event_txtNombreClienteKeyTyped
 
     private void txtApellidoClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoClienteKeyReleased
-        if(txtApellidoCliente.getText().equals("")){
-            jLabelApellidoCliente.setForeground(new Color(102,102,102));
-        }else{
+        if (txtApellidoCliente.getText().equals("")) {
+            jLabelApellidoCliente.setForeground(new Color(102, 102, 102));
+        } else {
             jLabelApellidoCliente.setText("Apellido");
-           jLabelApellidoCliente.setForeground(new Color(0,153,51));
+            jLabelApellidoCliente.setForeground(new Color(0, 153, 51));
         }
     }//GEN-LAST:event_txtApellidoClienteKeyReleased
 
@@ -2536,20 +2590,20 @@ public class Sistema extends JFrame {
     }//GEN-LAST:event_txtApellidoClienteKeyTyped
 
     private void txtTelefonoClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoClienteKeyReleased
-       if(txtTelefonoCliente.getText().equals("")){
-            jLabelTelefonoCliente.setForeground(new Color(102,102,102));
-        }else{
+        if (txtTelefonoCliente.getText().equals("")) {
+            jLabelTelefonoCliente.setForeground(new Color(102, 102, 102));
+        } else {
             jLabelTelefonoCliente.setText("Telefono");
-           jLabelTelefonoCliente.setForeground(new Color(0,153,51));
+            jLabelTelefonoCliente.setForeground(new Color(0, 153, 51));
         }
     }//GEN-LAST:event_txtTelefonoClienteKeyReleased
 
     private void txtDireccionClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionClienteKeyReleased
-       if(txtDireccionCliente.getText().equals("")){
-            jLabelDireccionCliente.setForeground(new Color(102,102,102));
-        }else{
+        if (txtDireccionCliente.getText().equals("")) {
+            jLabelDireccionCliente.setForeground(new Color(102, 102, 102));
+        } else {
             jLabelDireccionCliente.setText("Dirección");
-           jLabelDireccionCliente.setForeground(new Color(0,153,51));
+            jLabelDireccionCliente.setForeground(new Color(0, 153, 51));
         }
     }//GEN-LAST:event_txtDireccionClienteKeyReleased
 
@@ -2558,30 +2612,70 @@ public class Sistema extends JFrame {
     }//GEN-LAST:event_txtDireccionClienteKeyTyped
 
     private void txtCorreoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyReleased
-       if(txtCorreo.getText().equals("")){
-            jLabelCorreoCliente.setForeground(new Color(102,102,102));
-        }else{
-            jLabelCorreoCliente.setText("Telefono");
-           jLabelCorreoCliente.setForeground(new Color(0,153,51));
+        if (txtCorreo.getText().equals("")) {
+            jLabelCorreoCliente.setForeground(new Color(102, 102, 102));
+        } else {
+            jLabelCorreoCliente.setText("Correo");
+            jLabelCorreoCliente.setForeground(new Color(0, 153, 51));
         }
     }//GEN-LAST:event_txtCorreoKeyReleased
 
     private void txtRutClienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutClienteKeyReleased
-         if(txtRutCliente.getText().equals("")){
-            jLabelRutCliente.setForeground(new Color(102,102,102));
-        }else{
+        if (txtRutCliente.getText().equals("")) {
+            jLabelRutCliente.setForeground(new Color(102, 102, 102));
+        } else {
             jLabelRutCliente.setText("Rut");
-            jLabelRutCliente.setForeground(new Color(0,153,51));
+            jLabelRutCliente.setForeground(new Color(0, 153, 51));
         }
     }//GEN-LAST:event_txtRutClienteKeyReleased
 
     private void txtRutClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutClienteKeyTyped
-        
+
     }//GEN-LAST:event_txtRutClienteKeyTyped
 
     private void txtTelefonoClienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoClienteKeyTyped
-       Objetos.eventos.numberKeyPress(evt);
+        Objetos.eventos.numberKeyPress(evt);
     }//GEN-LAST:event_txtTelefonoClienteKeyTyped
+
+    private void btnBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarClienteActionPerformed
+        this.listar(txtBuscar.getText());
+        
+        /* DefaultTableModel modeloTabla=new DefaultTableModel();
+        tablaListado.setModel(modeloTabla);
+        
+        PreparedStatement ps=null;
+        ResultSet rs=null;
+        
+        try {
+            Conexion con= new Conexion();
+            Connection conexion= con.getConnection();
+            
+            ps = conexion.prepareStatement("select id, rut, cli_nombre, cli_apellido,cli_direccion,cli_telefono,cli_correo,activo from cliente");
+            rs = ps.executeQuery();
+            
+            modeloTabla.addColumn("Id");
+            modeloTabla.addColumn("Rut");
+            modeloTabla.addColumn("Nombre");
+            modeloTabla.addColumn("Apellido");
+            modeloTabla.addColumn("Direccion");
+            modeloTabla.addColumn("Telefono");
+            modeloTabla.addColumn("Correo");
+            modeloTabla.addColumn("Estado");
+            
+            while(rs.next()){
+            
+                Object fila[]=new Object[8];
+                for(int i=0;i<8;i++){
+                fila[i]=rs.getObject(i+1);
+                }
+            modeloTabla.addRow(fila);
+            }
+            
+        } catch (Exception ex) {
+        System.err.println("Error, "+ex);
+        }*/
+       
+    }//GEN-LAST:event_btnBuscarClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2647,6 +2741,7 @@ public class Sistema extends JFrame {
     private javax.swing.JButton btnBuscar1;
     private javax.swing.JButton btnBuscar3;
     private javax.swing.JButton btnBuscar4;
+    private javax.swing.JButton btnBuscarCliente;
     private javax.swing.JButton btnCancVenta;
     private javax.swing.JButton btnCancelDesp;
     private javax.swing.JButton btnCancelaCliente;
@@ -2690,6 +2785,7 @@ public class Sistema extends JFrame {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
@@ -2784,6 +2880,7 @@ public class Sistema extends JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
@@ -2806,9 +2903,12 @@ public class Sistema extends JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JLabel lblTotalRegistros;
+    private javax.swing.JTable tablaListado;
     private javax.swing.JTextField txtApellClieVenta;
     private javax.swing.JTextField txtApellidoCliente;
     private javax.swing.JTextField txtApellidoCliente1;
+    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDesde;
     private javax.swing.JTextField txtDesde1;

@@ -44,4 +44,8 @@ public class Conexion {
         }
         return instancia;
     }
+
+    public Connection getConnection() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
