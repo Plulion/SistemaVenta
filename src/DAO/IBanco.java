@@ -1,6 +1,9 @@
 package DAO;
    
 import Modelo.Bancos;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import javafx.collections.ObservableList;
 
 
 public interface IBanco {
@@ -13,4 +16,6 @@ public interface IBanco {
     public boolean actualizarBanco(String Banco, int codigoBanco, Bancos banco);
 
     public boolean agregarBanco(Bancos banco);
+    
+    public ArrayList obtenerTodos();
 }

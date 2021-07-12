@@ -7,6 +7,11 @@ package Vista;
 
 import DAO.ImplementBanco;
 import Modelo.Bancos;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import javafx.collections.ObservableList;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -19,6 +24,21 @@ public class MenuBanco extends javax.swing.JPanel {
      */
     public MenuBanco() {
         initComponents();
+        ImplementBanco banco = new ImplementBanco();
+        ArrayList<Bancos> list = banco.obtenerTodos();
+        
+        DefaultTableModel model = (DefaultTableModel) table_banco.getModel();
+        
+        Object [] row = new Object[3];
+        
+        for(int i = 0; i<list.size(); i++){
+            row[0] = list.get(i).getBAN_ID_BANCO();
+            row[1] = list.get(i).getCODIGO_BANCO();
+            row[2] = list.get(i).getBAN_DESCRIPCION();
+            
+            model.addRow(row);
+        }
+
     }
 
     /**
@@ -40,7 +60,7 @@ public class MenuBanco extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table_banco = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         input_buscar = new javax.swing.JTextField();
         btn_editar = new javax.swing.JButton();
@@ -112,7 +132,7 @@ public class MenuBanco extends javax.swing.JPanel {
 
         jPanel3.setBackground(java.awt.SystemColor.control);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_banco.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -128,7 +148,7 @@ public class MenuBanco extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table_banco);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -212,7 +232,7 @@ public class MenuBanco extends javax.swing.JPanel {
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
         
-        Bancos banco = new Bancos(Integer.parseInt(input_codigo_banco.getText()), input_nombre_banco.getText(), Integer.parseInt(input_codigo_banco.getText()));
+        Bancos banco = new Bancos(Integer.parseInt(input_codigo_banco.getText()), input_nombre_banco.getText(), input_codigo_banco.getText());
         
         ImplementBanco iBanco = new ImplementBanco();
         iBanco.agregarBanco(banco);
@@ -235,6 +255,6 @@ public class MenuBanco extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable table_banco;
     // End of variables declaration//GEN-END:variables
 }

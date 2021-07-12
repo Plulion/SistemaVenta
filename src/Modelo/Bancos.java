@@ -4,12 +4,12 @@ package Modelo;
 public class Bancos {
     private int BAN_ID_BANCO;
     private String BAN_DESCRIPCION;
-    private int CODIGO_BANCO;
+    private String CODIGO_BANCO;
 
     public Bancos() {
     }
 
-    public Bancos(int BAN_ID_BANCO, String BAN_DESCRIPCION, int CODIGO_BANCO) {
+    public Bancos(int BAN_ID_BANCO, String BAN_DESCRIPCION, String CODIGO_BANCO) {
         this.BAN_ID_BANCO = BAN_ID_BANCO;
         this.BAN_DESCRIPCION = BAN_DESCRIPCION;
         this.CODIGO_BANCO = CODIGO_BANCO;
@@ -31,11 +31,11 @@ public class Bancos {
         this.BAN_DESCRIPCION = BAN_DESCRIPCION;
     }
 
-    public int getCODIGO_BANCO() {
+    public String getCODIGO_BANCO() {
         return CODIGO_BANCO;
     }
 
-    public void setCODIGO_BANCO(int CODIGO_BANCO) {
+    public void setCODIGO_BANCO(String CODIGO_BANCO) {
         this.CODIGO_BANCO = CODIGO_BANCO;
     }
 
