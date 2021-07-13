@@ -12,20 +12,33 @@ import javax.swing.table.DefaultTableModel;
 public class ImplementBanco implements IBanco {
 
     @Override
-    public Bancos listarBanco(String nombreBanco) {
-        throw new UnsupportedOperationException("Not supported yet.");
-//        Conexion conexion = new Conexion();
-//        
-//        try {
-//            
-//            Statement smt = conexion.conectar().createStatement();
-////            String sql = "SELECT * from Bancos where BAN_DESCRIPCION = '"+nombreBanco"'";
-//             String sql = "SELECT * from bancos";
-//             
-//            
-//        } catch (Exception e) {
-//            System.err.println("ERROR: "+e);
-//        }
+    public ArrayList<Bancos> listarBanco(String nombreBanco) {
+
+        Conexion conexion = new Conexion();
+
+        ArrayList<Bancos> list = new ArrayList<>();
+
+        try {
+
+            PreparedStatement smt = conexion.conectar().prepareStatement("SELECT * FROM bancos WHERE LOWER(CODIGO_BANCO) LIKE LOWER(?) OR LOWER(BAN_DESCRIPCION) LIKE LOWER(?)");
+            smt.setString(1, "%" + nombreBanco + "%");
+            smt.setString(2, "%" + nombreBanco + "%");
+
+            ResultSet rs = smt.executeQuery();
+
+            while (rs.next()) {
+                list.add(new Bancos(
+                        rs.getInt("BAN_ID_BANCO"),
+                        rs.getString("BAN_DESCRIPCION"),
+                        rs.getString("CODIGO_BANCO")
+                ));
+            }
+
+        } catch (Exception e) {
+            System.err.println("ERROR en:" + e);
+        }
+        return list;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -35,25 +48,43 @@ public class ImplementBanco implements IBanco {
 
     @Override
     public boolean actualizarBanco(String Banco, int codigoBanco, Bancos banco) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        Conexion conexion = new Conexion();
+
+        try {
+            String sql = "UPDATE bancos SET BAN_DESCRIPCION=?, CODIGO_BANCO=? WHERE BAN_ID_BANCO=?";
+            PreparedStatement stmt = conexion.conectar().prepareStatement(sql);
+            //stmt.setInt(1, banco.getBAN_ID_BANCO());
+            stmt.setString(1, banco.getBAN_DESCRIPCION());
+            stmt.setString(2, banco.getCODIGO_BANCO());
+            stmt.setInt(3, banco.getBAN_ID_BANCO());
+
+            stmt.executeUpdate();
+
+            return true;
+
+        } catch (Exception e) {
+            System.err.println("ERROR: " + e);
+        }
+        return false;
+
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean agregarBanco(Bancos banco, JTable tabla, DefaultTableModel model) {
+    public boolean agregarBanco(Bancos banco) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 
         Conexion conexion = new Conexion();
 
         try {
-            String sql = "INSERT INTO bancos (BAN_ID_BANCO, BAN_DESCRIPCION, CODIGO_BANCO) VALUES(?, ?, ?)";
+            String sql = "INSERT INTO bancos (BAN_DESCRIPCION, CODIGO_BANCO) VALUES(?, ?)";
             PreparedStatement stmt = conexion.conectar().prepareStatement(sql);
-            stmt.setInt(1, banco.getBAN_ID_BANCO());
-            stmt.setString(2, banco.getBAN_DESCRIPCION());
-            stmt.setString(3, banco.getCODIGO_BANCO());
+            //stmt.setInt(1, banco.getBAN_ID_BANCO());
+            stmt.setString(1, banco.getBAN_DESCRIPCION());
+            stmt.setString(2, banco.getCODIGO_BANCO());
 
             stmt.executeUpdate();
-            model.setRowCount(0);
-            obtenerTodos(tabla);
 
             return true;
 
@@ -64,7 +95,9 @@ public class ImplementBanco implements IBanco {
     }
 
     @Override
-    public void obtenerTodos(JTable tabla) {
+    public void obtenerTodos(JTable tabla, DefaultTableModel model) {
+
+        model.setRowCount(0);
 
         Conexion conexion = new Conexion();
 
@@ -85,8 +118,6 @@ public class ImplementBanco implements IBanco {
                         rs.getString("CODIGO_BANCO")
                 ));
             }
-
-            DefaultTableModel model = (DefaultTableModel) tabla.getModel();
 
             Object[] row = new Object[3];
 
