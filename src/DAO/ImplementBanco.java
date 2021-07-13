@@ -53,8 +53,6 @@ public class ImplementBanco implements IBanco {
 
             stmt.executeUpdate();
             model.setRowCount(0);
-
-
             obtenerTodos(tabla);
 
             return true;
