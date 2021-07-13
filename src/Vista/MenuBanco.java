@@ -49,11 +49,17 @@ public class MenuBanco extends javax.swing.JPanel {
         jLabel2.setForeground(java.awt.SystemColor.activeCaptionText);
         jLabel2.setText("Codigo");
 
-        btn_cancelar.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Red"));
+        input_codigo_banco.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                input_codigo_bancoActionPerformed(evt);
+            }
+        });
+
+        btn_cancelar.setBackground(java.awt.SystemColor.controlDkShadow);
         btn_cancelar.setForeground(java.awt.SystemColor.control);
         btn_cancelar.setText("Cancelar");
 
-        btn_guardar.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
+        btn_guardar.setBackground(java.awt.SystemColor.controlDkShadow);
         btn_guardar.setForeground(java.awt.SystemColor.control);
         btn_guardar.setText("Guardar");
         btn_guardar.addActionListener(new java.awt.event.ActionListener() {
@@ -203,13 +209,17 @@ public class MenuBanco extends javax.swing.JPanel {
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
 
-        Bancos banco = new Bancos(Integer.parseInt(input_codigo_banco.getText()), input_nombre_banco.getText(), input_codigo_banco.getText());
+        Bancos banco = new Bancos(input_nombre_banco.getText(), input_codigo_banco.getText());
         DefaultTableModel model = (DefaultTableModel) table_banco.getModel();
 
         ImplementBanco iBanco = new ImplementBanco();
         iBanco.agregarBanco(banco, table_banco, model);
 
     }//GEN-LAST:event_btn_guardarActionPerformed
+
+    private void input_codigo_bancoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_input_codigo_bancoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_input_codigo_bancoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

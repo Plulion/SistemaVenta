@@ -45,11 +45,11 @@ public class ImplementBanco implements IBanco {
         Conexion conexion = new Conexion();
 
         try {
-            String sql = "INSERT INTO bancos (BAN_ID_BANCO, BAN_DESCRIPCION, CODIGO_BANCO) VALUES(?, ?, ?)";
+            String sql = "INSERT INTO bancos (BAN_DESCRIPCION, CODIGO_BANCO) VALUES(?, ?)";
             PreparedStatement stmt = conexion.conectar().prepareStatement(sql);
-            stmt.setInt(1, banco.getBAN_ID_BANCO());
-            stmt.setString(2, banco.getBAN_DESCRIPCION());
-            stmt.setString(3, banco.getCODIGO_BANCO());
+            //stmt.setInt(1, banco.getBAN_ID_BANCO());
+            stmt.setString(1, banco.getBAN_DESCRIPCION());
+            stmt.setString(2, banco.getCODIGO_BANCO());
 
             stmt.executeUpdate();
             model.setRowCount(0);
