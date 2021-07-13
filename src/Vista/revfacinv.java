@@ -28,8 +28,8 @@ public class revfacinv extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel44 = new javax.swing.JPanel();
-        btnCancVenta5 = new javax.swing.JButton();
-        btnGuardVenta5 = new javax.swing.JButton();
+        btnCancompras5 = new javax.swing.JButton();
+        btnGuardcompras5 = new javax.swing.JButton();
         jTextField24 = new javax.swing.JTextField();
         jLabel64 = new javax.swing.JLabel();
         jLabel65 = new javax.swing.JLabel();
@@ -41,19 +41,19 @@ public class revfacinv extends javax.swing.JPanel {
         jComboBox6 = new javax.swing.JComboBox<>();
         jScrollPane19 = new javax.swing.JScrollPane();
         jTable10 = new javax.swing.JTable();
-        btnCancVenta6 = new javax.swing.JButton();
-        btnCancVenta7 = new javax.swing.JButton();
+        editarcompras6 = new javax.swing.JButton();
+        vercompras = new javax.swing.JButton();
         jScrollPane17 = new javax.swing.JScrollPane();
         jTable8 = new javax.swing.JTable();
         jButton16 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
+        editarcompras2 = new javax.swing.JButton();
 
         jPanel44.setBackground(new java.awt.Color(255, 255, 255));
         jPanel44.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        btnCancVenta5.setText("Cancelar");
+        btnCancompras5.setText("Cancelar");
 
-        btnGuardVenta5.setText("Guardar");
+        btnGuardcompras5.setText("Guardar");
 
         jLabel64.setText("fecha receppcion ");
 
@@ -93,9 +93,9 @@ public class revfacinv extends javax.swing.JPanel {
                                     .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(207, 207, 207)
-                                .addComponent(btnCancVenta5)
+                                .addComponent(btnCancompras5)
                                 .addGap(106, 106, 106)
-                                .addComponent(btnGuardVenta5)))))
+                                .addComponent(btnGuardcompras5)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel44Layout.setVerticalGroup(
@@ -121,8 +121,8 @@ public class revfacinv extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel44Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancVenta5)
-                    .addComponent(btnGuardVenta5))
+                    .addComponent(btnCancompras5)
+                    .addComponent(btnGuardcompras5))
                 .addGap(48, 48, 48))
         );
 
@@ -155,9 +155,9 @@ public class revfacinv extends javax.swing.JPanel {
         ));
         jScrollPane19.setViewportView(jTable10);
 
-        btnCancVenta6.setText("editar");
+        editarcompras6.setText("editar");
 
-        btnCancVenta7.setText("ver");
+        vercompras.setText("ver");
 
         jTable8.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -190,7 +190,7 @@ public class revfacinv extends javax.swing.JPanel {
 
         jButton16.setText("eliminar");
 
-        jButton15.setText("editar");
+        editarcompras2.setText("editar");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -199,9 +199,9 @@ public class revfacinv extends javax.swing.JPanel {
             .addComponent(jPanel44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGap(449, 449, 449)
-                .addComponent(btnCancVenta6)
+                .addComponent(editarcompras6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCancVenta7)
+                .addComponent(vercompras)
                 .addGap(170, 170, 170))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +210,7 @@ public class revfacinv extends javax.swing.JPanel {
                 .addGap(0, 20, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton15)
+                .addComponent(editarcompras2)
                 .addGap(251, 251, 251)
                 .addComponent(jButton16)
                 .addGap(140, 140, 140))
@@ -223,25 +223,24 @@ public class revfacinv extends javax.swing.JPanel {
                 .addComponent(jScrollPane19, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCancVenta6)
-                    .addComponent(btnCancVenta7))
+                    .addComponent(editarcompras6)
+                    .addComponent(vercompras))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton16)
-                    .addComponent(jButton15))
+                    .addComponent(editarcompras2))
                 .addGap(0, 220, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancVenta5;
-    private javax.swing.JButton btnCancVenta6;
-    private javax.swing.JButton btnCancVenta7;
-    private javax.swing.JButton btnGuardVenta5;
-    private javax.swing.JButton jButton15;
+    private javax.swing.JButton btnCancompras5;
+    private javax.swing.JButton btnGuardcompras5;
+    private javax.swing.JButton editarcompras2;
+    private javax.swing.JButton editarcompras6;
     private javax.swing.JButton jButton16;
     private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JLabel jLabel64;
@@ -257,5 +256,6 @@ public class revfacinv extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField24;
     private javax.swing.JTextField jTextField25;
     private javax.swing.JTextField jTextField26;
+    private javax.swing.JButton vercompras;
     // End of variables declaration//GEN-END:variables
 }
