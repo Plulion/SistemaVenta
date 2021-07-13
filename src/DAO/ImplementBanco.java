@@ -48,7 +48,27 @@ public class ImplementBanco implements IBanco {
 
     @Override
     public boolean actualizarBanco(String Banco, int codigoBanco, Bancos banco) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        Conexion conexion = new Conexion();
+
+        try {
+            String sql = "UPDATE bancos SET BAN_DESCRIPCION=?, CODIGO_BANCO=? WHERE BAN_ID_BANCO=?";
+            PreparedStatement stmt = conexion.conectar().prepareStatement(sql);
+            //stmt.setInt(1, banco.getBAN_ID_BANCO());
+            stmt.setString(1, banco.getBAN_DESCRIPCION());
+            stmt.setString(2, banco.getCODIGO_BANCO());
+            stmt.setInt(3, banco.getBAN_ID_BANCO());
+
+            stmt.executeUpdate();
+
+            return true;
+
+        } catch (Exception e) {
+            System.err.println("ERROR: " + e);
+        }
+        return false;
+
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -75,7 +95,9 @@ public class ImplementBanco implements IBanco {
     }
 
     @Override
-    public void obtenerTodos(JTable tabla) {
+    public void obtenerTodos(JTable tabla, DefaultTableModel model) {
+
+        model.setRowCount(0);
 
         Conexion conexion = new Conexion();
 
@@ -96,8 +118,6 @@ public class ImplementBanco implements IBanco {
                         rs.getString("CODIGO_BANCO")
                 ));
             }
-
-            DefaultTableModel model = (DefaultTableModel) tabla.getModel();
 
             Object[] row = new Object[3];
 
