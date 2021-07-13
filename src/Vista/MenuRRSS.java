@@ -5,17 +5,26 @@
  */
 package Vista;
 
+import DAO.ImplementRRSS;
+import Modelo.RRSS;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Jose
  */
 public class MenuRRSS extends javax.swing.JPanel {
 
-    /**
-     * Creates new form MenuRRSS
-     */
+   
+    DefaultTableModel model;
+    
     public MenuRRSS() {
         initComponents();
+        
+        ImplementRRSS rrss = new ImplementRRSS();       
+        DefaultTableModel model = (DefaultTableModel) table_rrss.getModel();
+        this.model = model;
+        rrss.obtenerTodos(table_rrss, model);
     }
 
     /**
@@ -37,7 +46,7 @@ public class MenuRRSS extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table_rrss = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         input_buscar = new javax.swing.JTextField();
         btn_editar = new javax.swing.JButton();
@@ -61,6 +70,11 @@ public class MenuRRSS extends javax.swing.JPanel {
         btn_guardar.setBackground(javax.swing.UIManager.getDefaults().getColor("Actions.Green"));
         btn_guardar.setForeground(java.awt.SystemColor.control);
         btn_guardar.setText("Guardar");
+        btn_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_guardarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -103,7 +117,7 @@ public class MenuRRSS extends javax.swing.JPanel {
 
         jPanel3.setBackground(java.awt.SystemColor.control);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_rrss.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -119,7 +133,7 @@ public class MenuRRSS extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table_rrss);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -201,6 +215,18 @@ public class MenuRRSS extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
+        
+        
+        RRSS rrss = new RRSS(input_nombre_rrss.getText(), input_codigo_rrss.getText(), true);
+        
+        ImplementRRSS iRRSS = new ImplementRRSS();
+        
+        iRRSS.agregarRRSS(rrss);
+        
+        iRRSS.obtenerTodos(table_rrss, model);
+    }//GEN-LAST:event_btn_guardarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_cancelar;
@@ -217,6 +243,6 @@ public class MenuRRSS extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable table_rrss;
     // End of variables declaration//GEN-END:variables
 }
