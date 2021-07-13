@@ -2,6 +2,7 @@ package Vista;
 
 import DAO.ImplementBanco;
 import Modelo.Bancos;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 public class MenuBanco extends javax.swing.JPanel {
@@ -9,7 +10,7 @@ public class MenuBanco extends javax.swing.JPanel {
     public MenuBanco() {
         initComponents();
         ImplementBanco banco = new ImplementBanco();
-        banco.obtenerTodos(table_banco);
+        banco.obtenerTodos(table_banco); //al cargar recibo todos los bancos y los muestro en la tabla
     }
 
     /**
@@ -36,6 +37,7 @@ public class MenuBanco extends javax.swing.JPanel {
         input_buscar = new javax.swing.JTextField();
         btn_editar = new javax.swing.JButton();
         btn_desactivar = new javax.swing.JButton();
+        btn_buscar = new javax.swing.JButton();
 
         setBackground(java.awt.SystemColor.activeCaptionBorder);
         setForeground(new java.awt.Color(0, 0, 0));
@@ -151,6 +153,13 @@ public class MenuBanco extends javax.swing.JPanel {
 
         btn_desactivar.setText("Desactivar");
 
+        btn_buscar.setText("Buscar");
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -161,6 +170,8 @@ public class MenuBanco extends javax.swing.JPanel {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(input_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_buscar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -175,7 +186,8 @@ public class MenuBanco extends javax.swing.JPanel {
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(input_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(input_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_buscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -213,7 +225,10 @@ public class MenuBanco extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) table_banco.getModel();
 
         ImplementBanco iBanco = new ImplementBanco();
-        iBanco.agregarBanco(banco, table_banco, model);
+        iBanco.agregarBanco(banco);
+
+        model.setRowCount(0);
+        iBanco.obtenerTodos(table_banco);
 
     }//GEN-LAST:event_btn_guardarActionPerformed
 
@@ -221,8 +236,28 @@ public class MenuBanco extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_input_codigo_bancoActionPerformed
 
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+        ImplementBanco iBanco = new ImplementBanco();
+        ArrayList<Bancos> listaBancos = iBanco.listarBanco(input_buscar.getText());
+
+        DefaultTableModel model = (DefaultTableModel) table_banco.getModel();
+
+        model.setRowCount(0); //esto resetea a 0 la tabla para poder 
+
+        Object[] row = new Object[3];
+
+        for (int i = 0; i < listaBancos.size(); i++) {
+            row[0] = listaBancos.get(i).getBAN_ID_BANCO();
+            row[1] = listaBancos.get(i).getCODIGO_BANCO();
+            row[2] = listaBancos.get(i).getBAN_DESCRIPCION();
+
+            model.addRow(row);
+        }
+    }//GEN-LAST:event_btn_buscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_desactivar;
     private javax.swing.JButton btn_editar;

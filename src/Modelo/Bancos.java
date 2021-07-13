@@ -14,7 +14,7 @@ public class Bancos {
         this.BAN_DESCRIPCION = BAN_DESCRIPCION;
         this.CODIGO_BANCO = CODIGO_BANCO;
     }
-    
+
     public Bancos(String BAN_DESCRIPCION, String CODIGO_BANCO) {
         this.BAN_DESCRIPCION = BAN_DESCRIPCION;
         this.CODIGO_BANCO = CODIGO_BANCO;
