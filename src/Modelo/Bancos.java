@@ -1,7 +1,7 @@
 package Modelo;
 
-
 public class Bancos {
+
     private int BAN_ID_BANCO;
     private String BAN_DESCRIPCION;
     private String CODIGO_BANCO;
@@ -44,5 +44,4 @@ public class Bancos {
         return "Bancos{" + "BAN_ID_BANCO=" + BAN_ID_BANCO + ", BAN_DESCRIPCION=" + BAN_DESCRIPCION + ", CODIGO_BANCO=" + CODIGO_BANCO + '}';
     }
 
-    
 }

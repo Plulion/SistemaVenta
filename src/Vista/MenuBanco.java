@@ -5,8 +5,6 @@ import Modelo.Bancos;
 import javax.swing.table.DefaultTableModel;
 
 public class MenuBanco extends javax.swing.JPanel {
-    
-    
 
     public MenuBanco() {
         initComponents();
@@ -207,7 +205,7 @@ public class MenuBanco extends javax.swing.JPanel {
 
         Bancos banco = new Bancos(Integer.parseInt(input_codigo_banco.getText()), input_nombre_banco.getText(), input_codigo_banco.getText());
         DefaultTableModel model = (DefaultTableModel) table_banco.getModel();
-        
+
         ImplementBanco iBanco = new ImplementBanco();
         iBanco.agregarBanco(banco, table_banco, model);
 
