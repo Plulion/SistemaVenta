@@ -1,44 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vista;
 
 import DAO.ImplementBanco;
 import Modelo.Bancos;
-import java.sql.ResultSet;
 import java.util.ArrayList;
-import javafx.collections.ObservableList;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
-/**
- *
- * @author Jose
- */
 public class MenuBanco extends javax.swing.JPanel {
+    
+    
 
-    /**
-     * Creates new form MenuBanco
-     */
     public MenuBanco() {
         initComponents();
         ImplementBanco banco = new ImplementBanco();
-        ArrayList<Bancos> list = banco.obtenerTodos();
-        
-        DefaultTableModel model = (DefaultTableModel) table_banco.getModel();
-        
-        Object [] row = new Object[3];
-        
-        for(int i = 0; i<list.size(); i++){
-            row[0] = list.get(i).getBAN_ID_BANCO();
-            row[1] = list.get(i).getCODIGO_BANCO();
-            row[2] = list.get(i).getBAN_DESCRIPCION();
-            
-            model.addRow(row);
-        }
-
+        banco.obtenerTodos(table_banco);
     }
 
     /**
@@ -231,12 +205,13 @@ public class MenuBanco extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
-        
+
         Bancos banco = new Bancos(Integer.parseInt(input_codigo_banco.getText()), input_nombre_banco.getText(), input_codigo_banco.getText());
+        DefaultTableModel model = (DefaultTableModel) table_banco.getModel();
         
         ImplementBanco iBanco = new ImplementBanco();
-        iBanco.agregarBanco(banco);
-        
+        iBanco.agregarBanco(banco, table_banco, model);
+
     }//GEN-LAST:event_btn_guardarActionPerformed
 
 
