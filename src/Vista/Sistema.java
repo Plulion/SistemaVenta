@@ -28,6 +28,11 @@ public class Sistema extends JFrame {
         
         Categoria_Ventas categoria_ventas = new Categoria_Ventas();
         jTabbedPane3.add("Categoria Ventas", categoria_ventas);
+        
+        menucompras1 menucompras = new menucompras1();
+        submenus_compras.add("Solicitud de pedidos", menucompras);
+        
+        //los demas
 
         
     }
@@ -84,6 +89,7 @@ public class Sistema extends JFrame {
         jPanel20 = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
+        submenus_compras = new javax.swing.JTabbedPane();
         jPanel16 = new javax.swing.JPanel();
         jPanel33 = new javax.swing.JPanel();
         jPanel34 = new javax.swing.JPanel();
@@ -585,11 +591,17 @@ public class Sistema extends JFrame {
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1483, Short.MAX_VALUE)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(submenus_compras, javax.swing.GroupLayout.PREFERRED_SIZE, 1232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(250, Short.MAX_VALUE))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 635, Short.MAX_VALUE)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(submenus_compras, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Compras", jPanel15);
@@ -2664,6 +2676,7 @@ public class Sistema extends JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTabbedPane submenus_compras;
     private javax.swing.JTextField txtApellClieVenta;
     private javax.swing.JTextField txtApellidoCliente;
     private javax.swing.JTextField txtApellidoCliente1;

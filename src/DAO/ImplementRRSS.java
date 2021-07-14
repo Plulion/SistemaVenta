@@ -1,7 +1,6 @@
 package DAO;
 
 import Conexion.Conexion;
-import Modelo.Bancos;
 import Modelo.RRSS;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
