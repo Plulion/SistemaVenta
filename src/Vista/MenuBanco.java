@@ -1,6 +1,6 @@
 package Vista;
 
-import DAO.ImplementBanco;
+import DAO.BancoDAO;
 import Modelo.Bancos;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -11,7 +11,7 @@ public class MenuBanco extends javax.swing.JPanel {
 
     public MenuBanco() {
         initComponents();
-        ImplementBanco banco = new ImplementBanco();
+        BancoDAO banco = new BancoDAO();
         DefaultTableModel model = (DefaultTableModel) table_banco.getModel();
         this.model = model;
         banco.obtenerTodos(table_banco, model); //al cargar recibo todos los bancos y los muestro en la tabla     
@@ -357,8 +357,8 @@ public class MenuBanco extends javax.swing.JPanel {
         Bancos banco = new Bancos(input_nombre_banco.getText(), input_codigo_banco.getText());
         //DefaultTableModel model = (DefaultTableModel) table_banco.getModel();
 
-        ImplementBanco iBanco = new ImplementBanco();
-        iBanco.agregarBanco(banco);
+        BancoDAO iBanco = new BancoDAO();
+        iBanco.agregar(banco);
 
         model.setRowCount(0);
         iBanco.obtenerTodos(table_banco, model);
@@ -371,8 +371,8 @@ public class MenuBanco extends javax.swing.JPanel {
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
 
-        ImplementBanco iBanco = new ImplementBanco();
-        ArrayList<Bancos> listaBancos = iBanco.listarBanco(input_buscar.getText());
+        BancoDAO iBanco = new BancoDAO();
+        ArrayList<Bancos> listaBancos = iBanco.listar(input_buscar.getText());
 
         model.setRowCount(0); //esto resetea a 0 la tabla para poder 
 
@@ -407,11 +407,11 @@ public class MenuBanco extends javax.swing.JPanel {
     private void btn_guardar_edicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardar_edicionActionPerformed
 
         if (input_nuevo_nombre.getText().length() > 0 && input_nuevo_codigo.getText().length() > 0) {
-            ImplementBanco iBanco = new ImplementBanco();
+            BancoDAO iBanco = new BancoDAO();
 
             Bancos banco = new Bancos(Integer.parseInt(input_id_banco.getText()), input_nuevo_nombre.getText(), input_nuevo_codigo.getText());
 
-            iBanco.actualizarBanco(input_nuevo_nombre.getText(), Integer.parseInt(input_id_banco.getText()), banco);
+            iBanco.actualizar(input_nuevo_nombre.getText(), Integer.parseInt(input_id_banco.getText()), banco);
 
             jPanel4.setVisible(false);
             jPanel1.setVisible(true);

@@ -9,27 +9,77 @@ import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-
-public class ImplementRRSS implements IRRSS{
-
-    @Override
-    public ArrayList<RRSS> listarRRSS(String nombreRRSS) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+public class RedesSocialesDAO implements CrudGeneral<RRSS> {
 
     @Override
-    public boolean eliminarRRSS(String RRSS, int codigoRRSS) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean actualizarRRSS(String RRSS, int codigoRRSS, RRSS rrss) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean agregarRRSS(RRSS rrss) {       
+    public ArrayList<RRSS> listar(String nombreRRSS) {
         
+        Conexion conexion = new Conexion();
+
+        ArrayList<RRSS> list = new ArrayList<>();
+
+        try {
+
+            PreparedStatement smt = conexion.conectar().prepareStatement("SELECT * FROM rrss WHERE LOWER(CodigoRS) LIKE LOWER(?) OR LOWER(RRS_NOMBRE) LIKE LOWER(?)");
+            smt.setString(1, "%" + nombreRRSS + "%");
+            smt.setString(2, "%" + nombreRRSS + "%");
+
+            ResultSet rs = smt.executeQuery();
+
+            while (rs.next()) {
+                list.add(new RRSS(
+                        rs.getInt("ID"),
+                        rs.getString("CodigoRS"),
+                        rs.getString("RRS_NOMBRE"),                        
+                        rs.getBoolean("Activo")
+                ));
+            }
+
+        } catch (Exception e) {
+            System.err.println("ERROR en:" + e);
+        }
+        return list;
+        
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean desactivar(String texto, int id) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean eliminar(String RRSS, int codigoRRSS) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean actualizar(String RRSS, int codigoRRSS, RRSS rrss) {
+        
+        Conexion conexion = new Conexion();
+
+        try {
+            String sql = "UPDATE rrss SET RRS_NOMBRE=?, CodigoRS=? WHERE ID=?";
+            PreparedStatement stmt = conexion.conectar().prepareStatement(sql);
+
+            stmt.setString(1, rrss.getRrsNombre());
+            stmt.setString(2, rrss.getCodigoRs());
+            stmt.setInt(3, rrss.getId());
+
+            stmt.executeUpdate();
+
+            return true;
+
+        } catch (Exception e) {
+            System.err.println("ERROR: " + e);
+        }
+        return false;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean agregar(RRSS rrss) {
+
         Conexion conexion = new Conexion();
 
         try {
@@ -53,7 +103,7 @@ public class ImplementRRSS implements IRRSS{
 
     @Override
     public void obtenerTodos(JTable tabla, DefaultTableModel model) {
-        
+
         model.setRowCount(0);
 
         Conexion conexion = new Conexion();
@@ -71,8 +121,8 @@ public class ImplementRRSS implements IRRSS{
             while (rs.next()) {
                 list.add(new RRSS(
                         rs.getInt("ID"),
-                        rs.getString("RRS_NOMBRE"),
                         rs.getString("CodigoRS"),
+                        rs.getString("RRS_NOMBRE"),                       
                         rs.getBoolean("Activo")
                 ));
             }
@@ -94,5 +144,4 @@ public class ImplementRRSS implements IRRSS{
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    
 }
