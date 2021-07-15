@@ -9,10 +9,10 @@ import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-public class ImplementBanco implements IBanco {
+public class BancoDAO implements CrudGeneral<Bancos> {
 
     @Override
-    public ArrayList<Bancos> listarBanco(String nombreBanco) {
+    public ArrayList<Bancos> listar(String nombreBanco) {
 
         Conexion conexion = new Conexion();
 
@@ -42,12 +42,17 @@ public class ImplementBanco implements IBanco {
     }
 
     @Override
-    public boolean eliminarBanco(String nombreBanco, int codigoBanco) {
+    public boolean desactivar(String texto, int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean actualizarBanco(String Banco, int codigoBanco, Bancos banco) {
+    public boolean eliminar(String nombreBanco, int codigoBanco) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean actualizar(String Banco, int codigoBanco, Bancos banco) {
 
         Conexion conexion = new Conexion();
 
@@ -72,7 +77,7 @@ public class ImplementBanco implements IBanco {
     }
 
     @Override
-    public boolean agregarBanco(Bancos banco) {
+    public boolean agregar(Bancos banco) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 
         Conexion conexion = new Conexion();
@@ -134,4 +139,5 @@ public class ImplementBanco implements IBanco {
         }
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 }
