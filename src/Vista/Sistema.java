@@ -15,7 +15,7 @@ public class Sistema extends JFrame {
         setLocationRelativeTo(null);
         
         MenuCategoriaArticulo menu_categoria_articulo = new MenuCategoriaArticulo();
-        jTabbedPane3.add("Categoría articulos", menu_categoria_articulo);
+        jTabbedPane3.add("Categoría articulos", menu_categoria_articulo);  
         
         MenuRRSS menu_rrss = new MenuRRSS();
         jTabbedPane3.add("RRSS", menu_rrss);
@@ -31,9 +31,14 @@ public class Sistema extends JFrame {
         
         menucompras1 menucompras = new menucompras1();
         submenus_compras.add("Solicitud de pedidos", menucompras);
+                
+        Regfacpro menucompras1 = new Regfacpro();
+        submenus_compras.add("registro facturas proveedor", menucompras1);
         
-        //los demas
-
+        Revfacinv menucompras3 = new Revfacinv();
+        submenus_compras.add("revision facturas inventariadas", menucompras3);
+        
+//los demas
         
     }
 
