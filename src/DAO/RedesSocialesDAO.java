@@ -10,11 +10,14 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class RedesSocialesDAO implements CrudGeneral<RRSS> {
+    
+    Conexion conexion = new Conexion(); 
+    
 
     @Override
     public ArrayList<RRSS> listar(String nombreRRSS) {
         
-        Conexion conexion = new Conexion();
+        //Conexion conexion = new Conexion();
 
         ArrayList<RRSS> list = new ArrayList<>();
 
@@ -45,7 +48,25 @@ public class RedesSocialesDAO implements CrudGeneral<RRSS> {
 
     @Override
     public boolean desactivar(String texto, int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //Conexion conexion = new Conexion();
+
+        try {
+            String sql = "UPDATE rrss SET Activo=? WHERE ID=?";
+            PreparedStatement stmt = conexion.conectar().prepareStatement(sql);
+
+            stmt.setBoolean(1, false);
+            stmt.setInt(2, id);
+
+            stmt.executeUpdate();
+
+            return true;
+
+        } catch (Exception e) {
+            System.err.println("ERROR: " + e);
+        }
+        return false;
+        
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -56,7 +77,7 @@ public class RedesSocialesDAO implements CrudGeneral<RRSS> {
     @Override
     public boolean actualizar(String RRSS, int codigoRRSS, RRSS rrss) {
         
-        Conexion conexion = new Conexion();
+        //Conexion conexion = new Conexion();
 
         try {
             String sql = "UPDATE rrss SET RRS_NOMBRE=?, CodigoRS=? WHERE ID=?";
@@ -80,15 +101,20 @@ public class RedesSocialesDAO implements CrudGeneral<RRSS> {
     @Override
     public boolean agregar(RRSS rrss) {
 
-        Conexion conexion = new Conexion();
+        //Conexion conexion = new Conexion();
 
-        try {
-            String sql = "INSERT INTO rrss (RRS_NOMBRE, CodigoRs, Activo) VALUES(?, ?, ?)";
+        try { // la linea de abajo Inserta un nuevo valor. Pero si le llega un id que ya existe lo actualiza
+            String sql = "INSERT INTO rrss (ID, RRS_NOMBRE, CodigoRs, Activo) VALUES(?, ?, ?, ?) ON DUPLICATE KEY UPDATE RRS_NOMBRE=?, CodigoRs=?, Activo=?";
             PreparedStatement stmt = conexion.conectar().prepareStatement(sql);
 
-            stmt.setString(1, rrss.getRrsNombre());
-            stmt.setString(2, rrss.getCodigoRs());
-            stmt.setBoolean(3, rrss.isActivo());
+            stmt.setInt(1, rrss.getId());
+            stmt.setString(2, rrss.getRrsNombre());
+            stmt.setString(3, rrss.getCodigoRs());
+            stmt.setBoolean(4, rrss.isActivo());
+            
+            stmt.setString(5, rrss.getRrsNombre());
+            stmt.setString(6, rrss.getCodigoRs());
+            stmt.setBoolean(7, rrss.isActivo());
 
             stmt.executeUpdate();
 
@@ -106,7 +132,7 @@ public class RedesSocialesDAO implements CrudGeneral<RRSS> {
 
         model.setRowCount(0);
 
-        Conexion conexion = new Conexion();
+        //Conexion conexion = new Conexion();
 
         ArrayList<RRSS> list = new ArrayList<>();
 
