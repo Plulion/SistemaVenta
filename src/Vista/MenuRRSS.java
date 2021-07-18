@@ -3,6 +3,7 @@ package Vista;
 import DAO.RedesSocialesDAO;
 import Modelo.RRSS;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class MenuRRSS extends javax.swing.JPanel {
@@ -17,7 +18,6 @@ public class MenuRRSS extends javax.swing.JPanel {
         this.model = model;
         rrss.obtenerTodos(table_rrss, model);
 
-        //String isActive = String.valueOf(table_rrss.getValueAt(table_rrss.getSelectedRow(), 3));
     }
 
     /**
@@ -148,9 +148,16 @@ public class MenuRRSS extends javax.swing.JPanel {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(table_rrss);
@@ -251,26 +258,30 @@ public class MenuRRSS extends javax.swing.JPanel {
         RRSS rrss;
 
         if ("".equals(input_id.getText())) {
-            rrss = new RRSS(input_nombre_rrss.getText(), input_codigo_rrss.getText(), radio_button_activo.isSelected());
+            rrss = new RRSS(input_nombre_rrss.getText(),
+                    input_codigo_rrss.getText(),
+                    radio_button_activo.isSelected());
 
         } else {
-            rrss = new RRSS(Integer.parseInt(input_id.getText()), input_nombre_rrss.getText(), input_codigo_rrss.getText(), radio_button_activo.isSelected());
+            rrss = new RRSS(Integer.parseInt(input_id.getText()),
+                    input_nombre_rrss.getText(),
+                    input_codigo_rrss.getText(),
+                    radio_button_activo.isSelected());
         }
 
         RedesSocialesDAO iRRSS = new RedesSocialesDAO();
 
         iRRSS.agregar(rrss);
-        
+
         //se limpian los inputs
         input_nombre_rrss.setText("");
         input_codigo_rrss.setText("");
         input_id.setText("");
         radio_button_activo.setSelected(true);
-        
 
         //se retea la tabla
         iRRSS.obtenerTodos(table_rrss, model);
-             
+
     }//GEN-LAST:event_btn_guardarActionPerformed
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
@@ -305,12 +316,14 @@ public class MenuRRSS extends javax.swing.JPanel {
             input_nombre_rrss.setText(nombre);
             input_codigo_rrss.setText(codigo);
             radio_button_activo.setSelected(Boolean.parseBoolean(activo));
+        } else {
+            JOptionPane.showMessageDialog(null, "Primero marque un elemento y luego presione editar ", "Se requiere acción previa", JOptionPane.INFORMATION_MESSAGE);
         }
 
     }//GEN-LAST:event_btn_editarActionPerformed
 
     private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
-        
+
         //solo limpia
         input_nombre_rrss.setText("");
         input_codigo_rrss.setText("");
