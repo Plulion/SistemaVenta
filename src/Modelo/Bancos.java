@@ -5,19 +5,19 @@ public class Bancos {
     private int BAN_ID_BANCO;
     private String BAN_DESCRIPCION;
     private String CODIGO_BANCO;
+    private boolean Activo;
 
-    public Bancos() {
+    public Bancos(String BAN_DESCRIPCION, String CODIGO_BANCO, boolean Activo) {
+        this.BAN_DESCRIPCION = BAN_DESCRIPCION;
+        this.CODIGO_BANCO = CODIGO_BANCO;
+        this.Activo = Activo;
     }
 
-    public Bancos(int BAN_ID_BANCO, String BAN_DESCRIPCION, String CODIGO_BANCO) {
+    public Bancos(int BAN_ID_BANCO, String BAN_DESCRIPCION, String CODIGO_BANCO, boolean Activo) {
         this.BAN_ID_BANCO = BAN_ID_BANCO;
         this.BAN_DESCRIPCION = BAN_DESCRIPCION;
         this.CODIGO_BANCO = CODIGO_BANCO;
-    }
-
-    public Bancos(String BAN_DESCRIPCION, String CODIGO_BANCO) {
-        this.BAN_DESCRIPCION = BAN_DESCRIPCION;
-        this.CODIGO_BANCO = CODIGO_BANCO;
+        this.Activo = Activo;
     }
 
     public int getBAN_ID_BANCO() {
@@ -42,6 +42,14 @@ public class Bancos {
 
     public void setCODIGO_BANCO(String CODIGO_BANCO) {
         this.CODIGO_BANCO = CODIGO_BANCO;
+    }
+
+    public boolean isActivo() {
+        return Activo;
+    }
+
+    public void setActivo(boolean Activo) {
+        this.Activo = Activo;
     }
 
     @Override
