@@ -32,10 +32,10 @@ public class Sistema extends JFrame {
         menucompras1 menucompras = new menucompras1();
         submenus_compras.add("Solicitud de pedidos", menucompras);
                 
-        Regfacpro menucompras1 = new Regfacpro();
+        regfacpro menucompras1 = new regfacpro();
         submenus_compras.add("registro facturas proveedor", menucompras1);
         
-        Revfacinv menucompras3 = new Revfacinv();
+        revfacinv menucompras3 = new revfacinv();
         submenus_compras.add("revision facturas inventariadas", menucompras3);
         
 //los demas

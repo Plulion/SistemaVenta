@@ -11,10 +11,10 @@ import javax.swing.table.DefaultTableModel;
 
 public class BancoDAO implements CrudGeneral<Bancos> {
 
+    Conexion conexion = new Conexion();
+
     @Override
     public ArrayList<Bancos> listar(String nombreBanco) {
-
-        Conexion conexion = new Conexion();
 
         ArrayList<Bancos> list = new ArrayList<>();
 
@@ -30,7 +30,8 @@ public class BancoDAO implements CrudGeneral<Bancos> {
                 list.add(new Bancos(
                         rs.getInt("BAN_ID_BANCO"),
                         rs.getString("BAN_DESCRIPCION"),
-                        rs.getString("CODIGO_BANCO")
+                        rs.getString("CODIGO_BANCO"),
+                        rs.getBoolean("Activo")
                 ));
             }
 
@@ -54,15 +55,14 @@ public class BancoDAO implements CrudGeneral<Bancos> {
     @Override
     public boolean actualizar(String Banco, int codigoBanco, Bancos banco) {
 
-        Conexion conexion = new Conexion();
-
         try {
-            String sql = "UPDATE bancos SET BAN_DESCRIPCION=?, CODIGO_BANCO=? WHERE BAN_ID_BANCO=?";
+            String sql = "UPDATE bancos SET BAN_DESCRIPCION=?, CODIGO_BANCO=?, Activo=? WHERE BAN_ID_BANCO=?";
             PreparedStatement stmt = conexion.conectar().prepareStatement(sql);
-            //stmt.setInt(1, banco.getBAN_ID_BANCO());
+
             stmt.setString(1, banco.getBAN_DESCRIPCION());
             stmt.setString(2, banco.getCODIGO_BANCO());
-            stmt.setInt(3, banco.getBAN_ID_BANCO());
+            stmt.setBoolean(3, banco.isActivo());
+            stmt.setInt(4, banco.getBAN_ID_BANCO());
 
             stmt.executeUpdate();
 
@@ -80,14 +80,18 @@ public class BancoDAO implements CrudGeneral<Bancos> {
     public boolean agregar(Bancos banco) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 
-        Conexion conexion = new Conexion();
-
         try {
-            String sql = "INSERT INTO bancos (BAN_DESCRIPCION, CODIGO_BANCO) VALUES(?, ?)";
+            String sql = "INSERT INTO bancos (BAN_ID_BANCO, BAN_DESCRIPCION, CODIGO_BANCO, Activo) VALUES(?, ?, ?, ?) ON DUPLICATE KEY UPDATE BAN_DESCRIPCION=?, CODIGO_BANCO=?, Activo=?";
             PreparedStatement stmt = conexion.conectar().prepareStatement(sql);
-            //stmt.setInt(1, banco.getBAN_ID_BANCO());
-            stmt.setString(1, banco.getBAN_DESCRIPCION());
-            stmt.setString(2, banco.getCODIGO_BANCO());
+
+            stmt.setInt(1, banco.getBAN_ID_BANCO());
+            stmt.setString(2, banco.getBAN_DESCRIPCION());
+            stmt.setString(3, banco.getCODIGO_BANCO());
+            stmt.setBoolean(4, banco.isActivo());
+
+            stmt.setString(5, banco.getBAN_DESCRIPCION());
+            stmt.setString(6, banco.getCODIGO_BANCO());
+            stmt.setBoolean(7, banco.isActivo());
 
             stmt.executeUpdate();
 
@@ -104,8 +108,6 @@ public class BancoDAO implements CrudGeneral<Bancos> {
 
         model.setRowCount(0);
 
-        Conexion conexion = new Conexion();
-
         ArrayList<Bancos> list = new ArrayList<>();
 
         try {
@@ -120,16 +122,18 @@ public class BancoDAO implements CrudGeneral<Bancos> {
                 list.add(new Bancos(
                         rs.getInt("BAN_ID_BANCO"),
                         rs.getString("BAN_DESCRIPCION"),
-                        rs.getString("CODIGO_BANCO")
+                        rs.getString("CODIGO_BANCO"),
+                        rs.getBoolean("Activo")
                 ));
             }
 
-            Object[] row = new Object[3];
+            Object[] row = new Object[4];
 
             for (int i = 0; i < list.size(); i++) {
                 row[0] = list.get(i).getBAN_ID_BANCO();
                 row[1] = list.get(i).getCODIGO_BANCO();
                 row[2] = list.get(i).getBAN_DESCRIPCION();
+                row[3] = list.get(i).isActivo();
 
                 model.addRow(row);
             }
