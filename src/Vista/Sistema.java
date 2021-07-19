@@ -39,8 +39,8 @@ public class Sistema extends JFrame {
         submenus_compras.add("revision facturas inventariadas", menucompras3);
         
         
-        //ConfirmacionVenta menuVentas = new ConfirmacionVenta ();
-        //MenuVentas.add("Confirmacion Ventas", menuVentas); 
+        ConfirmacionVenta menuVentas = new ConfirmacionVenta ();
+        MenuVentas.add("Confirmacion Ventas", menuVentas); 
         
    
         
