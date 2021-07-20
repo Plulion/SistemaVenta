@@ -4,6 +4,7 @@ import Modelo.Bancos;
 import java.sql.PreparedStatement;
 import Conexion.Conexion;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JTable;
@@ -97,7 +98,7 @@ public class BancoDAO implements CrudGeneral<Bancos> {
 
             return true;
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.err.println("ERROR: " + e);
         }
         return false;
@@ -108,7 +109,7 @@ public class BancoDAO implements CrudGeneral<Bancos> {
 
         model.setRowCount(0);
 
-        ArrayList<Bancos> list = new ArrayList<>();
+        ArrayList<Bancos> list = new ArrayList<>(); // esta lista esta vacia
 
         try {
 
@@ -116,16 +117,18 @@ public class BancoDAO implements CrudGeneral<Bancos> {
 
             String sql = "SELECT * FROM bancos";
 
-            ResultSet rs = smt.executeQuery(sql);
+            ResultSet rs = smt.executeQuery(sql); //obtengo lista de datos 
 
-            while (rs.next()) {
+            while (rs.next()) {//[{4342, soyCod, santadner, true},{4342, soyCod, santadner, true},{4342, soyCod, santadner, true}}   ]
                 list.add(new Bancos(
-                        rs.getInt("BAN_ID_BANCO"),
-                        rs.getString("BAN_DESCRIPCION"),
+                        rs.getInt("BAN_ID_BANCO"),                        
+                        rs.getString("BAN_DESCRIPCION"),                      
                         rs.getString("CODIGO_BANCO"),
                         rs.getBoolean("Activo")
                 ));
             }
+            
+            //lista de bancos con 20 bancos
 
             Object[] row = new Object[4];
 

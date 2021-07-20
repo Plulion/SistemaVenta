@@ -43,8 +43,8 @@ public class Sistema extends JFrame {
         MenuVentas.add("Confirmacion Ventas", menuVentas); 
         
    
-        
-
+        MenuCliente menuCliente = new MenuCliente();
+        jTabbedPane3.add("Clientes", menuCliente);
      
            
 //los demas
