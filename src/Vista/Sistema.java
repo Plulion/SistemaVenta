@@ -50,8 +50,8 @@ public class Sistema extends JFrame {
         
         
    
-        
-
+        MenuCliente menuCliente = new MenuCliente();
+        jTabbedPane3.add("Clientes", menuCliente);
      
            
 //los demas
@@ -285,6 +285,8 @@ public class Sistema extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusTraversalPolicyProvider(true);
+        setPreferredSize(new java.awt.Dimension(1800, 1500));
+        setResizable(false);
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 153));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -2180,7 +2182,7 @@ public class Sistema extends JFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jTabbedPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
+                .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 597, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -2249,7 +2251,7 @@ public class Sistema extends JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(mVentas, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
+                .addComponent(mVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 662, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
