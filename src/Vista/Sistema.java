@@ -48,7 +48,7 @@ public class Sistema extends JFrame {
         ActualizacionDespacho menuVentas2 = new ActualizacionDespacho();
         menuV.add ("Actualizacion Despachos", menuVentas2);
         
-        Usuario menuusuario = new Usuario();
+        MenuUsuario menuusuario = new MenuUsuario();
         jTabbedPane3.add("Usuario",menuusuario);
         
    
