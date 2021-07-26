@@ -20,6 +20,9 @@ public class Sistema extends JFrame {
         MenuRRSS menu_rrss = new MenuRRSS();
         jTabbedPane3.add("RRSS", menu_rrss);
         
+        MenuArticulo menu_articulo = new MenuArticulo();
+        jTabbedPane3.add("Articulos", menu_articulo);
+        
         MenuBanco menu_banco = new MenuBanco();
         jTabbedPane3.add("Banco", menu_banco);
               
@@ -46,9 +49,7 @@ public class Sistema extends JFrame {
         menuV.add ("Lista Destino", menuVentas1);
         
         ActualizacionDespacho menuVentas2 = new ActualizacionDespacho();
-        menuV.add ("Actualizacion Despachos", menuVentas2);
-        
-        
+        menuV.add ("Actualizacion Despachos", menuVentas2);     
    
         MenuCliente menuCliente = new MenuCliente();
         jTabbedPane3.add("Clientes", menuCliente);
@@ -286,7 +287,6 @@ public class Sistema extends JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusTraversalPolicyProvider(true);
         setPreferredSize(new java.awt.Dimension(1800, 1500));
-        setResizable(false);
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 153));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));

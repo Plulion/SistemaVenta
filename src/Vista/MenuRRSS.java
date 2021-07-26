@@ -16,7 +16,7 @@ public class MenuRRSS extends javax.swing.JPanel {
         RedesSocialesDAO rrss = new RedesSocialesDAO();
         DefaultTableModel model = (DefaultTableModel) table_rrss.getModel();
         this.model = model;
-        rrss.obtenerTodos(table_rrss, model);
+        rrss.obtenerTodos(table_rrss, model); //este metodo carga la tabla con la respuesta de la BD
 
     }
 
