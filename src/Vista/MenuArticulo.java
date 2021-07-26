@@ -6,8 +6,13 @@
 package Vista;
 
 import DAO.ArticuloDAO;
+import DAO.CategoriaDAO;
 import Modelo.Articulos;
+import Modelo.Bancos;
+import Modelo.Categorias;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,6 +38,25 @@ public class MenuArticulo extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) table_articulo.getModel();
         this.model = model;
         iArticulo.obtenerTodos(table_articulo, model);
+        try {
+            llenarComboBoxCategorias();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuArticulo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public final void llenarComboBoxCategorias() throws SQLException {
+
+        CategoriaDAO iCategoria = new CategoriaDAO();
+        ResultSet rs = iCategoria.obtenerTodasCategorias();
+
+        while (rs.next()) {
+            comboBox_categoria_articulo.addItem(new Categorias(
+                    rs.getInt("idCatArt"),
+                    rs.getString("CATEGORIA"),
+                    rs.getBoolean("Activo"))
+            );
+        }
     }
 
     /**
@@ -304,7 +328,8 @@ public class MenuArticulo extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void comboBox_categoria_articuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBox_categoria_articuloActionPerformed
-        // TODO add your handling code here:
+
+
     }//GEN-LAST:event_comboBox_categoria_articuloActionPerformed
 
     private void formPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_formPropertyChange
@@ -319,14 +344,14 @@ public class MenuArticulo extends javax.swing.JPanel {
                 || "".equals(input_marca.getText()))
                 || "".equals(input_unidades.getText())
                 || input_date.getDate() == null) {
-            
+
             JOptionPane.showMessageDialog(null, "Faltan datos por completar ", "Se requiere acción previa", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
 
         if ("".equals(input_id.getText())) {
             articulo = new Articulos(
-                    comboBox_categoria_articulo.getSelectedIndex(),
+                    comboBox_categoria_articulo.getItemAt(comboBox_categoria_articulo.getSelectedIndex()).getId(),
                     input_nombre.getText(),
                     input_marca.getText(),
                     Integer.parseInt(input_unidades.getText()),
@@ -338,7 +363,7 @@ public class MenuArticulo extends javax.swing.JPanel {
         } else {
             articulo = new Articulos(
                     Integer.parseInt(input_id.getText()),
-                    comboBox_categoria_articulo.getSelectedIndex(),
+                    comboBox_categoria_articulo.getItemAt(comboBox_categoria_articulo.getSelectedIndex()).getId(),
                     input_nombre.getText(),
                     input_marca.getText(),
                     Integer.parseInt(input_unidades.getText()),
@@ -434,7 +459,7 @@ public class MenuArticulo extends javax.swing.JPanel {
     private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_editar;
     private javax.swing.JButton btn_guardar;
-    private javax.swing.JComboBox<String> comboBox_categoria_articulo;
+    private javax.swing.JComboBox<Categorias> comboBox_categoria_articulo;
     private javax.swing.JTextField input_buscar;
     private javax.swing.JTextField input_codigo;
     private com.toedter.calendar.JDateChooser input_date;

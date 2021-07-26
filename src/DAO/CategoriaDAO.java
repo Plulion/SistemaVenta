@@ -9,6 +9,7 @@ import Conexion.Conexion;
 import Modelo.Categorias;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JTable;
@@ -43,7 +44,7 @@ public class CategoriaDAO implements CrudGeneral<Categorias> {
                 ));
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.err.println("ERROR en:" + e);
         }
         return list;
@@ -92,7 +93,7 @@ public class CategoriaDAO implements CrudGeneral<Categorias> {
 
             return true;
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.err.println("ERROR: " + e);
         }
         return false;
@@ -118,7 +119,7 @@ public class CategoriaDAO implements CrudGeneral<Categorias> {
 
             return true;
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.err.println("ERROR: " + e);
         }
         return false;
@@ -159,10 +160,26 @@ public class CategoriaDAO implements CrudGeneral<Categorias> {
                 model.addRow(row);
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.err.println("ERROR en:" + e);
         }
 
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public ResultSet obtenerTodasCategorias () {
+       
+        try {
+            Statement smt = conexion.conectar().createStatement();
+
+            String sql = "SELECT * FROM categoria_articulo";
+
+            ResultSet rs = smt.executeQuery(sql);
+            
+            return rs;
+        } catch (SQLException e) {
+            System.err.println("ERROR: Al obtener categorias "+e);
+        }
+        return null;
     }
 }
