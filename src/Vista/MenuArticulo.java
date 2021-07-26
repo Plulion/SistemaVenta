@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.scene.control.DatePicker;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -30,14 +31,14 @@ public class MenuArticulo extends javax.swing.JPanel {
 
     DefaultTableModel model;
     DatePicker date;
-
+    
     public MenuArticulo() {
         initComponents();
 
         ArticuloDAO iArticulo = new ArticuloDAO();
-        DefaultTableModel model = (DefaultTableModel) table_articulo.getModel();
-        this.model = model;
+        this.model = (DefaultTableModel) table_articulo.getModel();
         iArticulo.obtenerTodos(table_articulo, model);
+        
         try {
             llenarComboBoxCategorias();
         } catch (SQLException ex) {
@@ -49,14 +50,21 @@ public class MenuArticulo extends javax.swing.JPanel {
 
         CategoriaDAO iCategoria = new CategoriaDAO();
         ResultSet rs = iCategoria.obtenerTodasCategorias();
-
+        
+        this.comboBox_categoria_articulo.removeAllItems();
+        
+        this.comboBox_categoria_articulo.setPreferredSize(null);
+        
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        
         while (rs.next()) {
-            comboBox_categoria_articulo.addItem(new Categorias(
+            modelo.addElement(new Categorias(
                     rs.getInt("idCatArt"),
                     rs.getString("CATEGORIA"),
                     rs.getBoolean("Activo"))
             );
         }
+        this.comboBox_categoria_articulo.setModel(modelo);
     }
 
     /**
@@ -329,7 +337,11 @@ public class MenuArticulo extends javax.swing.JPanel {
 
     private void comboBox_categoria_articuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBox_categoria_articuloActionPerformed
 
-
+//        try {
+//            llenarComboBoxCategorias();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(MenuArticulo.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_comboBox_categoria_articuloActionPerformed
 
     private void formPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_formPropertyChange
@@ -459,7 +471,7 @@ public class MenuArticulo extends javax.swing.JPanel {
     private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_editar;
     private javax.swing.JButton btn_guardar;
-    private javax.swing.JComboBox<Categorias> comboBox_categoria_articulo;
+    protected javax.swing.JComboBox<Categorias> comboBox_categoria_articulo;
     private javax.swing.JTextField input_buscar;
     private javax.swing.JTextField input_codigo;
     private com.toedter.calendar.JDateChooser input_date;
