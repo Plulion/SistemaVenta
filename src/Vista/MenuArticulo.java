@@ -315,6 +315,15 @@ public class MenuArticulo extends javax.swing.JPanel {
 
         Articulos articulo;
 
+        if (("".equals(input_nombre.getText())
+                || "".equals(input_marca.getText()))
+                || "".equals(input_unidades.getText())
+                || input_date.getDate() == null) {
+            
+            JOptionPane.showMessageDialog(null, "Faltan datos por completar ", "Se requiere acción previa", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
         if ("".equals(input_id.getText())) {
             articulo = new Articulos(
                     comboBox_categoria_articulo.getSelectedIndex(),
@@ -356,7 +365,7 @@ public class MenuArticulo extends javax.swing.JPanel {
 //        }
         input_date.setCalendar(null);
         radio_button_activo.setSelected(true);
-        
+
         //reset tabla
         iArticulo.obtenerTodos(table_articulo, model);
 
