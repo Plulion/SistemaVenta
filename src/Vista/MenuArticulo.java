@@ -8,9 +8,7 @@ package Vista;
 import DAO.ArticuloDAO;
 import DAO.CategoriaDAO;
 import Modelo.Articulos;
-import Modelo.Bancos;
 import Modelo.Categorias;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -25,20 +23,26 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Jose
+ * @author Jose: A considerar: El comboBox que muestra todas las categorías no
+ * contiene Strings. Sino clases de tipo Categoría. Por lo tanto cada índice es
+ * una clase con sus respectivos métodos de getId() y getName(). Los mismo
+ * ocurre con la tabla en la columna Categoría. No son Srings sino Clases
+ * Categoría. Hago esto para tener siempre los id de cada nombre de categoría. Y
+ * así al crear un nuevo articulo que este asociado a una categoría el Id de esa
+ * categoría ya esta dentro del mismo comboBox
  */
 public class MenuArticulo extends javax.swing.JPanel {
 
     DefaultTableModel model;
     DatePicker date;
-    
+
     public MenuArticulo() {
         initComponents();
 
         ArticuloDAO iArticulo = new ArticuloDAO();
         this.model = (DefaultTableModel) table_articulo.getModel();
         iArticulo.obtenerTodos(table_articulo, model);
-        
+
         try {
             llenarComboBoxCategorias();
         } catch (SQLException ex) {
@@ -50,13 +54,13 @@ public class MenuArticulo extends javax.swing.JPanel {
 
         CategoriaDAO iCategoria = new CategoriaDAO();
         ResultSet rs = iCategoria.obtenerTodasCategorias();
-        
+
         this.comboBox_categoria_articulo.removeAllItems();
-        
+
         this.comboBox_categoria_articulo.setPreferredSize(null);
-        
+
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-        
+
         while (rs.next()) {
             modelo.addElement(new Categorias(
                     rs.getInt("idCatArt"),
@@ -395,12 +399,8 @@ public class MenuArticulo extends javax.swing.JPanel {
         input_nombre.setText("");
         input_unidades.setText("");
         input_marca.setText("");
-//        try {
-//            input_date.setDate(new SimpleDateFormat("dd-MM-yyyy").parse(fechaVencimiento));
-//        } catch (ParseException ex) {
-//            Logger.getLogger(MenuArticulo.class.getName()).log(Level.SEVERE, null, ex);
-//        }
         input_date.setCalendar(null);
+        comboBox_categoria_articulo.getModel().setSelectedItem(null);
         radio_button_activo.setSelected(true);
 
         //reset tabla
@@ -424,7 +424,7 @@ public class MenuArticulo extends javax.swing.JPanel {
             row[3] = listaArticulos.get(i).getArt_stock();
             row[4] = listaArticulos.get(i).getArt_fecha_vencimiento();
             row[5] = listaArticulos.get(i).getArt_marca();
-            row[6] = listaArticulos.get(i).getCat_nombre();
+            row[6] = new Categorias(listaArticulos.get(i).getCat_id(), listaArticulos.get(i).getCat_nombre(), true);
             row[7] = listaArticulos.get(i).getProv_nombre();
             row[8] = listaArticulos.get(i).isActivo();
 
@@ -446,7 +446,7 @@ public class MenuArticulo extends javax.swing.JPanel {
         String unidades = table_articulo.getValueAt(table_articulo.getSelectedRow(), 3).toString();
         String fechaVencimiento = table_articulo.getValueAt(table_articulo.getSelectedRow(), 4).toString();
         String marca = table_articulo.getValueAt(table_articulo.getSelectedRow(), 5).toString();
-        //String categoria = table_articulo.getValueAt(table_articulo.getSelectedRow(), 6).toString();
+        Categorias categoria = (Categorias) table_articulo.getValueAt(table_articulo.getSelectedRow(), 6);
         //String proveedor = table_articulo.getValueAt(table_articulo.getSelectedRow(), 7).toString();
         String activo = table_articulo.getValueAt(table_articulo.getSelectedRow(), 8).toString();
 
@@ -455,6 +455,7 @@ public class MenuArticulo extends javax.swing.JPanel {
         input_nombre.setText(nombre);
         input_unidades.setText(unidades);
         input_marca.setText(marca);
+        comboBox_categoria_articulo.getModel().setSelectedItem(categoria);
         try {
             input_date.setDate(new SimpleDateFormat("dd-MM-yyyy").parse(fechaVencimiento));
         } catch (ParseException ex) {

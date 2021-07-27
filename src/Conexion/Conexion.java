@@ -11,10 +11,10 @@ import javax.swing.JOptionPane;
 public class Conexion {
 
     private final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private final String URL = "jdbc:mysql://localhost:3307/";
-    private final String DB = "dg";
-    private final String USER = "jose";
-    private final String PASSWORD = "THEKILL1994";
+    private final String URL = "jdbc:mysql://bszfpxheckrsqmpxiw0s-mysql.services.clever-cloud.com:3306/";
+    private final String DB = "bszfpxheckrsqmpxiw0s";
+    private final String USER = "unhvncuuqmi9ttmz";
+    private final String PASSWORD = "Lu2WRK5ycD2CEb8jOVl7";
 
     public Connection cadena;
     public static Conexion instancia;

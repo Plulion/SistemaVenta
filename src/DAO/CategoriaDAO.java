@@ -7,6 +7,7 @@ package DAO;
 
 import Conexion.Conexion;
 import Modelo.Categorias;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,25 +29,36 @@ public class CategoriaDAO implements CrudGeneral<Categorias> {
 
         ArrayList<Categorias> list = new ArrayList<>();
 
-        try {
+        Connection conn = conexion.conectar();
 
-            PreparedStatement smt = conexion.conectar().prepareStatement("SELECT * FROM categoria_articulo WHERE LOWER(idCatArt) LIKE LOWER(?) OR LOWER(CATEGORIA) LIKE LOWER(?)");
-            smt.setString(1, "%" + nombreCategoria + "%");
-            smt.setString(2, "%" + nombreCategoria + "%");
+        if (conn != null) {
 
-            ResultSet rs = smt.executeQuery();
+            try {
 
-            while (rs.next()) {
-                list.add(new Categorias(
-                        rs.getInt("idCatArt"),
-                        rs.getString("CATEGORIA"),
-                        rs.getBoolean("Activo")
-                ));
+                PreparedStatement smt = conn.prepareStatement("SELECT * FROM categoria_articulo WHERE LOWER(idCatArt) LIKE LOWER(?) OR LOWER(CATEGORIA) LIKE LOWER(?)");
+                smt.setString(1, "%" + nombreCategoria + "%");
+                smt.setString(2, "%" + nombreCategoria + "%");
+
+                ResultSet rs = smt.executeQuery();
+
+                while (rs.next()) {
+                    list.add(new Categorias(
+                            rs.getInt("idCatArt"),
+                            rs.getString("CATEGORIA"),
+                            rs.getBoolean("Activo")
+                    ));
+                }
+
+                rs.close();
+                smt.close();
+
+            } catch (SQLException e) {
+                System.err.println("ERROR en:" + e);
+            } finally {
+                conexion.conectar();
             }
-
-        } catch (SQLException e) {
-            System.err.println("ERROR en:" + e);
         }
+
         return list;
 
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -81,20 +93,30 @@ public class CategoriaDAO implements CrudGeneral<Categorias> {
     @Override
     public boolean actualizar(String texto, int id, Categorias categoria) {
 
-        try {
-            String sql = "UPDATE categoria_articulo SET CATEGORIA=?, Activo=? WHERE idCarArt=?";
-            PreparedStatement stmt = conexion.conectar().prepareStatement(sql);
+        Connection conn = conexion.conectar();
 
-            stmt.setString(1, categoria.getCategoria());
-            stmt.setBoolean(2, categoria.isActivo());
-            stmt.setInt(3, categoria.getId());
+        if (conn != null) {
 
-            stmt.executeUpdate();
+            try {
+                String sql = "UPDATE categoria_articulo SET CATEGORIA=?, Activo=? WHERE idCarArt=?";
+                PreparedStatement stmt = conn.prepareStatement(sql);
 
-            return true;
+                stmt.setString(1, categoria.getCategoria());
+                stmt.setBoolean(2, categoria.isActivo());
+                stmt.setInt(3, categoria.getId());
 
-        } catch (SQLException e) {
-            System.err.println("ERROR: " + e);
+                stmt.executeUpdate();
+
+                stmt.close();
+
+                return true;
+
+            } catch (SQLException e) {
+                System.err.println("ERROR: " + e);
+            } finally {
+                conexion.desconectar();
+            }
+
         }
         return false;
 
@@ -104,23 +126,33 @@ public class CategoriaDAO implements CrudGeneral<Categorias> {
     @Override
     public boolean agregar(Categorias categoria) {
 
-        try { // la linea de abajo Inserta un nuevo valor. Pero si le llega un id que ya existe lo actualiza
-            String sql = "INSERT INTO categoria_articulo (idCatArt, CATEGORIA, Activo) VALUES(?, ?, ?) ON DUPLICATE KEY UPDATE CATEGORIA=?, Activo=?";
-            PreparedStatement stmt = conexion.conectar().prepareStatement(sql);
+        Connection conn = conexion.conectar();
 
-            stmt.setInt(1, categoria.getId());
-            stmt.setString(2, categoria.getCategoria());
-            stmt.setBoolean(3, categoria.isActivo());
+        if (conn != null) {
 
-            stmt.setString(4, categoria.getCategoria());
-            stmt.setBoolean(5, categoria.isActivo());
+            try { // la linea de abajo Inserta un nuevo valor. Pero si le llega un id que ya existe lo actualiza
+                String sql = "INSERT INTO categoria_articulo (idCatArt, CATEGORIA, Activo) VALUES(?, ?, ?) ON DUPLICATE KEY UPDATE CATEGORIA=?, Activo=?";
+                PreparedStatement stmt = conn.prepareStatement(sql);
 
-            stmt.executeUpdate();
+                stmt.setInt(1, categoria.getId());
+                stmt.setString(2, categoria.getCategoria());
+                stmt.setBoolean(3, categoria.isActivo());
 
-            return true;
+                stmt.setString(4, categoria.getCategoria());
+                stmt.setBoolean(5, categoria.isActivo());
 
-        } catch (SQLException e) {
-            System.err.println("ERROR: " + e);
+                stmt.executeUpdate();
+
+                stmt.close();
+
+                return true;
+
+            } catch (SQLException e) {
+                System.err.println("ERROR: " + e);
+            } finally {
+                conexion.desconectar();
+            }
+
         }
         return false;
 
@@ -130,55 +162,75 @@ public class CategoriaDAO implements CrudGeneral<Categorias> {
     @Override
     public void obtenerTodos(JTable tabla, DefaultTableModel model) {
 
-        model.setRowCount(0);
+        Connection conn = conexion.conectar();
 
-        ArrayList<Categorias> list = new ArrayList<>();
+        if (conexion != null) {
 
-        try {
+            model.setRowCount(0);
 
-            Statement smt = conexion.conectar().createStatement();
+            ArrayList<Categorias> list = new ArrayList<>();
 
-            String sql = "SELECT * FROM categoria_articulo";
+            try {
 
-            ResultSet rs = smt.executeQuery(sql);
+                Statement smt = conn.createStatement();
 
-            while (rs.next()) {
-                list.add(new Categorias(
-                        rs.getInt("idCatArt"),
-                        rs.getString("CATEGORIA"),
-                        rs.getBoolean("Activo")
-                ));
+                String sql = "SELECT * FROM categoria_articulo";
+
+                ResultSet rs = smt.executeQuery(sql);
+
+                while (rs.next()) {
+                    list.add(new Categorias(
+                            rs.getInt("idCatArt"),
+                            rs.getString("CATEGORIA"),
+                            rs.getBoolean("Activo")
+                    ));
+                }
+
+                Object[] row = new Object[3];
+
+                for (int i = 0; i < list.size(); i++) {
+                    row[0] = list.get(i).getId();
+                    row[1] = list.get(i).getCategoria();
+                    row[2] = list.get(i).isActivo();
+
+                    model.addRow(row);
+                }
+
+                rs.close();
+                smt.close();
+
+            } catch (SQLException e) {
+                System.err.println("ERROR en:" + e);
+            } finally {
+                conexion.desconectar();
             }
 
-            Object[] row = new Object[3];
-
-            for (int i = 0; i < list.size(); i++) {
-                row[0] = list.get(i).getId();
-                row[1] = list.get(i).getCategoria();
-                row[2] = list.get(i).isActivo();
-
-                model.addRow(row);
-            }
-
-        } catch (SQLException e) {
-            System.err.println("ERROR en:" + e);
         }
 
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
-    public ResultSet obtenerTodasCategorias () {
-       
-        try {
-            Statement smt = conexion.conectar().createStatement();
 
-            String sql = "SELECT * FROM categoria_articulo";
+    public ResultSet obtenerTodasCategorias() {
 
-            ResultSet rs = smt.executeQuery(sql);
-            
-            return rs;
-        } catch (SQLException e) {
-            System.err.println("ERROR: Al obtener categorias "+e);
+        Connection conn = conexion.conectar();
+
+        if (conn != null) {
+
+            try {
+                ResultSet rs;
+                try (Statement smt = conn.createStatement()) {
+                    String sql = "SELECT * FROM categoria_articulo";
+                    rs = smt.executeQuery(sql);
+                    rs.close();
+                }
+
+                return rs;
+            } catch (SQLException e) {
+                System.err.println("ERROR: Al obtener categorias " + e);
+            } finally {
+                conexion.desconectar();
+            }
+
         }
         return null;
     }
