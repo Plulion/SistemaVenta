@@ -33,12 +33,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MenuArticulo extends javax.swing.JPanel {
 
+    static DefaultComboBoxModel modeloComboBox = new DefaultComboBoxModel();
     DefaultTableModel model;
     DatePicker date;
 
     public MenuArticulo() {
         initComponents();
-
+        comboBox_categoria_articulo.setModel(modeloComboBox);
         ArticuloDAO iArticulo = new ArticuloDAO();
         this.model = (DefaultTableModel) table_articulo.getModel();
         iArticulo.obtenerTodos(table_articulo, model);
@@ -50,26 +51,24 @@ public class MenuArticulo extends javax.swing.JPanel {
         }
     }
 
-    public final void llenarComboBoxCategorias() throws SQLException {
+    public static final void llenarComboBoxCategorias() throws SQLException {
 
         CategoriaDAO iCategoria = new CategoriaDAO();
 
         ResultSet categorias = iCategoria.obtenerTodasCategorias();
 
-//        this.comboBox_categoria_articulo.removeAllItems();
-//
-//        this.comboBox_categoria_articulo.setPreferredSize(null);
+        modeloComboBox.removeAllElements();
 
-        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        DefaultComboBoxModel nuevoModeloComboBox = new DefaultComboBoxModel();
 
         while (categorias.next()) {
-            modelo.addElement(new Categorias(
+            nuevoModeloComboBox.addElement(new Categorias(
                     categorias.getInt("idCatArt"),
                     categorias.getString("CATEGORIA"),
                     categorias.getBoolean("Activo"))
             );
         }
-        this.comboBox_categoria_articulo.setModel(modelo);
+        comboBox_categoria_articulo.setModel(nuevoModeloComboBox);
         categorias.close();
     }
 
@@ -457,14 +456,25 @@ public class MenuArticulo extends javax.swing.JPanel {
         input_nombre.setText(nombre);
         input_unidades.setText(unidades);
         input_marca.setText(marca);
-        comboBox_categoria_articulo.getModel().setSelectedItem(categoria);
+        radio_button_activo.setSelected(Boolean.parseBoolean(activo));
+
+        //El siguiente bloque de codigo solo corrige un error en el comboBox
+        int size = comboBox_categoria_articulo.getItemCount();
+        Categorias catActual;
+        for (int i = 0; i < size; i++) {
+
+            catActual = (Categorias) comboBox_categoria_articulo.getItemAt(i);
+            if (catActual.getId() == categoria.getId()) {
+
+                comboBox_categoria_articulo.setSelectedIndex(i);
+            }
+        }
+
         try {
             input_date.setDate(new SimpleDateFormat("dd-MM-yyyy").parse(fechaVencimiento));
         } catch (ParseException ex) {
             Logger.getLogger(MenuArticulo.class.getName()).log(Level.SEVERE, null, ex);
         }
-        radio_button_activo.setSelected(Boolean.parseBoolean(activo));
-
     }//GEN-LAST:event_btn_editarActionPerformed
 
 
@@ -474,7 +484,7 @@ public class MenuArticulo extends javax.swing.JPanel {
     private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_editar;
     private javax.swing.JButton btn_guardar;
-    private javax.swing.JComboBox<Categorias> comboBox_categoria_articulo;
+    private static javax.swing.JComboBox<Categorias> comboBox_categoria_articulo;
     private javax.swing.JTextField input_buscar;
     private javax.swing.JTextField input_codigo;
     private com.toedter.calendar.JDateChooser input_date;
