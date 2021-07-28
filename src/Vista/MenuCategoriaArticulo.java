@@ -277,12 +277,12 @@ public class MenuCategoriaArticulo extends javax.swing.JPanel {
         //se retea la tabla
         iCategoria.obtenerTodos(table_categoria, model);
         
-        MenuArticulo menu_articulo = new MenuArticulo();
-        try {
-            menu_articulo.llenarComboBoxCategorias();
-        } catch (SQLException ex) {
-            Logger.getLogger(MenuCategoriaArticulo.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        MenuArticulo menu_articulo = new MenuArticulo();
+//        try {
+//            menu_articulo.llenarComboBoxCategorias();
+//        } catch (SQLException ex) {
+//            Logger.getLogger(MenuCategoriaArticulo.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_btn_guardarActionPerformed
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed

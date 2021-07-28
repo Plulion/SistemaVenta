@@ -51,7 +51,6 @@ public class CategoriaDAO implements CrudGeneral<Categorias> {
 
                 rs.close();
                 smt.close();
-
             } catch (SQLException e) {
                 System.err.println("ERROR en:" + e);
             } finally {
@@ -108,14 +107,12 @@ public class CategoriaDAO implements CrudGeneral<Categorias> {
                 stmt.executeUpdate();
 
                 stmt.close();
-
-                return true;
-
             } catch (SQLException e) {
                 System.err.println("ERROR: " + e);
             } finally {
                 conexion.desconectar();
             }
+            return true;
 
         }
         return false;
@@ -144,15 +141,12 @@ public class CategoriaDAO implements CrudGeneral<Categorias> {
                 stmt.executeUpdate();
 
                 stmt.close();
-
-                return true;
-
             } catch (SQLException e) {
                 System.err.println("ERROR: " + e);
             } finally {
                 conexion.desconectar();
             }
-
+            return true;
         }
         return false;
 
@@ -198,7 +192,6 @@ public class CategoriaDAO implements CrudGeneral<Categorias> {
 
                 rs.close();
                 smt.close();
-
             } catch (SQLException e) {
                 System.err.println("ERROR en:" + e);
             } finally {
@@ -210,28 +203,30 @@ public class CategoriaDAO implements CrudGeneral<Categorias> {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public ResultSet obtenerTodasCategorias() {
+    public ResultSet obtenerTodasCategorias() throws SQLException {
 
         Connection conn = conexion.conectar();
 
+        ResultSet cat = null;
+
         if (conn != null) {
 
-            try {
-                ResultSet rs;
-                try (Statement smt = conn.createStatement()) {
-                    String sql = "SELECT * FROM categoria_articulo";
-                    rs = smt.executeQuery(sql);
-                    rs.close();
-                }
+            Statement smt = conn.createStatement();
 
-                return rs;
+            try {
+
+                String sql = "SELECT * FROM categoria_articulo";
+                cat = smt.executeQuery(sql);
+
             } catch (SQLException e) {
                 System.err.println("ERROR: Al obtener categorias " + e);
             } finally {
-                conexion.desconectar();
+//                if (smt != null) {
+//                    smt.close();
+//                }
+                //conexion.desconectar();
             }
-
         }
-        return null;
+        return cat;
     }
 }

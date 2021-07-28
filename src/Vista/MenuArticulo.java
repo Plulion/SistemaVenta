@@ -53,22 +53,24 @@ public class MenuArticulo extends javax.swing.JPanel {
     public final void llenarComboBoxCategorias() throws SQLException {
 
         CategoriaDAO iCategoria = new CategoriaDAO();
-        ResultSet rs = iCategoria.obtenerTodasCategorias();
 
-        this.comboBox_categoria_articulo.removeAllItems();
+        ResultSet categorias = iCategoria.obtenerTodasCategorias();
 
-        this.comboBox_categoria_articulo.setPreferredSize(null);
+//        this.comboBox_categoria_articulo.removeAllItems();
+//
+//        this.comboBox_categoria_articulo.setPreferredSize(null);
 
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
 
-        while (rs.next()) {
+        while (categorias.next()) {
             modelo.addElement(new Categorias(
-                    rs.getInt("idCatArt"),
-                    rs.getString("CATEGORIA"),
-                    rs.getBoolean("Activo"))
+                    categorias.getInt("idCatArt"),
+                    categorias.getString("CATEGORIA"),
+                    categorias.getBoolean("Activo"))
             );
         }
         this.comboBox_categoria_articulo.setModel(modelo);
+        categorias.close();
     }
 
     /**
@@ -472,7 +474,7 @@ public class MenuArticulo extends javax.swing.JPanel {
     private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_editar;
     private javax.swing.JButton btn_guardar;
-    protected javax.swing.JComboBox<Categorias> comboBox_categoria_articulo;
+    private javax.swing.JComboBox<Categorias> comboBox_categoria_articulo;
     private javax.swing.JTextField input_buscar;
     private javax.swing.JTextField input_codigo;
     private com.toedter.calendar.JDateChooser input_date;

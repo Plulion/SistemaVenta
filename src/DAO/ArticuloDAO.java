@@ -134,13 +134,12 @@ public class ArticuloDAO implements CrudGeneral<Articulos> {
 
                 stmt.executeUpdate();
 
-                return true;
-
             } catch (Exception e) {
                 System.err.println("ERROR: " + e);
             } finally {
                 conexion.desconectar();
             }
+            return true;
         }
 
         return false;
@@ -169,21 +168,21 @@ public class ArticuloDAO implements CrudGeneral<Articulos> {
                         + "LEFT JOIN factura ON facturadetalle.FAC_ID_FACTURA = factura.FAC_ID_FACTURA\n"
                         + "LEFT JOIN proveedor ON factura.PRO_fk_PROVEEDOR = proveedor.PRO_RUT_PROVEEDOR;";
 
-                ResultSet rs = smt.executeQuery(sql);
+                ResultSet articulos = smt.executeQuery(sql);
 
-                while (rs.next()) {
+                while (articulos.next()) {
                     list.add(new Articulos(
-                            rs.getInt("ART_ID_ARTICULO"),
-                            rs.getInt("idCatArt"),
-                            rs.getInt("PRO_RUT_PROVEEDOR"),
-                            rs.getString("CATEGORIA"),
-                            rs.getString("PRO_NOMBRE"),
-                            rs.getString("ART_DESCRIPCION"),
-                            rs.getString("ART_MARCA"),
-                            rs.getInt("ART_STOCK"),
-                            rs.getString("ART_CODIGO"),
-                            rs.getDate("ART_FECHA_VENCIMIENTO"),
-                            rs.getBoolean("Activo")
+                            articulos.getInt("ART_ID_ARTICULO"),
+                            articulos.getInt("idCatArt"),
+                            articulos.getInt("PRO_RUT_PROVEEDOR"),
+                            articulos.getString("CATEGORIA"),
+                            articulos.getString("PRO_NOMBRE"),
+                            articulos.getString("ART_DESCRIPCION"),
+                            articulos.getString("ART_MARCA"),
+                            articulos.getInt("ART_STOCK"),
+                            articulos.getString("ART_CODIGO"),
+                            articulos.getDate("ART_FECHA_VENCIMIENTO"),
+                            articulos.getBoolean("Activo")
                     ));
                 }
 
