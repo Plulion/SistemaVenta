@@ -51,25 +51,28 @@ public class MenuArticulo extends javax.swing.JPanel {
         }
     }
 
+    @SuppressWarnings("empty-statement")
     public static final void llenarComboBoxCategorias() throws SQLException {
 
         CategoriaDAO iCategoria = new CategoriaDAO();
 
-        ResultSet categorias = iCategoria.obtenerTodasCategorias();
+        try {
+            ResultSet categorias = iCategoria.obtenerTodasCategorias();
+            modeloComboBox.removeAllElements();
 
-        modeloComboBox.removeAllElements();
+            DefaultComboBoxModel nuevoModeloComboBox = new DefaultComboBoxModel();
 
-        DefaultComboBoxModel nuevoModeloComboBox = new DefaultComboBoxModel();
-
-        while (categorias.next()) {
-            nuevoModeloComboBox.addElement(new Categorias(
-                    categorias.getInt("idCatArt"),
-                    categorias.getString("CATEGORIA"),
-                    categorias.getBoolean("Activo"))
-            );
+            while (categorias.next()) {
+                nuevoModeloComboBox.addElement(new Categorias(
+                        categorias.getInt("idCatArt"),
+                        categorias.getString("CATEGORIA"),
+                        categorias.getBoolean("Activo"))
+                );
+            }
+            comboBox_categoria_articulo.setModel(nuevoModeloComboBox);
+        } catch (SQLException E) {
+            System.err.println("ERROR" + E);
         }
-        comboBox_categoria_articulo.setModel(nuevoModeloComboBox);
-        categorias.close();
     }
 
     /**
@@ -128,15 +131,14 @@ public class MenuArticulo extends javax.swing.JPanel {
 
         jLabel26.setText("Categoría Artículo");
 
-        comboBox_categoria_articulo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboBox_categoria_articuloActionPerformed(evt);
-            }
-        });
-
         btn_cancelar.setBackground(java.awt.SystemColor.controlDkShadow);
         btn_cancelar.setForeground(java.awt.SystemColor.control);
         btn_cancelar.setText("Cancelar y limpiar");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
 
         btn_guardar.setBackground(java.awt.SystemColor.controlDkShadow);
         btn_guardar.setForeground(java.awt.SystemColor.control);
@@ -340,17 +342,8 @@ public class MenuArticulo extends javax.swing.JPanel {
         add(jPanel9);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void comboBox_categoria_articuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboBox_categoria_articuloActionPerformed
-
-//        try {
-//            llenarComboBoxCategorias();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(MenuArticulo.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-    }//GEN-LAST:event_comboBox_categoria_articuloActionPerformed
-
     private void formPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_formPropertyChange
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_formPropertyChange
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
@@ -394,15 +387,8 @@ public class MenuArticulo extends javax.swing.JPanel {
 
         iArticulo.agregar(articulo);
 
-        //poner reset de inputs
-        input_id.setText("");
-        input_codigo.setText("");
-        input_nombre.setText("");
-        input_unidades.setText("");
-        input_marca.setText("");
-        input_date.setCalendar(null);
-        comboBox_categoria_articulo.getModel().setSelectedItem(null);
-        radio_button_activo.setSelected(true);
+        //llamo a la funcion cancelar que tambien sirve para limpiar los inputs
+        btn_cancelarActionPerformed(evt);
 
         //reset tabla
         iArticulo.obtenerTodos(table_articulo, model);
@@ -476,6 +462,18 @@ public class MenuArticulo extends javax.swing.JPanel {
             Logger.getLogger(MenuArticulo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btn_editarActionPerformed
+
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+
+        input_id.setText("");
+        input_codigo.setText("");
+        input_nombre.setText("");
+        input_unidades.setText("");
+        input_marca.setText("");
+        input_date.setCalendar(null);
+        comboBox_categoria_articulo.getModel().setSelectedItem(null);
+        radio_button_activo.setSelected(true);
+    }//GEN-LAST:event_btn_cancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

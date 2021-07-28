@@ -182,9 +182,6 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboBox_categoria_articuloActionPerformed"/>
-          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Categorias&gt;"/>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="10"/>
@@ -200,6 +197,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Cancelar y limpiar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_cancelarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btn_guardar">
           <Properties>
