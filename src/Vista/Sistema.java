@@ -14,6 +14,10 @@ public class Sistema extends JFrame {
         setSize(1510,790);
         setLocationRelativeTo(null);
         
+        MenuCliente menucliente = new MenuCliente();
+         jTabbedPane3.add(" Cliente",menucliente);
+        
+        
         MenuCategoriaArticulo menu_categoria_articulo = new MenuCategoriaArticulo();
         jTabbedPane3.add("Categoría articulos", menu_categoria_articulo);  
         
@@ -28,6 +32,9 @@ public class Sistema extends JFrame {
         
         Categoria_Ventas categoria_ventas = new Categoria_Ventas();
         jTabbedPane3.add("Categoria Ventas", categoria_ventas);
+        
+        MenuProveedor menu_proveedor = new MenuProveedor();
+        jTabbedPane3.add("Proveedor", menu_proveedor);
         
         menucompras1 menucompras = new menucompras1();
         submenus_compras.add("Solicitud de pedidos", menucompras);
@@ -201,30 +208,6 @@ public class Sistema extends JFrame {
         btnAgregarCliente = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         txtApellidoCliente = new javax.swing.JTextField();
-        jPanel8 = new javax.swing.JPanel();
-        jPanel13 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel15 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jPanel24 = new javax.swing.JPanel();
         jLabel21 = new javax.swing.JLabel();
@@ -265,7 +248,6 @@ public class Sistema extends JFrame {
         jLabel7 = new javax.swing.JLabel();
         Buscar_Comunas = new javax.swing.JTextField();
         Boton_Buscar_Comunas = new javax.swing.JButton();
-        jPanel18 = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
@@ -285,7 +267,6 @@ public class Sistema extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusTraversalPolicyProvider(true);
-        setPreferredSize(new java.awt.Dimension(1800, 1500));
         setResizable(false);
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 153));
@@ -1488,181 +1469,6 @@ public class Sistema extends JFrame {
 
         jTabbedPane3.addTab("Clientes", jPanel7);
 
-        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("Proovedor");
-
-        jLabel9.setText("Rut Proovedor");
-
-        jLabel10.setText("Nombre Contacto");
-
-        jLabel11.setText("Dirección");
-
-        jLabel12.setText("Razon Social");
-
-        jLabel13.setText("Teléfono");
-
-        jLabel14.setText("E-mail");
-
-        jButton1.setText("Cancelar");
-
-        jButton2.setText("Guardar");
-
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel8)))
-                .addGap(14, 14, 14)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField3))
-                .addGap(174, 174, 174)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField4)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                    .addComponent(jTextField6))
-                .addContainerGap(172, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel13Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(49, 49, 49)
-                .addComponent(jButton2)
-                .addGap(66, 66, 66))
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addComponent(jLabel8)
-                .addGap(20, 20, 20)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(0, 13, Short.MAX_VALUE))
-        );
-
-        jLabel15.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
-        jLabel15.setText("Proovedores");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Razón Social", "Nombre Contacto", "Teléfono", "E-mail", "Acciones"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Object.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jScrollPane2.setViewportView(jTable1);
-
-        jButton3.setText("Compra");
-
-        jButton4.setText("Editar");
-
-        jButton5.setText("Desactivar");
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(284, 284, 284)
-                        .addComponent(jLabel15)
-                        .addGap(44, 44, 44)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGap(174, 174, 174)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(37, 37, 37))
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGap(578, 578, 578)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)))
-                        .addGap(10, 10, 10)
-                        .addComponent(jButton5)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jTabbedPane3.addTab("Proveedores", jPanel8);
-
         jPanel24.setBackground(new java.awt.Color(255, 255, 255));
         jPanel24.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -2008,19 +1814,6 @@ public class Sistema extends JFrame {
 
         jTabbedPane3.addTab("Comunas", Comunas);
 
-        javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
-        jPanel18.setLayout(jPanel18Layout);
-        jPanel18Layout.setHorizontalGroup(
-            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel18Layout.setVerticalGroup(
-            jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        jTabbedPane3.addTab("Categoria Ventas", jPanel18);
-
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -2176,7 +1969,7 @@ public class Sistema extends JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1670, Short.MAX_VALUE)
+                .addComponent(jTabbedPane3)
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
@@ -2257,94 +2050,6 @@ public class Sistema extends JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtNombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreClienteActionPerformed
-       if(txtNombreCliente.getText().equals("")){
-        LabelNombreCliente.setForeground(new Color(102,102,102));
-        }else{
-           LabelNombreCliente.setText("Nombre");
-           LabelNombreCliente.setForeground(new Color(0,153,51));
-       }
-    }//GEN-LAST:event_txtNombreClienteActionPerformed
-
-    private void txtDireccionClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDireccionClienteActionPerformed
-
-    private void txtTelefonoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTelefonoClienteActionPerformed
-
-    private void txtRutClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRutClienteActionPerformed
-
-    private void txtDvClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDvClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDvClienteActionPerformed
-
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
-
-    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCorreoActionPerformed
-
-    private void btnCancelaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelaClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancelaClienteActionPerformed
-
-    private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregarClienteActionPerformed
-
-    private void Boton_Editar_ComunasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_Editar_ComunasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Boton_Editar_ComunasActionPerformed
-
-    private void Boton_Guardar_ComunasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_Guardar_ComunasActionPerformed
-       
-       try{
-           Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nombre", "root", ""); // primera comillas ruta y nombre de la ruta que nos queremos conectar, segundas comillas nombre base de datos (si es que lo tiene), tercera tiene contraseña base de datos, si es que la tiene
-           //root si no tiene nombre, y la pass asi no mas
-           PreparedStatement pst = cn.prepareStatement("insert into comumas values(?,?,?)"); // generar objeto y cada ? es una columna
-           pst.setString(1, Codigo_Comunas.getText().trim()); 
-           pst.setString(2, Nombre_Comunas.getText().trim()); //Trim quita espacios
-           pst.setString(3, "0");
-           pst.executeUpdate();
-         
-           Codigo_Comunas.setText("");
-           Nombre_Comunas.setText("");
-           
-           
-           
-           
-       }catch (Exception e) {
-       
-       
-       
-       }
-        
-        
-        
-    }//GEN-LAST:event_Boton_Guardar_ComunasActionPerformed
-
-    private void txtNombreCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreCliente1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreCliente1ActionPerformed
-
-    private void txtDireccionCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionCliente1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDireccionCliente1ActionPerformed
-
-    private void btnCancelaCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelaCliente1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancelaCliente1ActionPerformed
-
-    private void btnAgregarCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCliente1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAgregarCliente1ActionPerformed
 
     private void txtDesdeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDesdeActionPerformed
         // TODO add your handling code here:
@@ -2438,6 +2143,86 @@ public class Sistema extends JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonBuscar4ActionPerformed
 
+    private void btnAgregarCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCliente1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarCliente1ActionPerformed
+
+    private void btnCancelaCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelaCliente1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelaCliente1ActionPerformed
+
+    private void txtDireccionCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionCliente1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDireccionCliente1ActionPerformed
+
+    private void txtNombreCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreCliente1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreCliente1ActionPerformed
+
+    private void Boton_Editar_ComunasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_Editar_ComunasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Boton_Editar_ComunasActionPerformed
+
+    private void Boton_Guardar_ComunasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_Guardar_ComunasActionPerformed
+
+        try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nombre", "root", ""); // primera comillas ruta y nombre de la ruta que nos queremos conectar, segundas comillas nombre base de datos (si es que lo tiene), tercera tiene contraseña base de datos, si es que la tiene
+            //root si no tiene nombre, y la pass asi no mas
+            PreparedStatement pst = cn.prepareStatement("insert into comumas values(?,?,?)"); // generar objeto y cada ? es una columna
+            pst.setString(1, Codigo_Comunas.getText().trim());
+            pst.setString(2, Nombre_Comunas.getText().trim()); //Trim quita espacios
+            pst.setString(3, "0");
+            pst.executeUpdate();
+
+            Codigo_Comunas.setText("");
+            Nombre_Comunas.setText("");
+
+        }catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_Boton_Guardar_ComunasActionPerformed
+
+    private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarClienteActionPerformed
+
+    private void btnCancelaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelaClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelaClienteActionPerformed
+
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreoActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void txtTelefonoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefonoClienteActionPerformed
+
+    private void txtDireccionClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDireccionClienteActionPerformed
+
+    private void txtDvClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDvClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDvClienteActionPerformed
+
+    private void txtRutClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRutClienteActionPerformed
+
+    private void txtNombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreClienteActionPerformed
+        if(txtNombreCliente.getText().equals("")){
+            LabelNombreCliente.setForeground(new Color(102,102,102));
+        }else{
+            LabelNombreCliente.setText("Nombre");
+            LabelNombreCliente.setForeground(new Color(0,153,51));
+        }
+    }//GEN-LAST:event_txtNombreClienteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2510,11 +2295,6 @@ public class Sistema extends JFrame {
     private javax.swing.JButton btnCancelaCliente1;
     private javax.swing.JButton btnGuardVenta;
     private javax.swing.JButton btnGuardarDesp;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
@@ -2530,12 +2310,6 @@ public class Sistema extends JFrame {
     private javax.swing.JComboBox<String> jComboComuna;
     private javax.swing.JComboBox<String> jComboPack;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -2573,8 +2347,6 @@ public class Sistema extends JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelBusquedaRangoFechas;
     private javax.swing.JLabel jLabelBusquedaporFechas;
     private javax.swing.JLabel jLabelBusquedarangofechas;
@@ -2594,11 +2366,9 @@ public class Sistema extends JFrame {
     private javax.swing.JLabel jLabelRut3;
     private javax.swing.JLabel jLabelbusquedarangofechas;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel22;
     private javax.swing.JPanel jPanel23;
@@ -2617,7 +2387,6 @@ public class Sistema extends JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JPanel jPanelDetalleInventario;
     private javax.swing.JPanel jPanelInformeClientes;
@@ -2627,7 +2396,6 @@ public class Sistema extends JFrame {
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
@@ -2635,21 +2403,13 @@ public class Sistema extends JFrame {
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTabbedPane jTabbedPane4;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextBuscar_Cliente;
     private javax.swing.JTextField jTextBuscar_Devolucion;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTabbedPane mVentas;

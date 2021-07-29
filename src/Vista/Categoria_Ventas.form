@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -28,7 +28,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="786" max="32767" attributes="0"/>
+          <EmptySpace min="0" pref="789" max="32767" attributes="0"/>
           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -45,6 +45,11 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="1" attributes="0">
+                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  <Component id="boton_editar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="634" max="-2" attributes="0"/>
+              </Group>
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
@@ -57,11 +62,11 @@
                           <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                           <Component id="Buscar_CategoriaVentas" min="-2" pref="129" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                          <Component id="Boton_Buscar_CategoriaVentas" min="-2" max="-2" attributes="0"/>
+                          <Component id="Boton_Buscar" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="304" max="-2" attributes="0"/>
-                          <Component id="jScrollPane4" min="-2" pref="644" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="335" max="-2" attributes="0"/>
+                          <Component id="jScrollPane2" min="-2" pref="590" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="353" max="32767" attributes="0"/>
@@ -75,13 +80,15 @@
                   <Component id="jPanel26" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="Boton_Buscar_CategoriaVentas" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="Boton_Buscar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="Buscar_CategoriaVentas" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel34" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="jScrollPane4" min="-2" pref="169" max="-2" attributes="0"/>
-                  <EmptySpace pref="313" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                  <Component id="jScrollPane2" min="-2" pref="145" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
+                  <Component id="boton_editar" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="246" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -112,21 +119,25 @@
                               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                               <Component id="jLabel32" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="Categoria_Ventas" min="-2" pref="209" max="-2" attributes="0"/>
+                              <Component id="input_categoria_Ventas" min="-2" pref="209" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
                               <Component id="jLabel33" min="-2" pref="134" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="Boton_Cancelar_CategoriaVentas" min="-2" max="-2" attributes="0"/>
+                                      <Component id="Boton_Cancelar" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-                                      <Component id="Boton_Guardar_CategoriaVentas" min="-2" max="-2" attributes="0"/>
+                                      <Component id="Boton_Guardar" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="Codigo_Ventas_CatergoriaVentas" alignment="0" min="-2" pref="138" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="input_id" min="-2" pref="138" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="93" max="-2" attributes="0"/>
+                                      <Component id="botonactivo" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="308" max="32767" attributes="0"/>
+                      <EmptySpace pref="227" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -138,14 +149,15 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel32" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Categoria_Ventas" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="input_categoria_Ventas" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel33" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Codigo_Ventas_CatergoriaVentas" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="input_id" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="botonactivo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="32" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="Boton_Cancelar_CategoriaVentas" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="Boton_Guardar_CategoriaVentas" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Boton_Cancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="Boton_Guardar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                   </Group>
@@ -166,23 +178,38 @@
                 <Property name="text" type="java.lang.String" value="Categor&#xed;a Ventas"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="Categoria_Ventas">
+            <Component class="javax.swing.JTextField" name="input_categoria_Ventas">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel33">
               <Properties>
                 <Property name="text" type="java.lang.String" value="C&#xf3;digo Categor&#xed;a Ventas"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="Codigo_Ventas_CatergoriaVentas">
+            <Component class="javax.swing.JTextField" name="input_id">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="Boton_Cancelar_CategoriaVentas">
+            <Component class="javax.swing.JButton" name="Boton_Cancelar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cancelar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Boton_CancelarActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="Boton_Guardar_CategoriaVentas">
+            <Component class="javax.swing.JButton" name="Boton_Guardar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Guardar"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Boton_GuardarActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JRadioButton" name="botonactivo">
+              <Properties>
+                <Property name="selected" type="boolean" value="true"/>
+                <Property name="text" type="java.lang.String" value="Activo"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -200,26 +227,56 @@
         </Component>
         <Component class="javax.swing.JTextField" name="Buscar_CategoriaVentas">
         </Component>
-        <Component class="javax.swing.JButton" name="Boton_Buscar_CategoriaVentas">
+        <Component class="javax.swing.JButton" name="Boton_Buscar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Boton_BuscarActionPerformed"/>
+          </Events>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane4">
+        <Component class="javax.swing.JButton" name="boton_editar">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Editar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="boton_editarActionPerformed"/>
+          </Events>
+        </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane2">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable3">
+            <Component class="javax.swing.JTable" name="tableCaVenta">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="3" rowCount="9">
-                    <Column editable="true" title="C&#xf3;digo Categor&#xed;a Venta" type="java.lang.Integer"/>
-                    <Column editable="true" title="Categor&#xed;a Venta" type="java.lang.Object"/>
-                    <Column editable="true" title="Acci&#xf3;n" type="java.lang.Object"/>
+                  <Table columnCount="3" rowCount="0">
+                    <Column editable="true" title="ID" type="java.lang.Integer"/>
+                    <Column editable="true" title="Estado Venta" type="java.lang.String"/>
+                    <Column editable="false" title="Activo" type="java.lang.Boolean"/>
                   </Table>
+                </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                  </TableColumnModel>
                 </Property>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>

@@ -5,17 +5,33 @@
  */
 package Vista;
 
+
+
+import DAO.CategoriaVentaDAO;
+import Modelo.CategoriaVenta;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Usuario
  */
 public class Categoria_Ventas extends javax.swing.JPanel {
+    
+    DefaultTableModel model;
+
+    public Categoria_Ventas() {
+        initComponents();
+        CategoriaVentaDAO CaVenta = new CategoriaVentaDAO();
+        DefaultTableModel model = (DefaultTableModel) tableCaVenta.getModel();
+        this.model = model;
+        CaVenta.obtenerTodos(tableCaVenta, model);
 
     /**
      * Creates new form Categoria_Ventas
      */
-    public Categoria_Ventas() {
-        initComponents();
+   
     }
 
     /**
@@ -31,16 +47,18 @@ public class Categoria_Ventas extends javax.swing.JPanel {
         jPanel26 = new javax.swing.JPanel();
         jLabel31 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
-        Categoria_Ventas = new javax.swing.JTextField();
+        input_categoria_Ventas = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
-        Codigo_Ventas_CatergoriaVentas = new javax.swing.JTextField();
-        Boton_Cancelar_CategoriaVentas = new javax.swing.JButton();
-        Boton_Guardar_CategoriaVentas = new javax.swing.JButton();
+        input_id = new javax.swing.JTextField();
+        Boton_Cancelar = new javax.swing.JButton();
+        Boton_Guardar = new javax.swing.JButton();
+        botonactivo = new javax.swing.JRadioButton();
         jLabel34 = new javax.swing.JLabel();
         Buscar_CategoriaVentas = new javax.swing.JTextField();
-        Boton_Buscar_CategoriaVentas = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        Boton_Buscar = new javax.swing.JButton();
+        boton_editar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableCaVenta = new javax.swing.JTable();
 
         jPanel26.setBackground(new java.awt.Color(255, 255, 255));
         jPanel26.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -52,9 +70,24 @@ public class Categoria_Ventas extends javax.swing.JPanel {
 
         jLabel33.setText("Código Categoría Ventas");
 
-        Boton_Cancelar_CategoriaVentas.setText("Cancelar");
+        input_id.setEditable(false);
 
-        Boton_Guardar_CategoriaVentas.setText("Guardar");
+        Boton_Cancelar.setText("Cancelar");
+        Boton_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Boton_CancelarActionPerformed(evt);
+            }
+        });
+
+        Boton_Guardar.setText("Guardar");
+        Boton_Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Boton_GuardarActionPerformed(evt);
+            }
+        });
+
+        botonactivo.setSelected(true);
+        botonactivo.setText("Activo");
 
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
         jPanel26.setLayout(jPanel26Layout);
@@ -69,17 +102,20 @@ public class Categoria_Ventas extends javax.swing.JPanel {
                         .addGap(57, 57, 57)
                         .addComponent(jLabel32)
                         .addGap(30, 30, 30)
-                        .addComponent(Categoria_Ventas, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(input_categoria_Ventas, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(102, 102, 102)
                         .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
                         .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel26Layout.createSequentialGroup()
-                                .addComponent(Boton_Cancelar_CategoriaVentas)
+                                .addComponent(Boton_Cancelar)
                                 .addGap(59, 59, 59)
-                                .addComponent(Boton_Guardar_CategoriaVentas))
-                            .addComponent(Codigo_Ventas_CatergoriaVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(308, Short.MAX_VALUE))
+                                .addComponent(Boton_Guardar))
+                            .addGroup(jPanel26Layout.createSequentialGroup()
+                                .addComponent(input_id, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(93, 93, 93)
+                                .addComponent(botonactivo)))))
+                .addContainerGap(227, Short.MAX_VALUE))
         );
         jPanel26Layout.setVerticalGroup(
             jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,13 +125,14 @@ public class Categoria_Ventas extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel32)
-                    .addComponent(Categoria_Ventas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(input_categoria_Ventas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel33)
-                    .addComponent(Codigo_Ventas_CatergoriaVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(input_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonactivo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Boton_Cancelar_CategoriaVentas)
-                    .addComponent(Boton_Guardar_CategoriaVentas))
+                    .addComponent(Boton_Cancelar)
+                    .addComponent(Boton_Guardar))
                 .addGap(40, 40, 40))
         );
 
@@ -103,38 +140,53 @@ public class Categoria_Ventas extends javax.swing.JPanel {
         jLabel34.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel34.setText("Categoría Ventas Registradas");
 
-        Boton_Buscar_CategoriaVentas.setText("Buscar");
+        Boton_Buscar.setText("Buscar");
+        Boton_Buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Boton_BuscarActionPerformed(evt);
+            }
+        });
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        boton_editar.setText("Editar");
+        boton_editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton_editarActionPerformed(evt);
+            }
+        });
+
+        tableCaVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "Código Categoría Venta", "Categoría Venta", "Acción"
+                "ID", "Estado Venta", "Activo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, true, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jScrollPane4.setViewportView(jTable3);
+        jScrollPane2.setViewportView(tableCaVenta);
 
         javax.swing.GroupLayout jPanel18Layout = new javax.swing.GroupLayout(jPanel18);
         jPanel18.setLayout(jPanel18Layout);
         jPanel18Layout.setHorizontalGroup(
             jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel18Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(boton_editar)
+                .addGap(634, 634, 634))
             .addGroup(jPanel18Layout.createSequentialGroup()
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel18Layout.createSequentialGroup()
@@ -146,10 +198,10 @@ public class Categoria_Ventas extends javax.swing.JPanel {
                         .addGap(41, 41, 41)
                         .addComponent(Buscar_CategoriaVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
-                        .addComponent(Boton_Buscar_CategoriaVentas))
+                        .addComponent(Boton_Buscar))
                     .addGroup(jPanel18Layout.createSequentialGroup()
-                        .addGap(304, 304, 304)
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 644, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(335, 335, 335)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 590, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(353, Short.MAX_VALUE))
         );
         jPanel18Layout.setVerticalGroup(
@@ -159,12 +211,14 @@ public class Categoria_Ventas extends javax.swing.JPanel {
                 .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addGroup(jPanel18Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Boton_Buscar_CategoriaVentas)
+                    .addComponent(Boton_Buscar)
                     .addComponent(Buscar_CategoriaVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel34))
-                .addGap(50, 50, 50)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(313, Short.MAX_VALUE))
+                .addGap(52, 52, 52)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66)
+                .addComponent(boton_editar)
+                .addContainerGap(246, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -180,7 +234,7 @@ public class Categoria_Ventas extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 786, Short.MAX_VALUE)
+            .addGap(0, 789, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -189,21 +243,95 @@ public class Categoria_Ventas extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void Boton_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_GuardarActionPerformed
+            CategoriaVenta Cventa;
+
+        if ("".equals(input_id.getText())) {
+            Cventa = new CategoriaVenta(
+                    input_categoria_Ventas.getText(),
+                    botonactivo.isSelected());
+
+        } else {
+            Cventa = new CategoriaVenta(
+                    Integer.parseInt(input_id.getText()),
+                    input_categoria_Ventas.getText(),
+                    botonactivo.isSelected()
+            );
+
+        }
+
+        CategoriaVentaDAO iCventa = new CategoriaVentaDAO();
+
+        iCventa.agregar(Cventa);
+        
+                //se limpian los inputs
+        input_categoria_Ventas.setText("");
+        input_id.setText("");
+  
+        botonactivo.setSelected(true);
+
+        //se retea la tabla
+        iCventa.obtenerTodos(tableCaVenta, model);
+
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Boton_GuardarActionPerformed
+
+    private void Boton_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_BuscarActionPerformed
+        CategoriaVentaDAO iCventa = new CategoriaVentaDAO();
+        ArrayList<CategoriaVenta> listaCaVenta = iCventa.listar(Buscar_CategoriaVentas.getText());
+        model.setRowCount(0); //esto resetea a 0 la tabla para poder 
+
+        Object[] row = new Object[2];
+
+        for (int i = 0; i < listaCaVenta.size(); i++) {
+            row[0] = listaCaVenta.get(i).getIdEstVta();
+            row[1] = listaCaVenta.get(i).getEST_DESCRIPCION();
+
+            model.addRow(row);
+        }
+
+    }//GEN-LAST:event_Boton_BuscarActionPerformed
+
+    private void boton_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_editarActionPerformed
+                if (tableCaVenta.getSelectedRowCount() == 1) {
+            String id = String.valueOf(tableCaVenta.getValueAt(tableCaVenta.getSelectedRow(), 0));
+            String nombre = String.valueOf(tableCaVenta.getValueAt(tableCaVenta.getSelectedRow(), 1));
+
+            input_id.setText(id);
+            input_categoria_Ventas.setText(nombre);
+           
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Primero marque un elemento y luego presione editar ", "Se requiere acción previa", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_boton_editarActionPerformed
+
+    private void Boton_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_CancelarActionPerformed
+        input_categoria_Ventas.setText("");
+        input_id.setText("");
+        botonactivo.setSelected(true);
+    }//GEN-LAST:event_Boton_CancelarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Boton_Buscar_CategoriaVentas;
-    private javax.swing.JButton Boton_Cancelar_CategoriaVentas;
-    private javax.swing.JButton Boton_Guardar_CategoriaVentas;
+    private javax.swing.JButton Boton_Buscar;
+    private javax.swing.JButton Boton_Cancelar;
+    private javax.swing.JButton Boton_Guardar;
     private javax.swing.JTextField Buscar_CategoriaVentas;
-    private javax.swing.JTextField Categoria_Ventas;
-    private javax.swing.JTextField Codigo_Ventas_CatergoriaVentas;
+    private javax.swing.JButton boton_editar;
+    private javax.swing.JRadioButton botonactivo;
+    private javax.swing.JTextField input_categoria_Ventas;
+    private javax.swing.JTextField input_id;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JPanel jPanel18;
     private javax.swing.JPanel jPanel26;
-    private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTable jTable3;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tableCaVenta;
     // End of variables declaration//GEN-END:variables
+
 }
