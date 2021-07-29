@@ -57,18 +57,18 @@
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
-                  <Component id="input_nombre_pack" min="-2" pref="292" max="-2" attributes="0"/>
+                  <Component id="input_nombre" min="-2" pref="292" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="164" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
-                  <Component id="input_precio_pack" min="-2" pref="313" max="-2" attributes="0"/>
+                  <Component id="input_precio" min="-2" pref="313" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="btn_crear_pack" min="-2" pref="123" max="-2" attributes="0"/>
+                          <Component id="btn_crearPack" min="-2" pref="123" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                           <Component id="btn_cancelar" min="-2" pref="100" max="-2" attributes="0"/>
                       </Group>
@@ -83,9 +83,9 @@
               <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="input_precio_pack" min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="input_precio" min="-2" pref="35" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="input_nombre_pack" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="input_nombre" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -95,7 +95,7 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btn_cancelar" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="btn_crear_pack" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="btn_crearPack" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -111,7 +111,7 @@
             <Property name="text" type="java.lang.String" value="Nombre del pack"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="input_nombre_pack">
+        <Component class="javax.swing.JTextField" name="input_nombre">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
@@ -126,7 +126,7 @@
             <Property name="text" type="java.lang.String" value="Precio"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="input_precio_pack">
+        <Component class="javax.swing.JTextField" name="input_precio">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
@@ -138,7 +138,7 @@
             <Property name="text" type="java.lang.String" value="Cancelar"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btn_crear_pack">
+        <Component class="javax.swing.JButton" name="btn_crearPack">
           <Properties>
             <Property name="text" type="java.lang.String" value="Crear pack"/>
           </Properties>
@@ -222,7 +222,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="jTable1">
+                    <Component class="javax.swing.JTable" name="table_articulosDisponibles">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
@@ -272,7 +272,7 @@
 
                   <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                   <SubComponents>
-                    <Component class="javax.swing.JTable" name="jTable2">
+                    <Component class="javax.swing.JTable" name="table_articulosAgregados">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>
@@ -392,7 +392,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTable" name="jTable3">
+                <Component class="javax.swing.JTable" name="table_packs">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="e3" green="e3" id="Control Highlight" palette="2" red="e3" type="palette"/>

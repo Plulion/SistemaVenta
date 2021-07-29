@@ -29,25 +29,25 @@ public class MenuPack extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        input_nombre_pack = new javax.swing.JTextField();
+        input_nombre = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        input_precio_pack = new javax.swing.JTextField();
+        input_precio = new javax.swing.JTextField();
         btn_cancelar = new javax.swing.JButton();
-        btn_crear_pack = new javax.swing.JButton();
+        btn_crearPack = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         btn_agregar = new javax.swing.JButton();
         btn_quitar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table_articulosDisponibles = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        table_articulosAgregados = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         input_buscar = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        table_packs = new javax.swing.JTable();
         btn_editar = new javax.swing.JButton();
         btn_buscar = new javax.swing.JButton();
 
@@ -59,16 +59,16 @@ public class MenuPack extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Nombre del pack");
 
-        input_nombre_pack.setBackground(java.awt.SystemColor.controlHighlight);
+        input_nombre.setBackground(java.awt.SystemColor.controlHighlight);
 
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Precio");
 
-        input_precio_pack.setBackground(java.awt.SystemColor.controlHighlight);
+        input_precio.setBackground(java.awt.SystemColor.controlHighlight);
 
         btn_cancelar.setText("Cancelar");
 
-        btn_crear_pack.setText("Crear pack");
+        btn_crearPack.setText("Crear pack");
 
         btn_agregar.setText("Agregar");
         btn_agregar.addActionListener(new java.awt.event.ActionListener() {
@@ -86,8 +86,8 @@ public class MenuPack extends javax.swing.JPanel {
 
         jPanel4.setLayout(new java.awt.BorderLayout());
 
-        jTable1.setBackground(java.awt.SystemColor.controlHighlight);
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_articulosDisponibles.setBackground(java.awt.SystemColor.controlHighlight);
+        table_articulosDisponibles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -103,14 +103,14 @@ public class MenuPack extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table_articulosDisponibles);
 
         jPanel4.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         jPanel6.setLayout(new java.awt.BorderLayout());
 
-        jTable2.setBackground(java.awt.SystemColor.controlHighlight);
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        table_articulosAgregados.setBackground(java.awt.SystemColor.controlHighlight);
+        table_articulosAgregados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -133,8 +133,8 @@ public class MenuPack extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jTable2.setPreferredSize(new java.awt.Dimension(479, 185));
-        jScrollPane2.setViewportView(jTable2);
+        table_articulosAgregados.setPreferredSize(new java.awt.Dimension(479, 185));
+        jScrollPane2.setViewportView(table_articulosAgregados);
 
         jPanel6.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
@@ -181,17 +181,17 @@ public class MenuPack extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(69, 69, 69)
-                .addComponent(input_nombre_pack, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(input_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(164, 164, 164)
                 .addComponent(jLabel2)
                 .addGap(89, 89, 89)
-                .addComponent(input_precio_pack, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(input_precio, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btn_crear_pack, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_crearPack, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(66, 66, 66)
                         .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -202,9 +202,9 @@ public class MenuPack extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(input_precio_pack, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(input_precio, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(input_nombre_pack, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(input_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel1)
                         .addComponent(jLabel2)))
                 .addGap(34, 34, 34)
@@ -212,7 +212,7 @@ public class MenuPack extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_crear_pack, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_crearPack, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -223,8 +223,8 @@ public class MenuPack extends javax.swing.JPanel {
         jPanel2.setBackground(java.awt.SystemColor.control);
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jTable3.setBackground(java.awt.SystemColor.controlHighlight);
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        table_packs.setBackground(java.awt.SystemColor.controlHighlight);
+        table_packs.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -240,7 +240,7 @@ public class MenuPack extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(table_packs);
 
         jPanel2.add(jScrollPane3, java.awt.BorderLayout.CENTER);
 
@@ -332,12 +332,12 @@ public class MenuPack extends javax.swing.JPanel {
     private javax.swing.JButton btn_agregar;
     private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_cancelar;
-    private javax.swing.JButton btn_crear_pack;
+    private javax.swing.JButton btn_crearPack;
     private javax.swing.JButton btn_editar;
     private javax.swing.JButton btn_quitar;
     private javax.swing.JTextField input_buscar;
-    private javax.swing.JTextField input_nombre_pack;
-    private javax.swing.JTextField input_precio_pack;
+    private javax.swing.JTextField input_nombre;
+    private javax.swing.JTextField input_precio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -349,8 +349,8 @@ public class MenuPack extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
+    private javax.swing.JTable table_articulosAgregados;
+    private javax.swing.JTable table_articulosDisponibles;
+    private javax.swing.JTable table_packs;
     // End of variables declaration//GEN-END:variables
 }
