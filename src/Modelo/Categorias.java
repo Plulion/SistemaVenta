@@ -53,7 +53,7 @@ public class Categorias {
 
     @Override
     public String toString() {
-        return "Categorias{" + "id=" + id + ", categoria=" + categoria + ", activo=" + activo + '}';
+        return categoria;
     }
 
 }
