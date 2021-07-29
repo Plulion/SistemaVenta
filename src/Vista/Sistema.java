@@ -30,6 +30,9 @@ public class Sistema extends JFrame {
         MenuBanco menu_banco = new MenuBanco();
         jTabbedPane3.add("Banco", menu_banco);
               
+        MenuComunas menu_comunas = new MenuComunas();
+        jTabbedPane3.add("Comunas", menu_comunas);
+        
         MenuPack menu_pack = new MenuPack();
         jTabbedPane3.add("Pack", menu_pack);
         
