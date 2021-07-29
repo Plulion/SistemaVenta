@@ -23,6 +23,7 @@ public class Packs {
         this.activo = activo;
     }
 
+    //Con ID
     public Packs(int idPack, int idCategoria, String nombre, int precio, int stock, boolean activo) {
         this.idPack = idPack;
         this.idCategoria = idCategoria;

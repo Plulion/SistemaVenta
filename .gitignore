@@ -32,6 +32,15 @@ nbdist/
 nbactions.xml
 nb-configuration.xml
 private.xml
+project-root-directory/
+nbproject/
+build-impl.xml
+private/
+project.properties
+project.xml
+src/
+test/
+build.xml
 
 ##########################
 ## IntelliJ
