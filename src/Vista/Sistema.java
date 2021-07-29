@@ -14,6 +14,10 @@ public class Sistema extends JFrame {
         setSize(1510,790);
         setLocationRelativeTo(null);
         
+        MenuCliente menucliente = new MenuCliente();
+         jTabbedPane3.add(" Cliente",menucliente);
+        
+        
         MenuCategoriaArticulo menu_categoria_articulo = new MenuCategoriaArticulo();
         jTabbedPane3.add("Categoría articulos", menu_categoria_articulo);  
         
@@ -31,6 +35,9 @@ public class Sistema extends JFrame {
         
         Categoria_Ventas categoria_ventas = new Categoria_Ventas();
         jTabbedPane3.add("Categoria Ventas", categoria_ventas);
+        
+        MenuProveedor menu_proveedor = new MenuProveedor();
+        jTabbedPane3.add("Proveedor", menu_proveedor);
         
         menucompras1 menucompras = new menucompras1();
         submenus_compras.add("Solicitud de pedidos", menucompras);
@@ -182,12 +189,14 @@ public class Sistema extends JFrame {
         jButtonBuscar4 = new javax.swing.JButton();
         jPanel17 = new javax.swing.JPanel();
         jTabbedPane3 = new javax.swing.JTabbedPane();
+
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusTraversalPolicyProvider(true);
+
         setPreferredSize(new java.awt.Dimension(1280, 900));
         setSize(new java.awt.Dimension(1300, 780));
 
@@ -1114,9 +1123,11 @@ public class Sistema extends JFrame {
 
         mVentas.addTab("Administrador", jPanel17);
 
+
         jPanel2.add(mVentas, java.awt.BorderLayout.CENTER);
 
         jPanel5.add(jPanel2, java.awt.BorderLayout.CENTER);
+
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1228,6 +1239,86 @@ public class Sistema extends JFrame {
     private void jButtonBuscar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscar4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonBuscar4ActionPerformed
+
+    private void btnAgregarCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCliente1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarCliente1ActionPerformed
+
+    private void btnCancelaCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelaCliente1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelaCliente1ActionPerformed
+
+    private void txtDireccionCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionCliente1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDireccionCliente1ActionPerformed
+
+    private void txtNombreCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreCliente1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreCliente1ActionPerformed
+
+    private void Boton_Editar_ComunasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_Editar_ComunasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Boton_Editar_ComunasActionPerformed
+
+    private void Boton_Guardar_ComunasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_Guardar_ComunasActionPerformed
+
+        try{
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/nombre", "root", ""); // primera comillas ruta y nombre de la ruta que nos queremos conectar, segundas comillas nombre base de datos (si es que lo tiene), tercera tiene contraseña base de datos, si es que la tiene
+            //root si no tiene nombre, y la pass asi no mas
+            PreparedStatement pst = cn.prepareStatement("insert into comumas values(?,?,?)"); // generar objeto y cada ? es una columna
+            pst.setString(1, Codigo_Comunas.getText().trim());
+            pst.setString(2, Nombre_Comunas.getText().trim()); //Trim quita espacios
+            pst.setString(3, "0");
+            pst.executeUpdate();
+
+            Codigo_Comunas.setText("");
+            Nombre_Comunas.setText("");
+
+        }catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_Boton_Guardar_ComunasActionPerformed
+
+    private void btnAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAgregarClienteActionPerformed
+
+    private void btnCancelaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelaClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCancelaClienteActionPerformed
+
+    private void txtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCorreoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCorreoActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void txtTelefonoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefonoClienteActionPerformed
+
+    private void txtDireccionClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDireccionClienteActionPerformed
+
+    private void txtDvClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDvClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDvClienteActionPerformed
+
+    private void txtRutClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRutClienteActionPerformed
+
+    private void txtNombreClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreClienteActionPerformed
+        if(txtNombreCliente.getText().equals("")){
+            LabelNombreCliente.setForeground(new Color(102,102,102));
+        }else{
+            LabelNombreCliente.setText("Nombre");
+            LabelNombreCliente.setForeground(new Color(0,153,51));
+        }
+    }//GEN-LAST:event_txtNombreClienteActionPerformed
 
     /**
      * @param args the command line arguments
