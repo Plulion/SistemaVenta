@@ -1,6 +1,7 @@
 package DAO;
 
 import Conexion.Conexion;
+import Modelo.Articulos;
 import Modelo.Packs;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -191,23 +192,51 @@ public class PackDAO implements CrudGeneral<Packs> {
 
                 PreparedStatement stmt = conn.prepareStatement(sql);
 
-                System.out.print(lasInsertId);
-
                 for (int i = 0; i < idArticulos.size(); i++) {
 
-                    //stmt.setDeda
                     stmt.setInt(1, idArticulos.get(i));
                     stmt.setInt(2, lasInsertId);
                     stmt.setInt(3, cantidadArticulos.get(i));
 
-                    // ...
                     stmt.addBatch();
-//                    if (i % 1000 == 0 || i == entities.size()) {
-//                        stmt.executeBatch(); // Execute every 1000 items.
-//                    }
                 }
 
                 stmt.executeBatch();
+
+                stmt.close();
+            } catch (SQLException e) {
+                System.err.println("ERROR: " + e);
+            } finally {
+                conexion.desconectar();
+            }
+        }
+
+    }
+
+    public void obtenerArticulosDePack(DefaultTableModel model, int idPack) {
+
+        Connection conn = conexion.conectar();
+        
+        model.setRowCount(0);
+
+        if (conn != null) {
+
+            try { // la linea de abajo Inserta un nuevo valor. Pero si le llega un id que ya existe lo actualiza
+                String sql = "SELECT ART_ID_ARTICULO, ART_DESCRIPCION, CANTIDAD FROM articulo_has_pack \n"
+                        + "LEFT JOIN articulo ON articulo.ART_ID_ARTICULO = articulo_has_pack.ID_ARTICULO\n"
+                        + "WHERE articulo_has_pack.ID_PACK_FK = ?;";
+
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                stmt.setInt(1, idPack);
+
+                ResultSet rs = stmt.executeQuery();
+
+                while (rs.next()) {
+                    Object[] row = new Object[2];
+                    row[0] = new Articulos(rs.getInt("ART_ID_ARTICULO"), rs.getString("ART_DESCRIPCION"));
+                    row[1] = rs.getInt("CANTIDAD");
+                    model.addRow(row);
+                }
 
                 stmt.close();
             } catch (SQLException e) {
