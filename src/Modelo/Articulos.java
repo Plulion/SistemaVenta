@@ -77,6 +77,13 @@ public class Articulos {
         this.Activo = Activo;
     }
 
+    public Articulos(int art_id, String art_descripcion) {
+        this.art_id = art_id;
+        this.art_descripcion = art_descripcion;
+    }
+    
+    
+
     public int getArt_id() {
         return art_id;
     }
@@ -167,7 +174,7 @@ public class Articulos {
 
     @Override
     public String toString() {
-        return "Articulos{" + "art_id=" + art_id + ", cat_id=" + cat_id + ", prov_id=" + prov_id + ", cat_nombre=" + cat_nombre + ", prov_nombre=" + prov_nombre + ", art_descripcion=" + art_descripcion + ", art_marca=" + art_marca + ", art_stock=" + art_stock + ", art_codigo=" + art_codigo + ", art_fecha_vencimiento=" + art_fecha_vencimiento + ", Activo=" + Activo + '}';
+        return art_descripcion;
     }
 
 }

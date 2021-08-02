@@ -82,7 +82,9 @@ public class BancoDAO implements CrudGeneral<Bancos> {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 
         try {
-            String sql = "INSERT INTO bancos (BAN_ID_BANCO, BAN_DESCRIPCION, CODIGO_BANCO, Activo) VALUES(?, ?, ?, ?) ON DUPLICATE KEY UPDATE BAN_DESCRIPCION=?, CODIGO_BANCO=?, Activo=?";
+            String sql = "INSERT INTO bancos (BAN_ID_BANCO, BAN_DESCRIPCION, CODIGO_BANCO, Activo)"
+                    + " VALUES(?, ?, ?, ?)"
+                    + " ON DUPLICATE KEY UPDATE BAN_DESCRIPCION=?, CODIGO_BANCO=?, Activo=?";
             PreparedStatement stmt = conexion.conectar().prepareStatement(sql);
 
             stmt.setInt(1, banco.getBAN_ID_BANCO());
@@ -121,15 +123,14 @@ public class BancoDAO implements CrudGeneral<Bancos> {
 
             while (rs.next()) {//[{4342, soyCod, santadner, true},{4342, soyCod, santadner, true},{4342, soyCod, santadner, true}}   ]
                 list.add(new Bancos(
-                        rs.getInt("BAN_ID_BANCO"),                        
-                        rs.getString("BAN_DESCRIPCION"),                      
+                        rs.getInt("BAN_ID_BANCO"),
+                        rs.getString("BAN_DESCRIPCION"),
                         rs.getString("CODIGO_BANCO"),
                         rs.getBoolean("Activo")
                 ));
             }
-            
-            //lista de bancos con 20 bancos
 
+            //lista de bancos con 20 bancos
             Object[] row = new Object[4];
 
             for (int i = 0; i < list.size(); i++) {
