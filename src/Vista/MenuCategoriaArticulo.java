@@ -7,7 +7,10 @@ package Vista;
 
 import DAO.CategoriaDAO;
 import Modelo.Categorias;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -23,8 +26,7 @@ public class MenuCategoriaArticulo extends javax.swing.JPanel {
         initComponents();
 
         CategoriaDAO categoria = new CategoriaDAO();
-        DefaultTableModel model = (DefaultTableModel) table_categoria.getModel();
-        this.model = model;
+        this.model = (DefaultTableModel) table_categoria.getModel();
         categoria.obtenerTodos(table_categoria, model);
     }
 
@@ -274,7 +276,12 @@ public class MenuCategoriaArticulo extends javax.swing.JPanel {
 
         //se retea la tabla
         iCategoria.obtenerTodos(table_categoria, model);
-
+        
+        try {
+            MenuArticulo.llenarComboBoxCategorias();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuCategoriaArticulo.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btn_guardarActionPerformed
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed

@@ -16,7 +16,7 @@ public class MenuRRSS extends javax.swing.JPanel {
         RedesSocialesDAO rrss = new RedesSocialesDAO();
         DefaultTableModel model = (DefaultTableModel) table_rrss.getModel();
         this.model = model;
-        rrss.obtenerTodos(table_rrss, model);
+        rrss.obtenerTodos(table_rrss, model); //este metodo carga la tabla con la respuesta de la BD
 
     }
 
@@ -49,13 +49,9 @@ public class MenuRRSS extends javax.swing.JPanel {
 
         setBackground(java.awt.SystemColor.activeCaptionBorder);
 
-        jPanel1.setBackground(java.awt.SystemColor.control);
-
         jLabel1.setBackground(java.awt.SystemColor.activeCaptionText);
-        jLabel1.setForeground(java.awt.SystemColor.activeCaptionText);
         jLabel1.setText("Nombre red social");
 
-        jLabel2.setForeground(java.awt.SystemColor.activeCaptionText);
         jLabel2.setText("Codigo");
 
         btn_cancelar.setBackground(java.awt.SystemColor.controlDkShadow);
@@ -79,7 +75,6 @@ public class MenuRRSS extends javax.swing.JPanel {
         radio_button_activo.setSelected(true);
         radio_button_activo.setText("Activo");
 
-        jLabel7.setForeground(java.awt.SystemColor.activeCaptionText);
         jLabel7.setText("ID");
 
         input_id.setEditable(false);
@@ -136,10 +131,6 @@ public class MenuRRSS extends javax.swing.JPanel {
                     .addComponent(btn_guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
-
-        jPanel2.setBackground(java.awt.SystemColor.control);
-
-        jPanel3.setBackground(java.awt.SystemColor.control);
 
         table_rrss.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

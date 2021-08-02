@@ -5,17 +5,70 @@
  */
 package Vista;
 
+import DAO.ArticuloDAO;
+import DAO.PackDAO;
+import Modelo.Articulos;
+import Modelo.Packs;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Jose
  */
 public class MenuPack extends javax.swing.JPanel {
 
+    DefaultTableModel modelArticulosDisponibles;
+    DefaultTableModel modelArticulosAgregados;
+    DefaultTableModel modelPacks;
+
     /**
      * Creates new form MenuPack
      */
     public MenuPack() {
         initComponents();
+        modelArticulosDisponibles = (DefaultTableModel) table_articulosDisponibles.getModel();
+        modelArticulosAgregados = (DefaultTableModel) table_articulosAgregados.getModel();
+        modelPacks = (DefaultTableModel) table_packs.getModel();
+        PackDAO iPack = new PackDAO();
+        iPack.obtenerTodos(table_packs, modelPacks);
+        try {
+            llenarTablaArticulos();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuPack.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void llenarTablaArticulos() throws SQLException {
+
+        ArticuloDAO iArticulo = new ArticuloDAO();
+        ResultSet listaArticulos;
+        listaArticulos = iArticulo.obtenerArticulos();
+
+        ArrayList<Articulos> nombreArticulos;
+        nombreArticulos = new ArrayList<Articulos>();
+
+        while (listaArticulos.next()) {
+            nombreArticulos.add(new Articulos(
+                    listaArticulos.getInt("ART_ID_ARTICULO"),
+                    listaArticulos.getString("ART_DESCRIPCION"))
+            );
+        }
+
+        Object[] row = new Object[1];
+
+        for (int i = 0; i < nombreArticulos.size(); i++) {
+            row[0] = nombreArticulos.get(i);
+
+            modelArticulosDisponibles.addRow(row);
+        }
+
     }
 
     /**
@@ -28,34 +81,70 @@ public class MenuPack extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        input_nombre = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        input_precio = new javax.swing.JTextField();
+        btn_cancelar = new javax.swing.JButton();
+        btn_crearPack = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
         btn_agregar = new javax.swing.JButton();
         btn_quitar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        input_nombre_pack = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        input_precio_pack = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jPanel5 = new javax.swing.JPanel();
+        table_articulosDisponibles = new javax.swing.JTable();
+        jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
-        btn_cancelar = new javax.swing.JButton();
-        btn_crear_pack = new javax.swing.JButton();
+        table_articulosAgregados = new javax.swing.JTable();
+        spinner_cantidad = new javax.swing.JSpinner();
+        jLabel3 = new javax.swing.JLabel();
+        input_id = new javax.swing.JTextField();
+        rb_activo = new javax.swing.JRadioButton();
+        jLabel4 = new javax.swing.JLabel();
+        input_stock = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         input_buscar = new javax.swing.JTextField();
-        btn_buscar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
-        btn_desactivar = new javax.swing.JButton();
+        table_packs = new javax.swing.JTable();
         btn_editar = new javax.swing.JButton();
+        btn_buscar = new javax.swing.JButton();
 
         setBackground(java.awt.SystemColor.activeCaptionBorder);
         setMaximumSize(new java.awt.Dimension(1280, 720));
 
         jPanel1.setBackground(java.awt.SystemColor.control);
 
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Nombre del pack");
+
+        input_nombre.setBackground(java.awt.SystemColor.controlHighlight);
+
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("Precio");
+
+        input_precio.setBackground(java.awt.SystemColor.controlHighlight);
+
+        btn_cancelar.setBackground(java.awt.SystemColor.controlDkShadow);
+        btn_cancelar.setForeground(java.awt.SystemColor.control);
+        btn_cancelar.setText("Cancelar");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
+
+        btn_crearPack.setBackground(java.awt.SystemColor.controlDkShadow);
+        btn_crearPack.setForeground(java.awt.SystemColor.control);
+        btn_crearPack.setText("Guardar pack");
+        btn_crearPack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_crearPackActionPerformed(evt);
+            }
+        });
+
+        btn_agregar.setBackground(java.awt.SystemColor.controlDkShadow);
+        btn_agregar.setForeground(java.awt.SystemColor.control);
         btn_agregar.setText("Agregar");
         btn_agregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,6 +152,8 @@ public class MenuPack extends javax.swing.JPanel {
             }
         });
 
+        btn_quitar.setBackground(java.awt.SystemColor.controlDkShadow);
+        btn_quitar.setForeground(java.awt.SystemColor.control);
         btn_quitar.setText("Quitar");
         btn_quitar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,56 +161,40 @@ public class MenuPack extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Nombre del pack");
+        jPanel4.setLayout(new java.awt.BorderLayout());
 
-        input_nombre_pack.setBackground(java.awt.SystemColor.controlHighlight);
-
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Precio");
-
-        input_precio_pack.setBackground(java.awt.SystemColor.controlHighlight);
-
-        jTable1.setBackground(java.awt.SystemColor.controlHighlight);
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table_articulosDisponibles.setBackground(java.awt.SystemColor.controlHighlight);
+        table_articulosDisponibles.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Articulo", "Stock disponible"
+                "Articulo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table_articulosDisponibles);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jPanel4.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        jPanel5.setPreferredSize(new java.awt.Dimension(410, 223));
+        jPanel6.setLayout(new java.awt.BorderLayout());
 
-        jTable2.setBackground(java.awt.SystemColor.controlHighlight);
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        table_articulosAgregados.setBackground(java.awt.SystemColor.controlHighlight);
+        table_articulosAgregados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -130,114 +205,137 @@ public class MenuPack extends javax.swing.JPanel {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.Integer.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jScrollPane2.setViewportView(jTable2);
+        table_articulosAgregados.setMinimumSize(new java.awt.Dimension(15, 0));
+        jScrollPane2.setViewportView(table_articulosAgregados);
+
+        jPanel6.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+
+        spinner_cantidad.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 449, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btn_agregar, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                    .addComponent(btn_quitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(spinner_cantidad))
+                .addGap(471, 471, 471))
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 162, Short.MAX_VALUE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(53, Short.MAX_VALUE)
+                .addComponent(btn_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(spinner_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_quitar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel5Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        btn_cancelar.setText("Cancelar");
+        jLabel3.setText("ID:");
 
-        btn_crear_pack.setText("Crear pack");
+        input_id.setEditable(false);
+
+        rb_activo.setText("Activo");
+
+        jLabel4.setText("Stock:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_crear_pack))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(jLabel1)
-                                .addGap(18, 18, 18)
-                                .addComponent(input_nombre_pack, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btn_agregar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btn_quitar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(64, 64, 64)))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(83, 83, 83)
-                                .addComponent(input_precio_pack, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(69, 69, 69)
+                .addComponent(input_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 292, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(164, 164, 164)
+                .addComponent(jLabel2)
+                .addGap(89, 89, 89)
+                .addComponent(input_precio, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(input_id, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(input_stock, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(rb_activo)
+                .addGap(332, 332, 332)
+                .addComponent(btn_crearPack, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66)
+                .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(input_precio_pack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(input_nombre_pack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(6, 6, 6)
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(92, 92, 92)
-                            .addComponent(btn_agregar)
-                            .addGap(18, 18, 18)
-                            .addComponent(btn_quitar))))
+                    .addComponent(input_precio, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(input_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel2)))
+                .addGap(34, 34, 34)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_crear_pack)
-                    .addComponent(btn_cancelar))
-                .addGap(82, 82, 82))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(input_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3)
+                        .addComponent(rb_activo)
+                        .addComponent(jLabel4)
+                        .addComponent(input_stock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_crearPack, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(java.awt.SystemColor.control);
 
         input_buscar.setBackground(java.awt.SystemColor.controlHighlight);
 
-        btn_buscar.setText("Buscar");
-        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_buscarActionPerformed(evt);
-            }
-        });
-
         jPanel2.setBackground(java.awt.SystemColor.control);
+        jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jTable3.setBackground(java.awt.SystemColor.controlHighlight);
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        table_packs.setBackground(java.awt.SystemColor.controlHighlight);
+        table_packs.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -248,41 +346,37 @@ public class MenuPack extends javax.swing.JPanel {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
-        });
-        jScrollPane3.setViewportView(jTable3);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 1132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        btn_desactivar.setText("Desactivar");
-        btn_desactivar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_desactivarActionPerformed(evt);
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
+        jScrollPane3.setViewportView(table_packs);
 
+        jPanel2.add(jScrollPane3, java.awt.BorderLayout.CENTER);
+
+        btn_editar.setBackground(java.awt.SystemColor.controlDkShadow);
+        btn_editar.setForeground(java.awt.SystemColor.control);
         btn_editar.setText("Editar");
         btn_editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_editarActionPerformed(evt);
+            }
+        });
+
+        btn_buscar.setBackground(java.awt.SystemColor.controlDkShadow);
+        btn_buscar.setForeground(java.awt.SystemColor.control);
+        btn_buscar.setText("Buscar");
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
             }
         });
 
@@ -291,19 +385,19 @@ public class MenuPack extends javax.swing.JPanel {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(input_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_buscar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btn_desactivar)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1051, Short.MAX_VALUE)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addComponent(input_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_buscar)
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -313,81 +407,191 @@ public class MenuPack extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(input_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_desactivar)
-                    .addComponent(btn_editar))
-                .addGap(68, 68, 68))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 271, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 291, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_agregarActionPerformed
-
     private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
-        // TODO add your handling code here:
+
+        String id = modelPacks.getValueAt(table_packs.getSelectedRow(), 0).toString();
+        String nombre = modelPacks.getValueAt(table_packs.getSelectedRow(), 1).toString();
+        String stock = modelPacks.getValueAt(table_packs.getSelectedRow(), 2).toString();
+        boolean activo = Boolean.parseBoolean(modelPacks.getValueAt(table_packs.getSelectedRow(), 3).toString());
+
+        input_id.setText(id);
+        input_nombre.setText(nombre);
+        input_stock.setText(stock);
+        rb_activo.setSelected(activo);
+
+        PackDAO iPack = new PackDAO();
+        iPack.obtenerArticulosDePack(modelArticulosAgregados, Integer.parseInt(id));
+
     }//GEN-LAST:event_btn_editarActionPerformed
-
-    private void btn_desactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_desactivarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_desactivarActionPerformed
-
-    private void btn_quitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_quitarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_quitarActionPerformed
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_buscarActionPerformed
+
+    private void btn_quitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_quitarActionPerformed
+
+        if (table_articulosAgregados.getSelectedRowCount() < 1) {
+            JOptionPane.showMessageDialog(null, "Primero marque un elemento y luego presione quitar ", "Se requiere acción previa", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        int cantidadArticulo = (int) modelArticulosAgregados.getValueAt(table_articulosAgregados.getSelectedRow(), 1);
+        int cantidad = (int) spinner_cantidad.getValue();
+
+        modelArticulosAgregados.setValueAt(cantidadArticulo - cantidad < 0 ? 0 : cantidadArticulo - cantidad, table_articulosAgregados.getSelectedRow(), 1);
+    }//GEN-LAST:event_btn_quitarActionPerformed
+
+    private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
+
+        if (table_articulosDisponibles.getSelectedRowCount() < 1) {
+            JOptionPane.showMessageDialog(null, "Primero marque un elemento y luego presione agregar ", "Se requiere acción previa", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        Articulos articulo = (Articulos) modelArticulosDisponibles.getValueAt(table_articulosDisponibles.getSelectedRow(), 0);
+        int articuloIndex = articulo.getArt_id();
+        int cantidad = (int) spinner_cantidad.getValue();
+
+        int numeroFilas = modelArticulosAgregados.getRowCount();
+
+        //variables de estado
+        int i = 0;
+        boolean found = false;
+
+        //primero busco si el elemento ya existe. Si existe le sumo la cantidad en vez de volver a agregarlo
+        while (i < numeroFilas && found == false) {
+
+            Articulos actualArticulo = (Articulos) modelArticulosAgregados.getValueAt(i, 0);
+            int actualIndex = actualArticulo.getArt_id();
+
+            if (actualIndex == articuloIndex) {
+                int cantidadActual = (int) modelArticulosAgregados.getValueAt(i, 1);
+                modelArticulosAgregados.setValueAt(cantidad + cantidadActual, i, 1);
+                found = true;
+            }
+            i++;
+        }
+
+        //si no existe significa que la variable found sigue siendo falsa por lo que agrego el nuevo elemento
+        if (found == false) {
+            Object[] row = new Object[2];
+            row[0] = articulo;
+            row[1] = cantidad;
+            modelArticulosAgregados.addRow(row);
+        }
+
+    }//GEN-LAST:event_btn_agregarActionPerformed
+
+    private void btn_crearPackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crearPackActionPerformed
+
+        if (("".equals(input_nombre.getText())
+                || "".equals(input_precio.getText()))
+                || "".equals(input_stock.getText())) {
+
+            JOptionPane.showMessageDialog(null, "Faltan datos por completar ", "Se requiere acción previa", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        String nombrePack = input_nombre.getText().toString();
+        int precio = Integer.parseInt(input_precio.getText());
+        boolean activo = Boolean.valueOf(rb_activo.getText());
+        int stock;
+
+        //En este bloque creo dos arrays con ID y Cantidades de articulos que obtengo al recorrer la tabla
+        ArrayList<Integer> idArticulos = new ArrayList<Integer>();
+        ArrayList<Integer> cantidadArticulos = new ArrayList<Integer>();
+
+        int numeroFilas = modelArticulosAgregados.getRowCount();
+
+        for (int i = 0; i < numeroFilas; i++) {
+            Articulos actualArticulo = (Articulos) modelArticulosAgregados.getValueAt(i, 0);
+
+            idArticulos.add(actualArticulo.getArt_id());
+            cantidadArticulos.add((int) modelArticulosAgregados.getValueAt(i, 1));
+        }
+
+        Packs pack;
+        if ("".equals(input_id.getText())) {
+            stock = Integer.parseInt(input_stock.getText());
+            pack = new Packs(1, nombrePack, precio, stock, activo);//si ID es vacio es porque creo un nuevo
+        } else {
+            int id = Integer.parseInt(input_id.getText());
+            stock = Integer.parseInt(modelPacks.getValueAt(table_packs.getSelectedRow(), 2).toString());
+
+            pack = new Packs(id, 1, nombrePack, precio, stock, activo);//si ID si existe es porque edito el existente
+        }
+
+        PackDAO iPack = new PackDAO();
+        iPack.agregar(pack);
+        iPack.insertarArticulosAsociados(idArticulos, cantidadArticulos);
+
+        iPack.obtenerTodos(table_packs, modelPacks);
+
+        btn_cancelarActionPerformed(evt);
+    }//GEN-LAST:event_btn_crearPackActionPerformed
+
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+
+        input_id.setText("");
+        input_nombre.setText("");
+        input_precio.setText("");
+        rb_activo.setSelected(true);
+
+    }//GEN-LAST:event_btn_cancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_agregar;
     private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_cancelar;
-    private javax.swing.JButton btn_crear_pack;
-    private javax.swing.JButton btn_desactivar;
+    private javax.swing.JButton btn_crearPack;
     private javax.swing.JButton btn_editar;
     private javax.swing.JButton btn_quitar;
     private javax.swing.JTextField input_buscar;
-    private javax.swing.JTextField input_nombre_pack;
-    private javax.swing.JTextField input_precio_pack;
+    private javax.swing.JTextField input_id;
+    private javax.swing.JTextField input_nombre;
+    private javax.swing.JTextField input_precio;
+    private javax.swing.JTextField input_stock;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
+    private javax.swing.JRadioButton rb_activo;
+    private javax.swing.JSpinner spinner_cantidad;
+    private javax.swing.JTable table_articulosAgregados;
+    private javax.swing.JTable table_articulosDisponibles;
+    private javax.swing.JTable table_packs;
     // End of variables declaration//GEN-END:variables
 }
