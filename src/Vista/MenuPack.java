@@ -5,17 +5,70 @@
  */
 package Vista;
 
+import DAO.ArticuloDAO;
+import DAO.PackDAO;
+import Modelo.Articulos;
+import Modelo.Packs;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Jose
  */
 public class MenuPack extends javax.swing.JPanel {
 
+    DefaultTableModel modelArticulosDisponibles;
+    DefaultTableModel modelArticulosAgregados;
+    DefaultTableModel modelPacks;
+
     /**
      * Creates new form MenuPack
      */
     public MenuPack() {
         initComponents();
+        modelArticulosDisponibles = (DefaultTableModel) table_articulosDisponibles.getModel();
+        modelArticulosAgregados = (DefaultTableModel) table_articulosAgregados.getModel();
+        modelPacks = (DefaultTableModel) table_packs.getModel();
+        PackDAO iPack = new PackDAO();
+        iPack.obtenerTodos(table_packs, modelPacks);
+        try {
+            llenarTablaArticulos();
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuPack.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void llenarTablaArticulos() throws SQLException {
+
+        ArticuloDAO iArticulo = new ArticuloDAO();
+        ResultSet listaArticulos;
+        listaArticulos = iArticulo.obtenerArticulos();
+
+        ArrayList<Articulos> nombreArticulos;
+        nombreArticulos = new ArrayList<Articulos>();
+
+        while (listaArticulos.next()) {
+            nombreArticulos.add(new Articulos(
+                    listaArticulos.getInt("ART_ID_ARTICULO"),
+                    listaArticulos.getString("ART_DESCRIPCION"))
+            );
+        }
+
+        Object[] row = new Object[1];
+
+        for (int i = 0; i < nombreArticulos.size(); i++) {
+            row[0] = nombreArticulos.get(i);
+
+            modelArticulosDisponibles.addRow(row);
+        }
+
     }
 
     /**
@@ -43,6 +96,12 @@ public class MenuPack extends javax.swing.JPanel {
         jPanel6 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         table_articulosAgregados = new javax.swing.JTable();
+        spinner_cantidad = new javax.swing.JSpinner();
+        jLabel3 = new javax.swing.JLabel();
+        input_id = new javax.swing.JTextField();
+        rb_activo = new javax.swing.JRadioButton();
+        jLabel4 = new javax.swing.JLabel();
+        input_stock = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         input_buscar = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
@@ -67,8 +126,18 @@ public class MenuPack extends javax.swing.JPanel {
         input_precio.setBackground(java.awt.SystemColor.controlHighlight);
 
         btn_cancelar.setText("Cancelar");
+        btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_cancelarActionPerformed(evt);
+            }
+        });
 
         btn_crearPack.setText("Crear pack");
+        btn_crearPack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_crearPackActionPerformed(evt);
+            }
+        });
 
         btn_agregar.setText("Agregar");
         btn_agregar.addActionListener(new java.awt.event.ActionListener() {
@@ -92,15 +161,22 @@ public class MenuPack extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Articulo", "Stock disponible"
+                "Articulo"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class
+                java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(table_articulosDisponibles);
@@ -133,10 +209,12 @@ public class MenuPack extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        table_articulosAgregados.setPreferredSize(new java.awt.Dimension(479, 185));
+        table_articulosAgregados.setMinimumSize(new java.awt.Dimension(15, 0));
         jScrollPane2.setViewportView(table_articulosAgregados);
 
         jPanel6.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+
+        spinner_cantidad.setModel(new javax.swing.SpinnerNumberModel(1, 1, null, 1));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -145,6 +223,7 @@ public class MenuPack extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap(499, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(spinner_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_agregar)
                     .addComponent(btn_quitar, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(480, 480, 480))
@@ -162,8 +241,10 @@ public class MenuPack extends javax.swing.JPanel {
                 .addContainerGap(53, Short.MAX_VALUE)
                 .addComponent(btn_agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(spinner_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
                 .addComponent(btn_quitar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
+                .addGap(39, 39, 39))
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
                     .addContainerGap()
@@ -172,6 +253,14 @@ public class MenuPack extends javax.swing.JPanel {
                         .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
+
+        jLabel3.setText("ID:");
+
+        input_id.setEditable(false);
+
+        rb_activo.setText("Activo");
+
+        jLabel4.setText("Stock:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -189,8 +278,18 @@ public class MenuPack extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(input_id, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(57, 57, 57)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(input_stock, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)
+                        .addComponent(rb_activo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_crearPack, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(66, 66, 66)
                         .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -210,9 +309,16 @@ public class MenuPack extends javax.swing.JPanel {
                 .addGap(34, 34, 34)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_crearPack, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btn_crearPack, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(input_id, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)
+                            .addComponent(rb_activo)
+                            .addComponent(jLabel4)
+                            .addComponent(input_stock, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -235,9 +341,16 @@ public class MenuPack extends javax.swing.JPanel {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane3.setViewportView(table_packs);
@@ -263,11 +376,8 @@ public class MenuPack extends javax.swing.JPanel {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -275,7 +385,10 @@ public class MenuPack extends javax.swing.JPanel {
                                 .addComponent(input_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btn_buscar)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_editar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -312,7 +425,17 @@ public class MenuPack extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
-        // TODO add your handling code here:
+
+        String id = modelPacks.getValueAt(table_packs.getSelectedRow(), 0).toString();
+        String nombre = modelPacks.getValueAt(table_packs.getSelectedRow(), 1).toString();
+        String stock = modelPacks.getValueAt(table_packs.getSelectedRow(), 2).toString();
+        boolean activo = Boolean.parseBoolean(modelPacks.getValueAt(table_packs.getSelectedRow(), 3).toString());
+
+        input_id.setText(id);
+        input_nombre.setText(nombre);
+        input_stock.setText(stock);
+        rb_activo.setSelected(activo);
+
     }//GEN-LAST:event_btn_editarActionPerformed
 
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
@@ -320,12 +443,115 @@ public class MenuPack extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_buscarActionPerformed
 
     private void btn_quitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_quitarActionPerformed
-        // TODO add your handling code here:
+
+        if (table_articulosAgregados.getSelectedRowCount() < 1) {
+            JOptionPane.showMessageDialog(null, "Primero marque un elemento y luego presione quitar ", "Se requiere acción previa", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        int cantidadArticulo = (int) modelArticulosAgregados.getValueAt(table_articulosAgregados.getSelectedRow(), 1);
+        int cantidad = (int) spinner_cantidad.getValue();
+
+        modelArticulosAgregados.setValueAt(cantidadArticulo - cantidad < 0 ? 0 : cantidadArticulo - cantidad, table_articulosAgregados.getSelectedRow(), 1);
     }//GEN-LAST:event_btn_quitarActionPerformed
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
-        // TODO add your handling code here:
+
+        if (table_articulosDisponibles.getSelectedRowCount() < 1) {
+            JOptionPane.showMessageDialog(null, "Primero marque un elemento y luego presione agregar ", "Se requiere acción previa", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        Articulos articulo = (Articulos) modelArticulosDisponibles.getValueAt(table_articulosDisponibles.getSelectedRow(), 0);
+        int articuloIndex = articulo.getArt_id();
+        int cantidad = (int) spinner_cantidad.getValue();
+
+        int numeroFilas = modelArticulosAgregados.getRowCount();
+
+        //variables de estado
+        int i = 0;
+        boolean found = false;
+
+        //primero busco si el elemento ya existe. Si existe le sumo la cantidad en vez de volver a agregarlo
+        while (i < numeroFilas && found == false) {
+
+            Articulos actualArticulo = (Articulos) modelArticulosAgregados.getValueAt(i, 0);
+            int actualIndex = actualArticulo.getArt_id();
+
+            if (actualIndex == articuloIndex) {
+                int cantidadActual = (int) modelArticulosAgregados.getValueAt(i, 1);
+                modelArticulosAgregados.setValueAt(cantidad + cantidadActual, i, 1);
+                found = true;
+            }
+            i++;
+        }
+
+        //si no existe significa que la variable found sigue siendo falsa por lo que agrego el nuevo elemento
+        if (found == false) {
+            Object[] row = new Object[2];
+            row[0] = articulo;
+            row[1] = cantidad;
+            modelArticulosAgregados.addRow(row);
+        }
+
     }//GEN-LAST:event_btn_agregarActionPerformed
+
+    private void btn_crearPackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_crearPackActionPerformed
+
+        if (("".equals(input_nombre.getText())
+                || "".equals(input_precio.getText()))
+                || "".equals(input_stock.getText())) {
+
+            JOptionPane.showMessageDialog(null, "Faltan datos por completar ", "Se requiere acción previa", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        String nombrePack = input_nombre.getText().toString();
+        int precio = Integer.parseInt(input_precio.getText());
+        boolean activo = Boolean.valueOf(rb_activo.getText());
+        int stock;
+
+        //En este bloque creo dos arrays con ID y Cantidades de articulos que obtengo al recorrer la tabla
+        ArrayList<Integer> idArticulos = new ArrayList<Integer>();
+        ArrayList<Integer> cantidadArticulos = new ArrayList<Integer>();
+
+        int numeroFilas = modelArticulosAgregados.getRowCount();
+
+        for (int i = 0; i < numeroFilas; i++) {
+            Articulos actualArticulo = (Articulos) modelArticulosAgregados.getValueAt(i, 0);
+
+            idArticulos.add(actualArticulo.getArt_id());
+            cantidadArticulos.add((int) modelArticulosAgregados.getValueAt(i, 1));
+        }
+
+        Packs pack;
+        if ("".equals(input_id.getText())) {
+            stock = Integer.parseInt(input_stock.getText());
+            pack = new Packs(1, nombrePack, precio, stock, activo);//si ID es vacio es porque creo un nuevo
+        } else {
+            int id = Integer.parseInt(input_id.getText());
+            stock = Integer.parseInt(modelPacks.getValueAt(table_packs.getSelectedRow(), 2).toString());
+
+            pack = new Packs(id, 1, nombrePack, precio, stock, activo);//si ID si existe es porque edito el existente
+        }
+
+        PackDAO iPack = new PackDAO();
+        iPack.agregar(pack);
+        iPack.insertarArticulosAsociados(idArticulos, cantidadArticulos);
+
+        iPack.obtenerTodos(table_packs, modelPacks);
+
+        btn_cancelarActionPerformed(evt);
+    }//GEN-LAST:event_btn_crearPackActionPerformed
+
+    private void btn_cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cancelarActionPerformed
+
+        input_id.setText("");
+        input_nombre.setText("");
+        input_precio.setText("");
+        rb_activo.setSelected(true);
+
+    }//GEN-LAST:event_btn_cancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -336,10 +562,14 @@ public class MenuPack extends javax.swing.JPanel {
     private javax.swing.JButton btn_editar;
     private javax.swing.JButton btn_quitar;
     private javax.swing.JTextField input_buscar;
+    private javax.swing.JTextField input_id;
     private javax.swing.JTextField input_nombre;
     private javax.swing.JTextField input_precio;
+    private javax.swing.JTextField input_stock;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -349,6 +579,8 @@ public class MenuPack extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JRadioButton rb_activo;
+    private javax.swing.JSpinner spinner_cantidad;
     private javax.swing.JTable table_articulosAgregados;
     private javax.swing.JTable table_articulosDisponibles;
     private javax.swing.JTable table_packs;

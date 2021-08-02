@@ -212,4 +212,29 @@ public class ArticuloDAO implements CrudGeneral<Articulos> {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public ResultSet obtenerArticulos() {
+
+        Connection conn = conexion.conectar();
+
+        ResultSet articulos = null;
+
+        if (conn != null) {
+
+            try {
+
+                Statement smt = conn.createStatement();
+
+                String sql = "SELECT ART_ID_ARTICULO, ART_DESCRIPCION FROM articulo";
+
+                articulos = smt.executeQuery(sql);
+
+            } catch (SQLException e) {
+                System.err.println("ERROR en:" + e);
+            } finally {
+                //conexion.desconectar();
+            }
+        }
+        return articulos;
+    }
+
 }
