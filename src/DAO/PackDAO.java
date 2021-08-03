@@ -216,7 +216,7 @@ public class PackDAO implements CrudGeneral<Packs> {
     public void obtenerArticulosDePack(DefaultTableModel model, int idPack) {
 
         Connection conn = conexion.conectar();
-        
+
         model.setRowCount(0);
 
         if (conn != null) {
@@ -246,6 +246,43 @@ public class PackDAO implements CrudGeneral<Packs> {
             }
         }
 
+    }
+
+    public ArrayList<Packs> obtenerTodosPacks() throws SQLException {
+
+        Connection conn = conexion.conectar();
+
+        ResultSet cat = null;
+
+        ArrayList<Packs> packs = new ArrayList<Packs>();
+
+        if (conn != null) {
+
+            Statement smt = conn.createStatement();
+
+            try {
+
+                String sql = "SELECT * FROM pack";
+                cat = smt.executeQuery(sql);
+
+                while (cat.next()) {
+                    packs.add(new Packs(
+                            cat.getInt("ID_PACK"),
+                            cat.getString("PCK_NOMBRE")
+                    ));
+
+                }
+
+            } catch (SQLException e) {
+                System.err.println("ERROR: Al obtener categorias " + e);
+            } finally {
+                if (smt != null) {
+                    smt.close();
+                }
+                conexion.desconectar();
+            }
+        }
+        return packs;
     }
 
 }

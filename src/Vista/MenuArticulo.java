@@ -163,6 +163,11 @@ public class MenuArticulo extends javax.swing.JPanel {
         jLabel4.setText("Unidades");
 
         ComboBox_proveedor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        ComboBox_proveedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComboBox_proveedorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
         jPanel24.setLayout(jPanel24Layout);
@@ -474,6 +479,10 @@ public class MenuArticulo extends javax.swing.JPanel {
         comboBox_categoria_articulo.getModel().setSelectedItem(null);
         radio_button_activo.setSelected(true);
     }//GEN-LAST:event_btn_cancelarActionPerformed
+
+    private void ComboBox_proveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComboBox_proveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ComboBox_proveedorActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

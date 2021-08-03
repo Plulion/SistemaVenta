@@ -5,8 +5,18 @@
  */
 package Vista;
 
+import DAO.ComunaDAO;
+import DAO.PackDAO;
 import DAO.VentaDAO;
 import Modelo.Clientes;
+import Modelo.Comunas;
+import Modelo.Packs;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,11 +24,53 @@ import Modelo.Clientes;
  */
 public class Venta extends javax.swing.JPanel {
 
+    DefaultComboBoxModel modeloComboBox = new DefaultComboBoxModel();
+    DefaultComboBoxModel modeloCBComunas = new DefaultComboBoxModel();
     /**
      * Creates new form Venta
      */
     public Venta() {
         initComponents();
+        combo_packs.setModel(modeloComboBox);
+        cb_comuna.setModel(modeloCBComunas);
+        try {
+            llenarComboBoxPacks();
+            llenarComboBoxComunas();
+        } catch (SQLException ex) {
+            Logger.getLogger(Venta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void llenarComboBoxPacks() throws SQLException {
+
+        PackDAO iPack = new PackDAO();
+        ArrayList<Packs> packs = iPack.obtenerTodosPacks();
+
+        modeloComboBox.removeAllElements();
+        DefaultComboBoxModel nuevoModeloComboBox = new DefaultComboBoxModel();
+
+        for (int i = 0; i < packs.size(); i++) {
+
+            nuevoModeloComboBox.addElement(packs.get(i));
+        }
+        combo_packs.setModel(nuevoModeloComboBox);
+
+    }
+    
+    public void llenarComboBoxComunas() throws SQLException {
+
+        ComunaDAO iComuna = new ComunaDAO();
+        ArrayList<Comunas> comunas = iComuna.obtenerTodasComunas();
+
+        modeloCBComunas.removeAllElements();
+        DefaultComboBoxModel nuevoModeloComboBox = new DefaultComboBoxModel();
+
+        for (int i = 0; i < comunas.size(); i++) {
+
+            nuevoModeloComboBox.addElement(comunas.get(i));
+        }
+        cb_comuna.setModel(nuevoModeloComboBox);
+
     }
 
     /**
@@ -48,7 +100,6 @@ public class Venta extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         input_destinatario = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        input_comuna = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         input_direccion = new javax.swing.JTextField();
         date_entrega = new com.toedter.calendar.JDateChooser();
@@ -67,6 +118,7 @@ public class Venta extends javax.swing.JPanel {
         jLabel16 = new javax.swing.JLabel();
         btn_guardar_venta = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        cb_comuna = new javax.swing.JComboBox<>();
 
         setBackground(java.awt.SystemColor.controlShadow);
         setForeground(java.awt.SystemColor.controlShadow);
@@ -147,7 +199,7 @@ public class Venta extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(input_email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_guardar)
                     .addComponent(btn_cancelar))
@@ -192,6 +244,8 @@ public class Venta extends javax.swing.JPanel {
 
         jButton2.setText("Cancelar");
 
+        cb_comuna.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -221,11 +275,10 @@ public class Venta extends javax.swing.JPanel {
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel10)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(input_direccion, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
-                                        .addComponent(input_comuna)))))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+                                    .addComponent(input_direccion, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
+                                    .addComponent(cb_comuna, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -277,10 +330,10 @@ public class Venta extends javax.swing.JPanel {
                             .addComponent(jLabel13)
                             .addComponent(combo_horaFin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(input_comuna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(cb_comuna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,6 +382,11 @@ public class Venta extends javax.swing.JPanel {
         VentaDAO iVenta = new VentaDAO();
         Clientes clienteEncontrado = iVenta.buscarCliente(rut);
 
+        if (clienteEncontrado == null) {
+            JOptionPane.showMessageDialog(null, "Ningun cliente encontrado con el rut ingresado ", "Cliente no encontrado", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
         input_nombre.setText(clienteEncontrado.getCLI_NOMBRE());
         input_email.setText(clienteEncontrado.getCLI_CORREO());
         input_rut.setText(clienteEncontrado.getRUT());
@@ -341,11 +399,11 @@ public class Venta extends javax.swing.JPanel {
     private javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_guardar_venta;
     private javax.swing.JButton btn_rut;
+    private javax.swing.JComboBox<String> cb_comuna;
     private javax.swing.JComboBox<String> combo_horaFin;
     private javax.swing.JComboBox<String> combo_horaInicio;
     private javax.swing.JComboBox<String> combo_packs;
     private com.toedter.calendar.JDateChooser date_entrega;
-    private javax.swing.JTextField input_comuna;
     private javax.swing.JTextField input_destinatario;
     private javax.swing.JTextField input_direccion;
     private javax.swing.JTextField input_email;

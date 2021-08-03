@@ -33,6 +33,13 @@ public class Packs {
         this.activo = activo;
     }
 
+    public Packs(int idPack, String nombre) {
+        this.idPack = idPack;
+        this.nombre = nombre;
+    }
+    
+    
+
     public int getIdPack() {
         return idPack;
     }
@@ -83,7 +90,7 @@ public class Packs {
 
     @Override
     public String toString() {
-        return "Packs{" + "nombre=" + nombre + '}';
+        return nombre;
     }
 
 }

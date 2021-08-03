@@ -57,7 +57,7 @@ public class Comunas {
     
     @Override
     public String toString() {
-        return "Comunas{" + "idComuna=" + idComuna + ", descripcionComuna=" + descripcionComuna + ", codigoComuna=" + codigoComuna + '}';
+        return descripcionComuna;
     }
     
     

@@ -4,6 +4,7 @@ import Modelo.Comunas;
 import java.sql.PreparedStatement;
 import Conexion.Conexion;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JTable;
@@ -142,6 +143,39 @@ public class ComunaDAO implements CrudGeneral<Comunas> {
             System.err.println("ERROR en:" + e);
         }
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public ArrayList<Comunas> obtenerTodasComunas() throws SQLException {
+
+        ArrayList<Comunas> comunas = new ArrayList<Comunas>();
+
+        Statement smt = conexion.conectar().createStatement();
+
+        try {
+
+            String sql = "SELECT * FROM comunas";
+            ResultSet com = smt.executeQuery(sql);
+
+            while (com.next()) {
+                comunas.add(new Comunas(
+                        com.getInt("idComuna"),
+                        com.getString("COM_DESCRIPCION"),
+                        com.getString("CODIGO_COMUNAS"),
+                        com.getBoolean("Activo")
+                ));
+
+            }
+
+        } catch (SQLException e) {
+            System.err.println("ERROR: Al obtener categorias " + e);
+        } finally {
+            if (smt != null) {
+                smt.close();
+            }
+            conexion.desconectar();
+        }
+
+        return comunas;
     }
 
 }
