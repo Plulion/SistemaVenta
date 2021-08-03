@@ -12,7 +12,6 @@ import Modelo.Packs;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -432,6 +431,11 @@ public class MenuPack extends javax.swing.JPanel {
 
     private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
 
+        if (table_packs.getSelectedRowCount() < 1) {
+            JOptionPane.showMessageDialog(null, "Primero marque un elemento y luego presione editar ", "Se requiere acción previa", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+        
         String id = modelPacks.getValueAt(table_packs.getSelectedRow(), 0).toString();
         String nombre = modelPacks.getValueAt(table_packs.getSelectedRow(), 1).toString();
         String stock = modelPacks.getValueAt(table_packs.getSelectedRow(), 2).toString();
