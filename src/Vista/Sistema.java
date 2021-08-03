@@ -1,4 +1,3 @@
-
 package Vista;
 
 import java.awt.Color;
@@ -11,70 +10,63 @@ public class Sistema extends JFrame {
     public Sistema() {
         initComponents();
         setTitle("Sistema Ventas Dream Gift");
-        setSize(1510,790);
+        setSize(1510, 790);
         setLocationRelativeTo(null);
-        
+
         MenuCliente menucliente = new MenuCliente();
-         jTabbedPane3.add(" Cliente",menucliente);
-        
-        
+        jTabbedPane3.add(" Cliente", menucliente);
+
         MenuCategoriaArticulo menu_categoria_articulo = new MenuCategoriaArticulo();
-        jTabbedPane3.add("Categoría articulos", menu_categoria_articulo);  
-        
+        jTabbedPane3.add("Categoría articulos", menu_categoria_articulo);
+
         MenuRRSS menu_rrss = new MenuRRSS();
         jTabbedPane3.add("RRSS", menu_rrss);
-        
+
         MenuArticulo menu_articulo = new MenuArticulo();
         jTabbedPane3.add("Articulos", menu_articulo);
-        
+
         MenuBanco menu_banco = new MenuBanco();
         jTabbedPane3.add("Banco", menu_banco);
-              
+
         MenuComunas menu_comunas = new MenuComunas();
         jTabbedPane3.add("Comunas", menu_comunas);
-        
+
         MenuPack menu_pack = new MenuPack();
         jTabbedPane3.add("Pack", menu_pack);
-        
+
         Categoria_Ventas categoria_ventas = new Categoria_Ventas();
         jTabbedPane3.add("Categoria Ventas", categoria_ventas);
-        
+
         MenuProveedor menu_proveedor = new MenuProveedor();
         jTabbedPane3.add("Proveedor", menu_proveedor);
-        
+
         menucompras1 menucompras = new menucompras1();
         submenus_compras.add("Solicitud de pedidos", menucompras);
-                
+
         regfacpro menucompras1 = new regfacpro();
         submenus_compras.add("registro facturas proveedor", menucompras1);
-        
+
         revfacinv menucompras3 = new revfacinv();
         submenus_compras.add("revision facturas inventariadas", menucompras3);
-        
+
         Venta menuVenta = new Venta();
         menuV.add("Venta", menuVenta);
-        
-        ConfirmacionVenta menuVentas = new ConfirmacionVenta ();
-        menuV.add("Confirmacion Ventas", menuVentas); 
-        
-        ListaDestino menuVentas1 = new  ListaDestino();
-        menuV.add ("Lista Destino", menuVentas1);
-        
+
+        ConfirmacionVenta menuVentas = new ConfirmacionVenta();
+        menuV.add("Confirmacion Ventas", menuVentas);
+
+        ListaDestino menuVentas1 = new ListaDestino();
+        menuV.add("Lista Destino", menuVentas1);
+
         ActualizacionDespacho menuVentas2 = new ActualizacionDespacho();
-        menuV.add ("Actualizacion Despachos", menuVentas2);     
-   
-        MenuCliente menuCliente = new MenuCliente();
-        jTabbedPane3.add("Clientes", menuCliente);
-        
+        menuV.add("Actualizacion Despachos", menuVentas2);
+
         MenuUsuario menuUsuario = new MenuUsuario();
         jTabbedPane3.add("Usuarios", menuUsuario);
-     
-           
+
 //los demas
-        
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
