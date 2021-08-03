@@ -13,8 +13,6 @@ public class MenuUsuario extends javax.swing.JPanel {
     
     public MenuUsuario() {
         initComponents();
-       
-        
         UsuariosDAO usuario = new UsuariosDAO();
         DefaultTableModel model = (DefaultTableModel) tabla_usuario.getModel();
         this.model = model;
@@ -22,7 +20,6 @@ public class MenuUsuario extends javax.swing.JPanel {
        
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -39,10 +36,9 @@ public class MenuUsuario extends javax.swing.JPanel {
         jLabel36 = new javax.swing.JLabel();
         txt_clave = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        txt_buscar = new javax.swing.JTextField();
         usuario = new javax.swing.JLabel();
         btn_buscar = new javax.swing.JButton();
-
         jPanel27.setBackground(new java.awt.Color(255, 255, 255));
         jPanel27.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -153,7 +149,9 @@ public class MenuUsuario extends javax.swing.JPanel {
                         .addGap(0, 127, Short.MAX_VALUE))))
             .addGroup(jPanel27Layout.createSequentialGroup()
                 .addGap(143, 143, 143)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+
+                .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+
                 .addGap(18, 18, 18)
                 .addComponent(btn_buscar)
                 .addGap(115, 115, 115)
@@ -191,7 +189,9 @@ public class MenuUsuario extends javax.swing.JPanel {
                     .addGroup(jPanel27Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+
+                            .addComponent(txt_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+
                             .addComponent(btn_buscar))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -242,23 +242,28 @@ public class MenuUsuario extends javax.swing.JPanel {
 
     private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
 
-        Usuarios usua;
+
+        Usuarios usuarios;
 
         if ("".equals(txt_id.getText())) {
-            usua = new Usuarios(txt_usuario.getText(),
+            usuarios = new Usuarios(
+                txt_usuario.getText(),
                 txt_clave.getText(),
                 radio_button_activo.isSelected());
 
         } else {
-            usua = new Usuarios(Integer.parseInt(txt_id.getText()),
+            usuarios = new Usuarios(Integer.parseInt(txt_id.getText()),
+
                 txt_usuario.getText(),
                 txt_clave.getText(),
                 radio_button_activo.isSelected());
         }
 
-        UsuariosDAO usuar = new UsuariosDAO();
 
-        usuar.agregar(usua);
+        UsuariosDAO ousuario = new UsuariosDAO();
+
+        ousuario.agregar(usuarios);
+
 
         //se limpian los inputs
         txt_usuario.setText("");
@@ -267,7 +272,8 @@ public class MenuUsuario extends javax.swing.JPanel {
         radio_button_activo.setSelected(true);
 
         //se retea la tabla
-        usuar.obtenerTodos(tabla_usuario, model);
+        ousuario.obtenerTodos(tabla_usuario, model);
+
     
     }//GEN-LAST:event_btn_guardarActionPerformed
 
@@ -292,7 +298,8 @@ public class MenuUsuario extends javax.swing.JPanel {
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
 
         UsuariosDAO usuario = new UsuariosDAO();
-        ArrayList<Usuarios> listausuarios = usuario.listar(btn_buscar.getText());
+
+        ArrayList<Usuarios> listausuarios = usuario.listar(txt_buscar.getText());
 
         model.setRowCount(0); //esto resetea a 0 la tabla para poder
 
@@ -318,9 +325,10 @@ public class MenuUsuario extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel36;
     private javax.swing.JPanel jPanel27;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextField jTextField1;
+
     private javax.swing.JRadioButton radio_button_activo;
     private javax.swing.JTable tabla_usuario;
+    private javax.swing.JTextField txt_buscar;
     private javax.swing.JTextField txt_clave;
     private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_usuario;

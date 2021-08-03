@@ -70,6 +70,9 @@ public class Sistema extends JFrame {
    
         MenuCliente menuCliente = new MenuCliente();
         jTabbedPane3.add("Clientes", menuCliente);
+        
+        MenuUsuario menuUsuario = new MenuUsuario();
+        jTabbedPane3.add("Usuarios", menuUsuario);
      
            
 //los demas
