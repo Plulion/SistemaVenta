@@ -49,7 +49,7 @@ public class Sistema extends JFrame {
         revfacinv menucompras3 = new revfacinv();
         submenus_compras.add("revision facturas inventariadas", menucompras3);
 
-        Venta menuVenta = new Venta();
+        MenuVenta menuVenta = new MenuVenta();
         menuV.add("Venta", menuVenta);
 
         ConfirmacionVenta menuVentas = new ConfirmacionVenta();

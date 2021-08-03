@@ -268,7 +268,11 @@ public class PackDAO implements CrudGeneral<Packs> {
                 while (cat.next()) {
                     packs.add(new Packs(
                             cat.getInt("ID_PACK"),
-                            cat.getString("PCK_NOMBRE")
+                            cat.getInt("ID_CATEGORIA"),
+                            cat.getString("PCK_NOMBRE"),
+                            cat.getInt("PCK_COSTO"),
+                            cat.getInt("PCK_STOCK"),
+                            cat.getBoolean("Activo")
                     ));
 
                 }
