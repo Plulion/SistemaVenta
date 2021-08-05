@@ -101,6 +101,7 @@ public class Venta {
     }
 
     
+    
 
     public int getId() {
         return id;
