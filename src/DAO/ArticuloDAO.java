@@ -24,7 +24,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ArticuloDAO implements CrudGeneral<Articulos> {
 
-    Conexion conexion = new Conexion();
+    public Conexion conexion;
+
+    public ArticuloDAO() {
+        this.conexion = new Conexion();
+    }
 
     @Override
     public ArrayList<Articulos> listar(String nombreArticulo) {

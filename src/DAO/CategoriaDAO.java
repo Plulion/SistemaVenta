@@ -22,7 +22,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CategoriaDAO implements CrudGeneral<Categorias> {
 
-    Conexion conexion = new Conexion();
+    public Conexion conexion;
+
+    public CategoriaDAO() {
+        this.conexion = new Conexion();
+    }
 
     @Override
     public ArrayList<Categorias> listar(String nombreCategoria) {
@@ -54,7 +58,7 @@ public class CategoriaDAO implements CrudGeneral<Categorias> {
             } catch (SQLException e) {
                 System.err.println("ERROR en:" + e);
             } finally {
-                conexion.conectar();
+                conexion.desconectar();
             }
         }
 

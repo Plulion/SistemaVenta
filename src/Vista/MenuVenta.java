@@ -457,6 +457,7 @@ public class MenuVenta extends javax.swing.JPanel {
                 direccion,
                 telefonoCliente,
                 correoCliente,
+                fechaEntrega,
                 horaInicio,
                 horaFin,
                 saludo
