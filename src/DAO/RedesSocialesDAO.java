@@ -11,7 +11,11 @@ import javax.swing.table.DefaultTableModel;
 
 public class RedesSocialesDAO implements CrudGeneral<RRSS> {
 
-    Conexion conexion = new Conexion();
+    public Conexion conexion;
+
+    public RedesSocialesDAO() {
+        this.conexion = new Conexion();
+    }
 
     @Override
     public ArrayList<RRSS> listar(String nombreRRSS) {
@@ -37,6 +41,8 @@ public class RedesSocialesDAO implements CrudGeneral<RRSS> {
 
         } catch (Exception e) {
             System.err.println("ERROR en:" + e);
+        } finally {
+            conexion.desconectar();
         }
         return list;
 
@@ -87,6 +93,8 @@ public class RedesSocialesDAO implements CrudGeneral<RRSS> {
 
         } catch (Exception e) {
             System.err.println("ERROR: " + e);
+        } finally {
+            conexion.desconectar();
         }
         return false;
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -114,6 +122,8 @@ public class RedesSocialesDAO implements CrudGeneral<RRSS> {
 
         } catch (Exception e) {
             System.err.println("ERROR: " + e);
+        } finally {
+            conexion.desconectar();
         }
         return false;
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -157,6 +167,8 @@ public class RedesSocialesDAO implements CrudGeneral<RRSS> {
 
         } catch (Exception e) {
             System.err.println("ERROR en:" + e);
+        } finally {
+            conexion.desconectar();
         }
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

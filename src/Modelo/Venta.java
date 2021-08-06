@@ -5,7 +5,7 @@
  */
 package Modelo;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  *
@@ -21,17 +21,23 @@ public class Venta {
     private int idComuna;
     private int idEstadoVenta;
     private int total;
+    private Date fechaVenta;
+    private Date fechaTranferencia;
+    private int codigoTransferencia;
+    private int stIdEstado;
     private String nombreDestinatario;
     private String direccionDestinatario;
+    private int comIdComuna;
     private int telefono;
     private String correo;
     private Date fechaEntrega;
     private String hEntregaIn;
     private String hEntregaFin;
     private String saludo;
-    //faltan
 
-    public Venta(String id_cliente, int idPack, int idBanco, int idRrss, int idComuna, int idEstadoVenta, int total, String nombreDestinatario, String direccionDestinatario, int telefono, String correo, Date fechaEntrega, String hEntregaIn, String hEntregaFin, String saludo) {
+
+    //sin ID
+    public Venta(String id_cliente, int idPack, int idBanco, int idRrss, int idComuna, int idEstadoVenta, int total, Date fechaVenta, Date fechaTranferencia, int codigoTransferencia, int stIdEstado, String nombreDestinatario, String direccionDestinatario, int comIdComuna, int telefono, String correo, Date fechaEntrega, String hEntregaIn, String hEntregaFin, String saludo) {
         this.id_cliente = id_cliente;
         this.idPack = idPack;
         this.idBanco = idBanco;
@@ -39,8 +45,13 @@ public class Venta {
         this.idComuna = idComuna;
         this.idEstadoVenta = idEstadoVenta;
         this.total = total;
+        this.fechaVenta = fechaVenta;
+        this.fechaTranferencia = fechaTranferencia;
+        this.codigoTransferencia = codigoTransferencia;
+        this.stIdEstado = stIdEstado;
         this.nombreDestinatario = nombreDestinatario;
         this.direccionDestinatario = direccionDestinatario;
+        this.comIdComuna = comIdComuna;
         this.telefono = telefono;
         this.correo = correo;
         this.fechaEntrega = fechaEntrega;
@@ -49,7 +60,7 @@ public class Venta {
         this.saludo = saludo;
     }
 
-    public Venta(int id, String id_cliente, int idPack, int idBanco, int idRrss, int idComuna, int idEstadoVenta, int total, String nombreDestinatario, String direccionDestinatario, int telefono, String correo, Date fechaEntrega, String hEntregaIn, String hEntregaFin, String saludo) {
+    public Venta(int id, String id_cliente, int idPack, int idBanco, int idRrss, int idComuna, int idEstadoVenta, int total, Date fechaVenta, Date fechaTranferencia, int codigoTransferencia, int stIdEstado, String nombreDestinatario, String direccionDestinatario, int comIdComuna, int telefono, String correo, Date fechaEntrega, String hEntregaIn, String hEntregaFin, String saludo) {
         this.id = id;
         this.id_cliente = id_cliente;
         this.idPack = idPack;
@@ -58,6 +69,28 @@ public class Venta {
         this.idComuna = idComuna;
         this.idEstadoVenta = idEstadoVenta;
         this.total = total;
+        this.fechaVenta = fechaVenta;
+        this.fechaTranferencia = fechaTranferencia;
+        this.codigoTransferencia = codigoTransferencia;
+        this.stIdEstado = stIdEstado;
+        this.nombreDestinatario = nombreDestinatario;
+        this.direccionDestinatario = direccionDestinatario;
+        this.comIdComuna = comIdComuna;
+        this.telefono = telefono;
+        this.correo = correo;
+        this.fechaEntrega = fechaEntrega;
+        this.hEntregaIn = hEntregaIn;
+        this.hEntregaFin = hEntregaFin;
+        this.saludo = saludo;
+    }
+
+    //lo uso solo al crear ya que faltan datos
+    public Venta(String id_cliente, int idPack, int idComuna, int idEstadoVenta, int total, String nombreDestinatario, String direccionDestinatario, int telefono, String correo, Date fechaEntrega, String hEntregaIn, String hEntregaFin, String saludo) {
+        this.id_cliente = id_cliente;
+        this.idPack = idPack;
+        this.idComuna = idComuna;
+        this.idEstadoVenta = idEstadoVenta;
+        this.total = total;
         this.nombreDestinatario = nombreDestinatario;
         this.direccionDestinatario = direccionDestinatario;
         this.telefono = telefono;
@@ -67,6 +100,9 @@ public class Venta {
         this.hEntregaFin = hEntregaFin;
         this.saludo = saludo;
     }
+
+    
+    
 
     public int getId() {
         return id;

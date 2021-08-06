@@ -18,8 +18,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PackDAO implements CrudGeneral<Packs> {
 
-    Conexion conexion = new Conexion();
+    public Conexion conexion;
     public int lasInsertId;
+
+    public PackDAO() {
+        this.conexion = new Conexion();
+    }
 
     @Override
     public ArrayList<Packs> listar(String nombrePack) {
@@ -53,7 +57,7 @@ public class PackDAO implements CrudGeneral<Packs> {
             } catch (SQLException e) {
                 System.err.println("ERROR en:" + e);
             } finally {
-                conexion.conectar();
+                conexion.desconectar();
             }
         }
 
@@ -268,7 +272,11 @@ public class PackDAO implements CrudGeneral<Packs> {
                 while (cat.next()) {
                     packs.add(new Packs(
                             cat.getInt("ID_PACK"),
-                            cat.getString("PCK_NOMBRE")
+                            cat.getInt("ID_CATEGORIA"),
+                            cat.getString("PCK_NOMBRE"),
+                            cat.getInt("PCK_COSTO"),
+                            cat.getInt("PCK_STOCK"),
+                            cat.getBoolean("Activo")
                     ));
 
                 }

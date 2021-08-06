@@ -12,7 +12,11 @@ import javax.swing.table.DefaultTableModel;
 
 public class BancoDAO implements CrudGeneral<Bancos> {
 
-    Conexion conexion = new Conexion();
+    public Conexion conexion;
+
+    public BancoDAO() {
+        this.conexion = new Conexion();
+    }
 
     @Override
     public ArrayList<Bancos> listar(String nombreBanco) {
