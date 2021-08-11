@@ -2,6 +2,8 @@
 package sistemaventas;
 
 import Vista.Sistema;
+import Vista.Usuario;
+
 import static java.awt.Frame.MAXIMIZED_BOTH;
 
 import javax.swing.UIManager;
@@ -17,6 +19,9 @@ public class SistemaVentas {
         } catch (Exception e) {
            
         } 
+        Usuario  usuario = new Usuario();
+        usuario.setVisible(true);
+        
         Sistema sistema=new Sistema();
         //sistema.setExtendedState(MAXIMIZED_BOTH);
         sistema.setVisible(true);

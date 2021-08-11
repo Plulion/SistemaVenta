@@ -5,6 +5,7 @@ package Conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 //Conexion Base
 
@@ -18,10 +19,16 @@ public class Conexion {
 //    private final String PASSWORD = "Lu2WRK5ycD2CEb8jOVl7";
     
     private final String DRIVER = "com.mysql.cj.jdbc.Driver";
-    private final String URL = "jdbc:mysql://localhost:3307/";
+    private final String URL = "jdbc:mysql://localhost:3306/";
     private final String DB = "dg";
-    private final String USER = "root";
+   private final String USER = "root";
     private final String PASSWORD = "";
+    
+    //private final String DRIVER = "com.mysql.cj.jdbc.Driver";
+    //private final String URL = "jdbc:mysql://webfinanzas.cl:3306/";
+    //private final String DB = "webfinan_dg";
+    //private final String USER = "webfinan_jose";
+    //private final String PASSWORD = "jose123";
 
     public Connection cadena;
     public static Conexion instancia;
@@ -56,4 +63,6 @@ public class Conexion {
         }
         return instancia;
     }
+
+    
 }

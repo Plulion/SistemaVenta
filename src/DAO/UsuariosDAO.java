@@ -14,9 +14,7 @@ import javax.swing.table.DefaultTableModel;
 public class UsuariosDAO implements CrudGeneral<Usuarios> {
 
     Conexion conexion = new Conexion();
-    public Statement sentencia;
-    public ResultSet resultado;
-   
+  
     public ArrayList<Usuarios> listar(String nombreUsuario) {
 
         ArrayList<Usuarios> list = new ArrayList<>();
