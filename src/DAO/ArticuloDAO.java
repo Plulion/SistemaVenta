@@ -25,9 +25,11 @@ import javax.swing.table.DefaultTableModel;
 public class ArticuloDAO implements CrudGeneral<Articulos> {
 
     public Conexion conexion;
+    public static ArrayList<Articulos> todosArticulos; //las variables estaticas pueden ser llamadas sin necesidad de instanciar la clase
 
     public ArticuloDAO() {
         this.conexion = new Conexion();
+        
     }
 
     @Override
@@ -205,6 +207,8 @@ public class ArticuloDAO implements CrudGeneral<Articulos> {
 
                     model.addRow(row);
                 }
+                
+                todosArticulos = list;
 
             } catch (SQLException e) {
                 System.err.println("ERROR en:" + e);

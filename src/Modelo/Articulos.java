@@ -81,6 +81,12 @@ public class Articulos {
         this.art_id = art_id;
         this.art_descripcion = art_descripcion;
     }
+
+    public Articulos(int art_id, int prov_id, String art_descripcion) {
+        this.art_id = art_id;
+        this.prov_id = prov_id;
+        this.art_descripcion = art_descripcion;
+    }
     
     
 

@@ -8,7 +8,6 @@ package DAO;
 import Conexion.Conexion;
 import Modelo.Proveedor;
 
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,12 +22,12 @@ import javax.swing.table.DefaultTableModel;
  * @author Meli
  */
 public class ProveedorDAO implements CrudGeneral<Proveedor> {
-    
+
     Conexion conexion = new Conexion();
 
     @Override
     public ArrayList<Proveedor> listar(String nombreProveedor) {
-              ArrayList<Proveedor> list = new ArrayList<>();
+        ArrayList<Proveedor> list = new ArrayList<>();
 
         try {
 
@@ -44,19 +43,17 @@ public class ProveedorDAO implements CrudGeneral<Proveedor> {
                         rs.getString("PRO_RUT_PROVEEDOR"),
                         rs.getString("PRO_NOMBRE"),
                         rs.getInt("PRO_TELEFONO"),
-                        rs.getString ("PRO_CORREO"),
-                        rs.getString ("PRO_DIRECCION"),
-                        rs.getString ("RAZON"),
+                        rs.getString("PRO_CORREO"),
+                        rs.getString("PRO_DIRECCION"),
+                        rs.getString("RAZON"),
                         rs.getBoolean("Activo")));
-                
-                        
+
             }
 
         } catch (Exception e) {
             System.err.println("ERROR en:" + e);
         }
         return list;
-        
 
 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
@@ -74,19 +71,18 @@ public class ProveedorDAO implements CrudGeneral<Proveedor> {
     @Override
     public boolean actualizar(String texto, int id, Proveedor proveedor) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            try {
+        try {
             String sql = "UPDATE proveedor SET PRO_RUT_PROVEEDOR =?, PRO_NOMBRE=?, PRO_TELEFONO=?, PRO_CORREO=?, PRO_DIRECCION=?,RAZON=?, Activo=? WHERE ID_PRO=?";
             PreparedStatement stmt = conexion.conectar().prepareStatement(sql);
-            
+
             stmt.setString(1, proveedor.getPRO_RUT_PROVEEDOR());
-            stmt.setString(2,proveedor.getPRO_NOMBRE());
-            stmt.setInt(3,proveedor.getPRO_TELEFONO());
-            stmt.setString(4,proveedor.getPRO_CORREO());
-            stmt.setString(5,proveedor.getPRO_DIRECCION());
+            stmt.setString(2, proveedor.getPRO_NOMBRE());
+            stmt.setInt(3, proveedor.getPRO_TELEFONO());
+            stmt.setString(4, proveedor.getPRO_CORREO());
+            stmt.setString(5, proveedor.getPRO_DIRECCION());
             stmt.setBoolean(6, proveedor.isActivo());
-            
+
             stmt.setString(7, proveedor.getRAZON());
-            
 
             stmt.executeUpdate();
 
@@ -97,26 +93,25 @@ public class ProveedorDAO implements CrudGeneral<Proveedor> {
         }
         return false;
 
-    
     }
 
     @Override
     public boolean agregar(Proveedor proveedor) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-           try {
+        try {
             String sql = "INSERT INTO proveedor (ID_PRO, PRO_RUT_PROVEEDOR, PRO_NOMBRE, PRO_TELEFONO, PRO_CORREO, PRO_DIRECCION, RAZON, Activo) VALUES(?, ?, ?, ?, ?, ?,?,?) ON DUPLICATE KEY UPDATE PRO_RUT_PROVEEDOR=?, PRO_NOMBRE=?, PRO_TELEFONO=?, PRO_CORREO=?, PRO_DIRECCION=?,RAZON=?, Activo=?";
             PreparedStatement stmt = conexion.conectar().prepareStatement(sql);
-            stmt.setInt(1,proveedor.getID_PRO());
-            stmt.setString(2,proveedor.getPRO_RUT_PROVEEDOR());
-            stmt.setString(3,proveedor.getPRO_NOMBRE());
-            stmt.setInt(4,proveedor.getPRO_TELEFONO());
-            stmt.setString(5,proveedor.getPRO_CORREO());
-            stmt.setString(6,proveedor.getPRO_DIRECCION());
-            stmt.setString(7,proveedor.getRAZON());
-            stmt.setBoolean(8,proveedor.isActivo());
+            stmt.setInt(1, proveedor.getID_PRO());
+            stmt.setString(2, proveedor.getPRO_RUT_PROVEEDOR());
+            stmt.setString(3, proveedor.getPRO_NOMBRE());
+            stmt.setInt(4, proveedor.getPRO_TELEFONO());
+            stmt.setString(5, proveedor.getPRO_CORREO());
+            stmt.setString(6, proveedor.getPRO_DIRECCION());
+            stmt.setString(7, proveedor.getRAZON());
+            stmt.setBoolean(8, proveedor.isActivo());
 
-            stmt.setString(9,proveedor.getPRO_RUT_PROVEEDOR());
-            stmt.setString(10,proveedor.getPRO_NOMBRE());
+            stmt.setString(9, proveedor.getPRO_RUT_PROVEEDOR());
+            stmt.setString(10, proveedor.getPRO_NOMBRE());
             stmt.setInt(11, proveedor.getPRO_TELEFONO());
             stmt.setString(12, proveedor.getPRO_CORREO());
             stmt.setString(13, proveedor.getPRO_DIRECCION());
@@ -131,12 +126,12 @@ public class ProveedorDAO implements CrudGeneral<Proveedor> {
             System.err.println("ERROR: " + e);
         }
         return false;
-    
+
     }
 
     @Override
     public void obtenerTodos(JTable tabla, DefaultTableModel model) {
-       
+
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         model.setRowCount(0);
 
@@ -152,19 +147,18 @@ public class ProveedorDAO implements CrudGeneral<Proveedor> {
 
             while (rs.next()) {
                 list.add(new Proveedor(
-                        
-                        rs.getInt("ID_PRO"), 
-                        rs.getString("PRO_RUT_PROVEEDOR"), 
-                        rs.getString("PRO_NOMBRE"),  
-                        rs.getInt("PRO_TELEFONO"),                      
+                        rs.getInt("ID_PRO"),
+                        rs.getString("PRO_RUT_PROVEEDOR"),
+                        rs.getString("PRO_NOMBRE"),
+                        rs.getInt("PRO_TELEFONO"),
                         rs.getString("PRO_CORREO"),
                         rs.getString("PRO_DIRECCION"),
                         rs.getString("RAZON"),
                         rs.getBoolean("Activo")
                 ));
             }
-            
-                    Object[] row = new Object[8];
+
+            Object[] row = new Object[8];
 
             for (int i = 0; i < list.size(); i++) {
                 row[0] = list.get(i).getID_PRO();
@@ -172,8 +166,8 @@ public class ProveedorDAO implements CrudGeneral<Proveedor> {
                 row[2] = list.get(i).getPRO_NOMBRE();
                 row[3] = list.get(i).getPRO_TELEFONO();
                 row[4] = list.get(i).getPRO_CORREO();
-                row[5] = list.get(i).getPRO_DIRECCION(); 
-                row[6] = list.get(i).getRAZON(); 
+                row[5] = list.get(i).getPRO_DIRECCION();
+                row[6] = list.get(i).getRAZON();
                 row[7] = list.get(i).isActivo();
 
                 model.addRow(row);
@@ -183,5 +177,45 @@ public class ProveedorDAO implements CrudGeneral<Proveedor> {
             System.err.println("ERROR en:" + e);
         }
     }
-}
 
+    public ArrayList<Proveedor> obtenerTodosProveedores() throws SQLException {
+
+        ArrayList<Proveedor> proveedores = new ArrayList<>();
+
+        ResultSet rs = null;
+
+        if (conexion.conectar() != null) {
+
+            Statement smt = conexion.conectar().createStatement();
+
+            try {
+
+                String sql = "SELECT * FROM proveedor";
+                rs = smt.executeQuery(sql);
+
+                while (rs.next()) {
+                    proveedores.add(new Proveedor(
+                            rs.getInt("ID_PRO"),
+                            rs.getString("PRO_RUT_PROVEEDOR"),
+                            rs.getString("PRO_NOMBRE"),
+                            rs.getInt("PRO_TELEFONO"),
+                            rs.getString("PRO_CORREO"),
+                            rs.getString("PRO_DIRECCION"),
+                            rs.getString("RAZON"),
+                            rs.getBoolean("Activo")
+                    ));
+
+                }
+
+            } catch (SQLException e) {
+                System.err.println("ERROR: Al obtener Proveedores " + e);
+            } finally {
+                if (smt != null) {
+                    smt.close();
+                }
+                conexion.desconectar();
+            }
+        }
+        return proveedores;
+    }
+}
