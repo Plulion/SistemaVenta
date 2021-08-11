@@ -422,19 +422,42 @@ public class MenuVenta extends javax.swing.JPanel {
         String horaInicio = input_horaInicio.getText();
         String horaFin = input_horaFin.getText();
 
+        if (clienteEncontrado == null) {
+            JOptionPane.showMessageDialog(null, "La venta debe estar asociada a un cliente", "Se requiere acción previa", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
+        String rutCliente = clienteEncontrado.getRUT();
+        int telefonoCliente = clienteEncontrado.getCLI_TELEFONO();
+        String correoCliente = clienteEncontrado.getCLI_CORREO();
+
+        if (("".equals(nombreDestinatario)
+                || "".equals(direccion))
+                || "".equals(saludo)
+                || "".equals(horaInicio)
+                || "".equals(horaFin)
+                || "".equals(rutCliente)
+                || "".equals(correoCliente)
+                || fechaEntrega == null) {
+
+            JOptionPane.showMessageDialog(null, "Faltan datos por completar", "Se requiere acción previa", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+
         Comunas comuna = (Comunas) cb_comuna.getSelectedItem();
         Packs pack = (Packs) combo_packs.getSelectedItem();
 
         Venta venta = new Venta(
-                clienteEncontrado.getRUT(),
+                rutCliente,
                 pack.getIdPack(),
                 comuna.getIdComuna(),
                 3,
                 pack.getPrecio(),
                 nombreDestinatario,
                 direccion,
-                clienteEncontrado.getCLI_TELEFONO(),
-                clienteEncontrado.getCLI_CORREO(),
+                telefonoCliente,
+                correoCliente,
+                fechaEntrega,
                 horaInicio,
                 horaFin,
                 saludo

@@ -20,19 +20,18 @@ import javax.swing.table.DefaultTableModel;
  * @author Meli
  */
 public class CategoriaVentaDAO implements CrudGeneral<CategoriaVenta> {
-    
-     Conexion conexion = new Conexion();
+
+    Conexion conexion = new Conexion();
 
     @Override
     public ArrayList<CategoriaVenta> listar(String descripcioncategoriaventa) {
-        
+
         ArrayList<CategoriaVenta> list = new ArrayList<>();
-        
-                try {
+
+        try {
 
             PreparedStatement smt = conexion.conectar().prepareStatement("SELECT * FROM estados_venta WHERE LOWER(EST_DESCRIPCION) LIKE LOWER(?)");
             smt.setString(1, "%" + descripcioncategoriaventa + "%");
-            
 
             ResultSet rs = smt.executeQuery();
 
@@ -46,6 +45,8 @@ public class CategoriaVentaDAO implements CrudGeneral<CategoriaVenta> {
 
         } catch (Exception e) {
             System.err.println("ERROR en:" + e);
+        } finally {
+            conexion.desconectar();
         }
         return list;
     }
@@ -62,16 +63,14 @@ public class CategoriaVentaDAO implements CrudGeneral<CategoriaVenta> {
 
     @Override
     public boolean actualizar(String texto, int id, CategoriaVenta categoriaventa) {
-   
-     // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-             try {
+
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
             String sql = "UPDATE estados_venta SET EST_DESCRIPCION=?, Activo=? WHERE IdEstVta=?";
             PreparedStatement stmt = conexion.conectar().prepareStatement(sql);
 
-            
             stmt.setString(1, categoriaventa.getEST_DESCRIPCION());
-            stmt.setBoolean(2,categoriaventa.isActivo());
-            
+            stmt.setBoolean(2, categoriaventa.isActivo());
 
             stmt.executeUpdate();
 
@@ -79,19 +78,18 @@ public class CategoriaVentaDAO implements CrudGeneral<CategoriaVenta> {
 
         } catch (Exception e) {
             System.err.println("ERROR: " + e);
+        } finally {
+            conexion.desconectar();
         }
         return false;
 
-     
     }
-    
-    
 
     @Override
     public boolean agregar(CategoriaVenta categoriaventa) {
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
- 
-     try {
+        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        try {
             String sql = "INSERT INTO estados_venta (IdEstVta, EST_DESCRIPCION,  Activo) VALUES( ?, ?, ?) ON DUPLICATE KEY UPDATE EST_DESCRIPCION=?, Activo=?";
             PreparedStatement stmt = conexion.conectar().prepareStatement(sql);
 
@@ -108,15 +106,17 @@ public class CategoriaVentaDAO implements CrudGeneral<CategoriaVenta> {
 
         } catch (SQLException e) {
             System.err.println("ERROR: " + e);
+        } finally {
+            conexion.desconectar();
         }
         return false;
-    
+
     }
 
     @Override
     public void obtenerTodos(JTable tabla, DefaultTableModel model) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-            model.setRowCount(0);
+        model.setRowCount(0);
 
         ArrayList<CategoriaVenta> list = new ArrayList<>(); // esta lista esta vacia
 
@@ -130,12 +130,12 @@ public class CategoriaVentaDAO implements CrudGeneral<CategoriaVenta> {
 
             while (rs.next()) {
                 list.add(new CategoriaVenta(
-                        rs.getInt("IdEstVta"),                        
-                        rs.getString("EST_DESCRIPCION"),                      
+                        rs.getInt("IdEstVta"),
+                        rs.getString("EST_DESCRIPCION"),
                         rs.getBoolean("Activo")
                 ));
             }
-        Object[] row = new Object[3];
+            Object[] row = new Object[3];
 
             for (int i = 0; i < list.size(); i++) {
                 row[0] = list.get(i).getIdEstVta();
@@ -147,11 +147,8 @@ public class CategoriaVentaDAO implements CrudGeneral<CategoriaVenta> {
 
         } catch (Exception e) {
             System.err.println("ERROR en:" + e);
+        } finally {
+            conexion.desconectar();
         }
     }
 }
-
-    
-    
-    
-
