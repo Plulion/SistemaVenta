@@ -85,7 +85,7 @@ public class Venta {
     }
 
     //lo uso solo al crear ya que faltan datos
-    public Venta(String id_cliente, int idPack, int idComuna, int idEstadoVenta, int total, String nombreDestinatario, String direccionDestinatario, int telefono, String correo, String hEntregaIn, String hEntregaFin, String saludo) {
+    public Venta(String id_cliente, int idPack, int idComuna, int idEstadoVenta, int total, String nombreDestinatario, String direccionDestinatario, int telefono, String correo, Date fechaEntrega, String hEntregaIn, String hEntregaFin, String saludo) {
         this.id_cliente = id_cliente;
         this.idPack = idPack;
         this.idComuna = idComuna;
@@ -95,11 +95,13 @@ public class Venta {
         this.direccionDestinatario = direccionDestinatario;
         this.telefono = telefono;
         this.correo = correo;
+        this.fechaEntrega = fechaEntrega;
         this.hEntregaIn = hEntregaIn;
         this.hEntregaFin = hEntregaFin;
         this.saludo = saludo;
     }
 
+    
     
 
     public int getId() {
