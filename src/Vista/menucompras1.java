@@ -289,7 +289,7 @@ public class menucompras1 extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Numero del pedido", "Fecha pedido", "Cantidad articulo"
+                "Número del pedido", "Fecha pedido", "Cantidad articulo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
