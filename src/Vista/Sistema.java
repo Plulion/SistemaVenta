@@ -156,7 +156,6 @@ public class Sistema extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusTraversalPolicyProvider(true);
-        setPreferredSize(new java.awt.Dimension(1280, 900));
         setSize(new java.awt.Dimension(1300, 780));
 
         jPanel5.setLayout(new java.awt.BorderLayout());
@@ -833,7 +832,7 @@ public class Sistema extends JFrame {
 
         jTabbedPane4.addTab("Informe Devolución y Cambios", jPanelInformeDevolucionyCambios);
 
-        jPanel16.add(jTabbedPane4, java.awt.BorderLayout.CENTER);
+        jPanel16.add(jTabbedPane4, java.awt.BorderLayout.PAGE_START);
 
         mVentas.addTab("Informes", jPanel16);
 
@@ -869,30 +868,6 @@ public class Sistema extends JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtDesdeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDesdeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDesdeActionPerformed
-
-    private void txtRutCliente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutCliente2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRutCliente2ActionPerformed
-
-    private void txtDvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDvActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDvActionPerformed
-
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscarActionPerformed
-
-    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BuscarActionPerformed
-
-    private void Buscar_VentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buscar_VentasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Buscar_VentasActionPerformed
-
     private void txtDesde1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDesde1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDesde1ActionPerformed
@@ -916,30 +891,6 @@ public class Sistema extends JFrame {
     private void jButtonBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscar1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonBuscar1ActionPerformed
-
-    private void txtDesde3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDesde3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDesde3ActionPerformed
-
-    private void txtRut2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRut2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRut2ActionPerformed
-
-    private void txtDv2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDv2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDv2ActionPerformed
-
-    private void btnBuscar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnBuscar3ActionPerformed
-
-    private void jTextBuscar_ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextBuscar_ClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextBuscar_ClienteActionPerformed
-
-    private void jButtonBuscar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscar3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonBuscar3ActionPerformed
 
     private void txtDesde4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDesde4ActionPerformed
         // TODO add your handling code here:
@@ -1040,6 +991,54 @@ public class Sistema extends JFrame {
 //            LabelNombreCliente.setForeground(new Color(0,153,51));
 //        }
     }//GEN-LAST:event_txtNombreClienteActionPerformed
+
+    private void jButtonBuscar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscar3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonBuscar3ActionPerformed
+
+    private void jTextBuscar_ClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextBuscar_ClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextBuscar_ClienteActionPerformed
+
+    private void btnBuscar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscar3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscar3ActionPerformed
+
+    private void txtDv2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDv2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDv2ActionPerformed
+
+    private void txtRut2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRut2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRut2ActionPerformed
+
+    private void txtDesde3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDesde3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDesde3ActionPerformed
+
+    private void Buscar_VentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buscar_VentasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Buscar_VentasActionPerformed
+
+    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BuscarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void txtDvActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDvActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDvActionPerformed
+
+    private void txtRutCliente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutCliente2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRutCliente2ActionPerformed
+
+    private void txtDesdeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDesdeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDesdeActionPerformed
 
     /**
      * @param args the command line arguments
