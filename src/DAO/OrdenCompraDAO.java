@@ -77,9 +77,9 @@ public class OrdenCompraDAO {
 
         return false;
     }
-    
-    public boolean actualizarOrdenCompra (int idProveedor, Date fechaOrden, int numeroOrden) {
-        
+
+    public boolean actualizarOrdenCompra(int idProveedor, Date fechaOrden, int numeroOrden) {
+
         Connection conn = conexion.conectar();
 
         if (conn != null) {
@@ -92,7 +92,7 @@ public class OrdenCompraDAO {
                 PreparedStatement stmt = null;
 
                 stmt = conn.prepareStatement(sql, stmt.RETURN_GENERATED_KEYS);
-                
+
                 stmt.setInt(1, idProveedor);
                 stmt.setDate(2, new java.sql.Date(fechaOrden.getTime()));
                 stmt.setInt(3, numeroOrden);
@@ -113,7 +113,7 @@ public class OrdenCompraDAO {
             }
             return true;
         }
-        
+
         return false;
     }
 
@@ -144,6 +144,38 @@ public class OrdenCompraDAO {
                 stmt.executeBatch();
 
                 stmt.close();
+
+            } catch (SQLException e) {
+                System.err.println("ERROR: " + e);
+            } finally {
+                conexion.desconectar();
+            }
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean eliminarOrdenCompraDetalle(int idOrden) {
+
+        Connection conn = conexion.conectar();
+
+        if (conn != null) {
+
+            try {
+                PreparedStatement stmt = null;
+
+                String sql = "DELETE FROM orden_compra_detalle WHERE ORC_ID_ORDEN = ?";
+
+                stmt = conn.prepareStatement(sql);
+
+                stmt.setInt(1, idOrden);
+
+                stmt.executeUpdate();
+
+                stmt.close();
+                
+                lasInsertId = idOrden;
 
             } catch (SQLException e) {
                 System.err.println("ERROR: " + e);
@@ -209,7 +241,7 @@ public class OrdenCompraDAO {
                 PreparedStatement stmt = null;
 
                 stmt = conn.prepareStatement(sql);
-                
+
                 stmt.setInt(1, idPedido);
 
                 datos = stmt.executeQuery();

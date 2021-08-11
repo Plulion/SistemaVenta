@@ -85,8 +85,8 @@ public class menucompras1 extends javax.swing.JPanel {
         jPanel39 = new javax.swing.JPanel();
         jLabel60 = new javax.swing.JLabel();
         input_numeroPedido = new javax.swing.JTextField();
-        btnCancVenta4 = new javax.swing.JButton();
-        btnGuardVenta4 = new javax.swing.JButton();
+        btn_cancelar = new javax.swing.JButton();
+        btn_guardar = new javax.swing.JButton();
         jLabel61 = new javax.swing.JLabel();
         btn_agregar = new javax.swing.JButton();
         date_fechaPedido = new com.toedter.calendar.JDateChooser();
@@ -115,12 +115,12 @@ public class menucompras1 extends javax.swing.JPanel {
 
         input_numeroPedido.setEditable(false);
 
-        btnCancVenta4.setText("Cancelar");
+        btn_cancelar.setText("Cancelar");
 
-        btnGuardVenta4.setText("Guardar");
-        btnGuardVenta4.addActionListener(new java.awt.event.ActionListener() {
+        btn_guardar.setText("Guardar o Actualizar");
+        btn_guardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardVenta4ActionPerformed(evt);
+                btn_guardarActionPerformed(evt);
             }
         });
 
@@ -199,29 +199,22 @@ public class menucompras1 extends javax.swing.JPanel {
                     .addGroup(jPanel39Layout.createSequentialGroup()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel39Layout.createSequentialGroup()
-                            .addGap(0, 0, Short.MAX_VALUE)
-                            .addComponent(spinner_cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel39Layout.createSequentialGroup()
-                            .addGroup(jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel39Layout.createSequentialGroup()
-                                    .addComponent(jLabel60, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(input_numeroPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(16, 16, 16)
-                            .addGroup(jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btn_quitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn_agregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel39Layout.createSequentialGroup()
+                        .addGroup(jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel39Layout.createSequentialGroup()
+                                .addComponent(jLabel60, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(input_numeroPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btn_quitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btn_agregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(spinner_cantidad))))
                 .addGroup(jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel39Layout.createSequentialGroup()
-                        .addGap(310, 310, 310)
-                        .addGroup(jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel39Layout.createSequentialGroup()
-                                .addComponent(btnCancVenta4)
-                                .addGap(501, 501, 501)))
+                        .addGap(482, 482, 482)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel39Layout.createSequentialGroup()
@@ -231,7 +224,9 @@ public class menucompras1 extends javax.swing.JPanel {
                             .addContainerGap())
                         .addGroup(jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel39Layout.createSequentialGroup()
-                                .addComponent(btnGuardVenta4)
+                                .addComponent(btn_cancelar)
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_guardar)
                                 .addGap(421, 421, 421))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel39Layout.createSequentialGroup()
                                 .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -268,8 +263,8 @@ public class menucompras1 extends javax.swing.JPanel {
                     .addGroup(jPanel39Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addGroup(jPanel39Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnGuardVenta4)
-                            .addComponent(btnCancVenta4))))
+                            .addComponent(btn_guardar)
+                            .addComponent(btn_cancelar))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -425,7 +420,7 @@ public class menucompras1 extends javax.swing.JPanel {
         modeloTablaArtAgregados.setValueAt(cantidadArticulo - cantidad < 0 ? 0 : cantidadArticulo - cantidad, tabla_productosAgregados.getSelectedRow(), 1);
     }//GEN-LAST:event_btn_quitarActionPerformed
 
-    private void btnGuardVenta4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardVenta4ActionPerformed
+    private void btn_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_guardarActionPerformed
 
         String numeroPedido = input_numeroPedido.getText();
         Date fechaPedido = date_fechaPedido.getDate();
@@ -440,22 +435,23 @@ public class menucompras1 extends javax.swing.JPanel {
             cantidades.add(cantidad);
             articulosAgregados.add(articuloActual);
         }
-        
+
         //si el id no existe es porque estoy creando una nueva Orden de compra y por tanto uso INSERT
+        OrdenCompraDAO iOrdenCompra = new OrdenCompraDAO();
         if ("".equals(numeroPedido)) {
-
-            OrdenCompraDAO iOrdenCompra = new OrdenCompraDAO();
-
             iOrdenCompra.insertarOrdenCompra(articulosAgregados, fechaPedido);
-            iOrdenCompra.insertarOrdenCompraDetalle(cantidades, articulosAgregados);
-        } 
-        //en cambio si el id si existe es porque esa orden existia de antes. Por lo tanto la estoy actualizando con UPDATE
+        } //en cambio si el id si existe es porque esa orden existia de antes. Por lo tanto la quiero modificar
         else {
-            
+            iOrdenCompra.eliminarOrdenCompraDetalle(Integer.parseInt(numeroPedido));
         }
+        iOrdenCompra.insertarOrdenCompraDetalle(cantidades, articulosAgregados);
 
-
-    }//GEN-LAST:event_btnGuardVenta4ActionPerformed
+        try {
+            llenarTablaPedidosRealizados();
+        } catch (SQLException ex) {
+            Logger.getLogger(menucompras1.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btn_guardarActionPerformed
 
     private void btn_editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editarActionPerformed
 
@@ -487,10 +483,10 @@ public class menucompras1 extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancVenta4;
-    private javax.swing.JButton btnGuardVenta4;
     private javax.swing.JButton btn_agregar;
+    private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_editar;
+    private javax.swing.JButton btn_guardar;
     private javax.swing.JButton btn_quitar;
     private com.toedter.calendar.JDateChooser date_fechaPedido;
     private javax.swing.JTextField input_numeroPedido;
