@@ -5,17 +5,57 @@
  */
 package Vista;
 
+import DAO.ListaDestinoDAO;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Meli
  */
 public class ListaDestino extends javax.swing.JPanel {
 
+    DefaultTableModel modelTablaDestinos;
+    
+
     /**
      * Creates new form ListaDestino
      */
     public ListaDestino() {
         initComponents();
+        this.modelTablaDestinos = (DefaultTableModel) tabla_destinos.getModel();
+        
+        try {
+            llenarTablaDestinos();
+        } catch (SQLException ex) {
+            Logger.getLogger(ListaDestino.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void llenarTablaDestinos() throws SQLException {
+        
+        ResultSet destinos = ListaDestinoDAO.obtenerDestinosDespachosDia();
+        
+        Object[] row = new Object[7];
+        
+        while (destinos.next()) {
+            
+            row[0] = destinos.getInt("ID_VENTA");
+            row[1] = destinos.getString("PCK_NOMBRE");
+            row[2] = destinos.getString("VTA_NOMBRE_DESTINATARIO");
+            row[3] = destinos.getDate("VTA_FECHA_ENTREGA");
+            row[4] = destinos.getString("COM_DESCRIPCION");
+            row[5] = destinos.getString("VTA_DIRECCION_DESTINATARIO");
+            row[6] = destinos.getString("VTA_HORA_ENTREGA_INICIAL") + " a " + destinos.getString("VTA_HORA_ENTREGA_FINAL");
+            
+            modelTablaDestinos.addRow(row);
+          
+        }
+
     }
 
     /**
@@ -27,106 +67,73 @@ public class ListaDestino extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        ListaDestino = new javax.swing.JTable();
         jLabelListaDestino = new javax.swing.JLabel();
-        jButtonBuscar = new javax.swing.JButton();
-        jTextBuscar = new javax.swing.JTextField();
-        jButtonDescargar = new javax.swing.JButton();
+        btn_buscar = new javax.swing.JButton();
+        input_buscar = new javax.swing.JTextField();
+        btn_descargar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla_destinos = new javax.swing.JTable();
 
-        ListaDestino.setModel(new javax.swing.table.DefaultTableModel(
+        setBackground(java.awt.SystemColor.controlShadow);
+
+        jLabelListaDestino.setForeground(java.awt.SystemColor.control);
+        jLabelListaDestino.setText("Lista Destino Despacho por Dia");
+
+        btn_buscar.setText("Buscar");
+
+        btn_descargar.setText("Descargar");
+
+        tabla_destinos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "RegistroVenta", "Pack", "Destinatarios", "Fecha de Entrega", "Comuna", "Direccion", "Hora de Entrega"
             }
         ));
-        jScrollPane1.setViewportView(ListaDestino);
-
-        jLabelListaDestino.setText("Lista Destino Despacho por Dia");
-
-        jButtonBuscar.setText("Buscar");
-
-        jButtonDescargar.setText("Descargar");
-
-        javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
-        jPanel.setLayout(jPanelLayout);
-        jPanelLayout.setHorizontalGroup(
-            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelLayout.createSequentialGroup()
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1719, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(309, 309, 309)
-                        .addComponent(jLabelListaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(359, 359, 359)
-                        .addComponent(jTextBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(jButtonBuscar)))
-                .addContainerGap(44, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButtonDescargar)
-                .addGap(679, 679, 679))
-        );
-        jPanelLayout.setVerticalGroup(
-            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelListaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonBuscar)
-                    .addComponent(jTextBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86)
-                .addComponent(jButtonDescargar)
-                .addContainerGap(109, Short.MAX_VALUE))
-        );
+        jScrollPane1.setViewportView(tabla_destinos);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1773, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelListaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(input_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_buscar))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btn_descargar)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1094, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 507, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelListaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_buscar)
+                    .addComponent(input_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_descargar)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable ListaDestino;
-    private javax.swing.JButton jButtonBuscar;
-    private javax.swing.JButton jButtonDescargar;
+    private javax.swing.JButton btn_buscar;
+    private javax.swing.JButton btn_descargar;
+    private javax.swing.JTextField input_buscar;
     private javax.swing.JLabel jLabelListaDestino;
-    private javax.swing.JPanel jPanel;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextBuscar;
+    private javax.swing.JTable tabla_destinos;
     // End of variables declaration//GEN-END:variables
 }
